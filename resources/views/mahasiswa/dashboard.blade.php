@@ -14,7 +14,7 @@
                     <p class="text-indigo-100 text-lg max-w-xl">Siap untuk meraih prestasi hari ini? Temukan lomba terbaik dan bangun tim impianmu di SiLomba.</p>
                     <div class="mt-8 flex space-x-4">
                         <a href="{{ route('mahasiswa.lomba.index') }}" class="px-6 py-3 bg-white text-indigo-600 rounded-2xl font-bold hover:bg-indigo-50 transition shadow-lg">Jelajahi Lomba</a>
-                        <a href="{{ route('mahasiswa.tim-finder') }}" class="px-6 py-3 bg-indigo-500/30 backdrop-blur-md text-white border border-white/20 rounded-2xl font-bold hover:bg-indigo-500/50 transition">Cari Tim</a>
+                        <a href="{{ route('mahasiswa.tim-finder.index') }}" class="px-6 py-3 bg-indigo-500/30 backdrop-blur-md text-white border border-white/20 rounded-2xl font-bold hover:bg-indigo-500/50 transition">Cari Tim</a>
                     </div>
                 </div>
                 <!-- Abstract blobs -->
@@ -27,7 +27,7 @@
                 <div class="lg:col-span-2 space-y-6">
                     <div class="flex items-center justify-between">
                         <h3 class="text-2xl font-bold text-gray-900">Rekomendasi Untukmu</h3>
-                        <a href="{{ route('mahasiswa.tim-finder') }}" class="text-indigo-600 font-bold text-sm hover:underline">Lihat Semua &rarr;</a>
+                        <a href="{{ route('mahasiswa.tim-finder.index') }}" class="text-indigo-600 font-bold text-sm hover:underline">Lihat Semua &rarr;</a>
                     </div>
                     
                     <!-- Recommendation Card -->

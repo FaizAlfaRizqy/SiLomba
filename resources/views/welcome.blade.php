@@ -9,7 +9,6 @@
                 </div>
                 <h1 class="text-[#1E293B] text-5xl md:text-6xl font-bold leading-tight tracking-tight">
                     Temukan Lomba,<br>
-                    <span class="text-primary">Bentuk Tim,</span><br>
                     Raih Prestasi
                 </h1>
                 <p class="text-textMuted text-lg leading-relaxed max-w-md">
@@ -84,14 +83,6 @@
                 </div>
 
                 <!-- Floating Cards -->
-                <div class="absolute -top-6 -left-6 bg-white border border-borderMain rounded-2xl shadow-xl p-4 flex items-center gap-3 z-20 animate-bounce duration-[3000ms]">
-                    <div class="w-10 h-10 bg-aksenLight rounded-full flex items-center justify-center text-xl">👥</div>
-                    <div>
-                        <p class="text-[10px] text-textMuted uppercase font-bold tracking-widest">Tim Baru Terbentuk</p>
-                        <p class="text-xs font-bold text-textMain">Tim Unsoed Cerdas</p>
-                        <p class="text-[10px] text-textMuted">2 menit lalu</p>
-                    </div>
-                </div>
 
                 <div class="absolute -bottom-6 -right-6 bg-white border border-borderMain rounded-2xl shadow-xl p-4 flex items-center gap-3 z-20">
                     <div class="w-10 h-10 bg-aksenLight rounded-full flex items-center justify-center text-aksen text-xl">✅</div>
@@ -320,7 +311,6 @@
                         
                         <div class="flex justify-between items-center pt-4 border-t border-borderMain">
                             <a href="{{ route('login') }}" class="text-primary text-sm font-bold hover:underline">Detail →</a>
-                            <span class="bg-aksenLight text-aksenDark text-[10px] font-black rounded-full px-3 py-1 uppercase">Tim Tersedia</span>
                         </div>
                     </div>
                 </div>

@@ -44,21 +44,35 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::resource('lomba', LombaController::class)->only(['index', 'show']);
             
             // Tim Finder
-            Route::get('/tim-finder', [LombaController::class, 'timFinder'])->name('tim-finder');
-            Route::get('/tim-finder/slot/{id}', [LombaController::class, 'slotShow'])->name('tim-finder.show');
-            Route::post('/tim-finder/apply/{slotId}', [\App\Http\Controllers\Mahasiswa\TeamController::class, 'apply'])->name('team.apply');
+            Route::get('/tim-finder', [\App\Http\Controllers\Mahasiswa\TimFinderController::class, 'index'])->name('tim-finder.index');
+            Route::get('/tim-finder/{slot}', [\App\Http\Controllers\Mahasiswa\TimFinderController::class, 'show'])->name('tim-finder.show');
+            Route::post('/tim-finder/{slot}/apply', [\App\Http\Controllers\Mahasiswa\TimFinderController::class, 'apply'])->name('tim-finder.apply');
+
+            // My Teams
+            Route::get('/my-teams', [\App\Http\Controllers\Mahasiswa\MyTeamController::class, 'index'])->name('my-teams.index');
+            Route::get('/my-teams/{tim}', [\App\Http\Controllers\Mahasiswa\MyTeamController::class, 'show'])->name('my-teams.show');
+            Route::delete('/my-teams/lamaran/{lamaran}/cancel', [\App\Http\Controllers\Mahasiswa\MyTeamController::class, 'cancelLamaran'])->name('my-teams.cancel');
+
+            // Notifications
+            Route::get('/notifikasi', [\App\Http\Controllers\Mahasiswa\NotifikasiController::class, 'index'])->name('notifikasi.index');
+            Route::post('/notifikasi/{id}/baca', [\App\Http\Controllers\Mahasiswa\NotifikasiController::class, 'tandaiBaca'])->name('notifikasi.baca');
+            Route::post('/notifikasi/baca-semua', [\App\Http\Controllers\Mahasiswa\NotifikasiController::class, 'bacaSemua'])->name('notifikasi.baca-semua');
+            Route::get('/notifikasi/unread-count', [\App\Http\Controllers\Mahasiswa\NotifikasiController::class, 'unreadCount'])->name('notifikasi.unread-count');
+
+            // Chat Tim
+            Route::get('/chat', [\App\Http\Controllers\Mahasiswa\ChatController::class, 'index'])->name('chat.index');
+            Route::get('/chat/{tim}', [\App\Http\Controllers\Mahasiswa\ChatController::class, 'show'])->name('chat.show');
+            Route::post('/chat/{tim}/kirim', [\App\Http\Controllers\Mahasiswa\ChatController::class, 'kirim'])->name('chat.kirim');
+            Route::post('/chat/{tim}/upload', [\App\Http\Controllers\Mahasiswa\ChatController::class, 'upload'])->name('chat.upload');
+            Route::get('/chat/{tim}/pesan-baru', [\App\Http\Controllers\Mahasiswa\ChatController::class, 'pesanBaru'])->name('chat.pesan-baru');
+            Route::post('/chat/pesan/{pesan}/pin', [\App\Http\Controllers\Mahasiswa\ChatController::class, 'pinPesan'])->name('chat.pin');
             
-        // Team Management
-        Route::get('/team/create', [\App\Http\Controllers\Mahasiswa\TeamController::class, 'create'])->name('team.create');
-        Route::post('/team', [\App\Http\Controllers\Mahasiswa\TeamController::class, 'store'])->name('team.store');
-        Route::get('/my-teams', [\App\Http\Controllers\Mahasiswa\TeamController::class, 'myTeams'])->name('team.my');
-        Route::get('/team/manage/{id}', [\App\Http\Controllers\Mahasiswa\TeamController::class, 'manage'])->name('team.manage');
-        Route::post('/lamaran/accept/{id}', [\App\Http\Controllers\Mahasiswa\TeamController::class, 'acceptApplication'])->name('lamaran.accept');
-        Route::post('/lamaran/reject/{id}', [\App\Http\Controllers\Mahasiswa\TeamController::class, 'rejectApplication'])->name('lamaran.reject');
-        
-        // Chat
-        Route::get('/team/{teamId}/messages', [\App\Http\Controllers\Mahasiswa\ChatMessageController::class, 'index'])->name('chat.index');
-        Route::post('/team/{teamId}/messages', [\App\Http\Controllers\Mahasiswa\ChatMessageController::class, 'store'])->name('chat.store');
+            // Team Management (Ketua)
+            Route::get('/team/create', [\App\Http\Controllers\Mahasiswa\TeamController::class, 'create'])->name('team.create');
+            Route::post('/team', [\App\Http\Controllers\Mahasiswa\TeamController::class, 'store'])->name('team.store');
+            Route::get('/team/manage/{id}', [\App\Http\Controllers\Mahasiswa\TeamController::class, 'manage'])->name('team.manage');
+            Route::post('/lamaran/accept/{id}', [\App\Http\Controllers\Mahasiswa\TeamController::class, 'acceptApplication'])->name('lamaran.accept');
+            Route::post('/lamaran/reject/{id}', [\App\Http\Controllers\Mahasiswa\TeamController::class, 'rejectApplication'])->name('lamaran.reject');
         });
     });
 

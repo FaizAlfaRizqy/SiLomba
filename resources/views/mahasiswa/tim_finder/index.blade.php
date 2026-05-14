@@ -37,7 +37,7 @@
                                         @endforeach
                                     </div>
                                 </div>
-                                <button onclick="window.location='{{ route('mahasiswa.lomba.show', $slot->tim->id_lomba) }}'" class="w-full py-3 bg-indigo-50 text-indigo-600 rounded-xl font-bold hover:bg-indigo-600 hover:text-white transition">Lamar Bergabung</button>
+                                <button onclick="window.location='{{ route('mahasiswa.tim-finder.show', $slot->id) }}'" class="w-full py-3 bg-indigo-50 text-indigo-600 rounded-xl font-bold hover:bg-indigo-600 hover:text-white transition">Lamar Bergabung</button>
                             </div>
                         @endforeach
                     </div>
@@ -90,7 +90,7 @@
                             </div>
                             <div class="mt-6 flex items-center justify-between">
                                 <div class="text-[10px] text-gray-400">Deadline: {{ $slot->batas_waktu->format('d M Y') }}</div>
-                                <button class="px-4 py-2 bg-gray-900 text-white rounded-xl text-xs font-bold hover:bg-indigo-600 transition">Detail Slot</button>
+                                <a href="{{ route('mahasiswa.tim-finder.show', $slot->id) }}" class="px-4 py-2 bg-gray-900 text-white rounded-xl text-xs font-bold hover:bg-indigo-600 transition">Detail Slot</a>
                             </div>
                         </div>
                     @empty

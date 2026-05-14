@@ -23,10 +23,10 @@
                         <x-nav-link :href="route('mahasiswa.lomba.index')" :active="request()->routeIs('mahasiswa.lomba.*')" class="text-sm font-bold">
                             {{ __('Direktori Lomba') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('mahasiswa.tim-finder')" :active="request()->routeIs('mahasiswa.tim-finder')" class="text-sm font-bold">
+                        <x-nav-link :href="route('mahasiswa.tim-finder.index')" :active="request()->routeIs('mahasiswa.tim-finder.*')" class="text-sm font-bold">
                             {{ __('Tim Finder') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('mahasiswa.team.my')" :active="request()->routeIs('mahasiswa.team.*')" class="text-sm font-bold">
+                        <x-nav-link :href="route('mahasiswa.my-teams.index')" :active="request()->routeIs('mahasiswa.my-teams.*')" class="text-sm font-bold">
                             {{ __('Tim Saya') }}
                         </x-nav-link>
                     @endrole
@@ -48,13 +48,21 @@
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6 space-x-4">
                 @role('mahasiswa|ketua_tim')
-                <a href="{{ route('mahasiswa.notifications') }}" class="p-2 text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition relative">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
-                    @php $unreadCount = \App\Models\Notification::where('id_penerima', Auth::id())->where('is_read', false)->count(); @endphp
-                    @if($unreadCount > 0)
-                        <span class="absolute top-2 right-2 w-2 h-2 bg-rose-500 rounded-full border-2 border-white"></span>
-                    @endif
-                </a>
+                <div class="relative" x-data="{ jumlah: {{ \App\Models\Notification::where('id_penerima', Auth::id())->where('is_read', false)->count() }} }" 
+                     x-init="
+                       setInterval(() => {
+                         fetch('{{ route('mahasiswa.notifikasi.unread-count') }}')
+                           .then(r => r.json())
+                           .then(d => jumlah = d.count)
+                       }, 10000)
+                     ">
+                    <a href="{{ route('mahasiswa.notifikasi.index') }}" class="p-2 text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition relative">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+                        <template x-if="jumlah > 0">
+                            <span class="absolute top-2 right-2 w-5 h-5 bg-rose-500 text-white text-[10px] font-bold rounded-full border-2 border-white flex items-center justify-center animate-pulse" x-text="jumlah > 9 ? '9+' : jumlah"></span>
+                        </template>
+                    </a>
+                </div>
                 @endrole
 
                 <x-dropdown align="right" width="48">

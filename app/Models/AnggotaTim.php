@@ -26,4 +26,9 @@ class AnggotaTim extends Model
     {
         return $this->belongsTo(User::class, 'id_mahasiswa');
     }
+
+    public function mahasiswa()
+    {
+        return $this->belongsTo(Mahasiswa::class, 'id_mahasiswa', 'user_id');
+    }
 }
