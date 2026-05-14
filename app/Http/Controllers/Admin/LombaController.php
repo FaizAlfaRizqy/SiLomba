@@ -1,0 +1,107 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Models\Lomba;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Laravel\Facades\Image;
+
+class LombaController extends Controller
+{
+    public function index()
+    {
+        $lombas = Lomba::latest()->paginate(10);
+        return view('admin.lomba.index', compact('lombas'));
+    }
+
+    public function create()
+    {
+        return view('admin.lomba.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'penyelenggara' => 'required|string|max:255',
+            'kategori' => 'required|string',
+            'tingkat' => 'required|in:nasional,internasional,regional',
+            'deadline' => 'required|date',
+            'hadiah' => 'nullable|string',
+            'syarat_peserta' => 'nullable|string',
+            'deskripsi' => 'nullable|string',
+            'link_resmi' => 'required|url',
+            'poster' => 'nullable|image|max:2048',
+        ]);
+
+        $data = $request->all();
+        $data['id_admin'] = auth()->id();
+
+        if ($request->hasFile('poster')) {
+            $image = $request->file('poster');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $path = 'posters/' . $filename;
+
+            $img = Image::decode($image);
+            $img->scale(width: 800); // Scale to 800px width
+            
+            Storage::disk('public')->put($path, (string) $img->encodeUsingFileExtension($image->getClientOriginalExtension()));
+            $data['poster'] = $path;
+        }
+
+        Lomba::create($data);
+
+        return redirect()->route('admin.lomba.index')->with('success', 'Lomba berhasil ditambahkan!');
+    }
+
+    public function edit(Lomba $lomba)
+    {
+        return view('admin.lomba.edit', compact('lomba'));
+    }
+
+    public function update(Request $request, Lomba $lomba)
+    {
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'penyelenggara' => 'required|string|max:255',
+            'kategori' => 'required|string',
+            'tingkat' => 'required|in:nasional,internasional,regional',
+            'deadline' => 'required|date',
+            'hadiah' => 'nullable|string',
+            'syarat_peserta' => 'nullable|string',
+            'deskripsi' => 'nullable|string',
+            'link_resmi' => 'required|url',
+            'poster' => 'nullable|image|max:2048',
+        ]);
+
+        $data = $request->all();
+
+        if ($request->hasFile('poster')) {
+            if ($lomba->poster) {
+                Storage::disk('public')->delete($lomba->poster);
+            }
+
+            $image = $request->file('poster');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $path = 'posters/' . $filename;
+
+            $img = Image::decode($image);
+            $img->scale(width: 800);
+            
+            Storage::disk('public')->put($path, (string) $img->encodeUsingFileExtension($image->getClientOriginalExtension()));
+            $data['poster'] = $path;
+        }
+
+        $lomba->update($data);
+
+        return redirect()->route('admin.lomba.index')->with('success', 'Lomba berhasil diperbarui!');
+    }
+
+    public function destroy(Lomba $lomba)
+    {
+        $lomba->delete();
+        return redirect()->route('admin.lomba.index')->with('success', 'Lomba berhasil dihapus (soft delete).');
+    }
+}
