@@ -6,10 +6,10 @@
                     {{ __('Notifikasi') }}
                 </h2>
                 <p class="text-sm text-[#64748B]">
-                    {{ Notification::where('id_penerima', Auth::id())->where('is_read', false)->count() }} belum dibaca
+                    {{ \App\Models\Notification::where('id_penerima', Auth::id())->where('is_read', false)->count() }} belum dibaca
                 </p>
             </div>
-            @if(Notification::where('id_penerima', Auth::id())->where('is_read', false)->exists())
+            @if(\App\Models\Notification::where('id_penerima', Auth::id())->where('is_read', false)->exists())
                 <form action="{{ route('mahasiswa.notifikasi.baca-semua') }}" method="POST">
                     @csrf
                     <button type="submit" class="text-sm font-bold text-[#4F7EF7] hover:underline">
@@ -82,7 +82,7 @@
                         <h3 class="text-lg font-bold text-[#1E293B]">Belum ada notifikasi</h3>
                         <p class="text-sm text-[#64748B] mt-2">Semua aktivitas penting akan muncul di sini.</p>
                     </div>
-                @forelse
+                @endforelse
             </div>
 
             <div class="mt-8">

@@ -51,6 +51,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
             // My Teams
             Route::get('/my-teams', [\App\Http\Controllers\Mahasiswa\MyTeamController::class, 'index'])->name('my-teams.index');
             Route::get('/my-teams/{tim}', [\App\Http\Controllers\Mahasiswa\MyTeamController::class, 'show'])->name('my-teams.show');
+            
+            Route::post('/my-teams/lamaran/{lamaran}/terima', [\App\Http\Controllers\Mahasiswa\MyTeamController::class, 'terimaLamaran'])->name('my-teams.lamaran.terima');
+            Route::post('/my-teams/lamaran/{lamaran}/tolak', [\App\Http\Controllers\Mahasiswa\MyTeamController::class, 'tolakLamaran'])->name('my-teams.lamaran.tolak');
             Route::delete('/my-teams/lamaran/{lamaran}/cancel', [\App\Http\Controllers\Mahasiswa\MyTeamController::class, 'cancelLamaran'])->name('my-teams.cancel');
 
             // Notifications
