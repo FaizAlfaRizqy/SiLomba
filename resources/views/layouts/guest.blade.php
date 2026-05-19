@@ -54,8 +54,9 @@
 </head>
 <body class="bg-surface text-textMain antialiased">
     <!-- SECTION 1 — NAVBAR -->
-    <nav x-data="{ open: false, scrolled: false }" 
+    <nav x-data="{ open: false, scrolled: false, aktif: 'home' }" 
          @scroll.window="scrolled = (window.pageYOffset > 50)"
+         @scroll-section.window="aktif = $event.detail.sectionId"
          :class="{ 'shadow-sm': scrolled }"
          class="fixed top-0 left-0 right-0 z-50 bg-surface border-b border-borderMain transition-all duration-300">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
@@ -66,9 +67,38 @@
 
             <!-- Tengah (desktop) -->
             <div class="hidden md:flex items-center space-x-8">
-                <a href="#home" class="text-sm font-medium text-textMain hover:text-primary transition {{ request()->is('/') ? 'active-nav' : '' }}">Beranda</a>
-                <a href="#lomba" class="text-sm font-medium text-textMain hover:text-primary transition">Lomba</a>
-                <a href="#tentang" class="text-sm font-medium text-textMain hover:text-primary transition">Tentang</a>
+                <a href="#home"
+                   @click="aktif = 'home'"
+                   :class="aktif === 'home' 
+                     ? 'text-primary border-b-2 border-primary font-semibold' 
+                     : 'text-textMain hover:text-primary'"
+                   class="text-sm pb-1 transition-all duration-300">
+                  Beranda
+                </a>
+                <a href="#lomba"
+                   @click="aktif = 'lomba'"
+                   :class="aktif === 'lomba' 
+                     ? 'text-primary border-b-2 border-primary font-semibold' 
+                     : 'text-textMain hover:text-primary'"
+                   class="text-sm pb-1 transition-all duration-300">
+                  Lomba
+                </a>
+                <a href="#fitur"
+                   @click="aktif = 'fitur'"
+                   :class="aktif === 'fitur' 
+                     ? 'text-primary border-b-2 border-primary font-semibold' 
+                     : 'text-textMain hover:text-primary'"
+                   class="text-sm pb-1 transition-all duration-300">
+                  Tim Finder
+                </a>
+                <a href="#tentang"
+                   @click="aktif = 'tentang'"
+                   :class="aktif === 'tentang' 
+                     ? 'text-primary border-b-2 border-primary font-semibold' 
+                     : 'text-textMain hover:text-primary'"
+                   class="text-sm pb-1 transition-all duration-300">
+                  Tentang
+                </a>
             </div>
 
             <!-- Kanan: Auth Buttons -->
@@ -108,9 +138,10 @@
              x-transition:leave-start="opacity-100 translate-y-0"
              x-transition:leave-end="opacity-0 -translate-y-4"
              class="md:hidden bg-surface border-t border-borderMain p-6 space-y-4 shadow-xl">
-            <a href="#home" @click="open = false" class="block text-sm font-medium text-textMain hover:text-primary transition">Beranda</a>
-            <a href="#lomba" @click="open = false" class="block text-sm font-medium text-textMain hover:text-primary transition">Lomba</a>
-            <a href="#tentang" @click="open = false" class="block text-sm font-medium text-textMain hover:text-primary transition">Tentang</a>
+            <a href="#home" @click="open = false; aktif = 'home'" :class="aktif === 'home' ? 'text-primary font-semibold' : 'text-textMain hover:text-primary'" class="block text-sm transition">Beranda</a>
+            <a href="#lomba" @click="open = false; aktif = 'lomba'" :class="aktif === 'lomba' ? 'text-primary font-semibold' : 'text-textMain hover:text-primary'" class="block text-sm transition">Lomba</a>
+            <a href="#fitur" @click="open = false; aktif = 'fitur'" :class="aktif === 'fitur' ? 'text-primary font-semibold' : 'text-textMain hover:text-primary'" class="block text-sm transition">Tim Finder</a>
+            <a href="#tentang" @click="open = false; aktif = 'tentang'" :class="aktif === 'tentang' ? 'text-primary font-semibold' : 'text-textMain hover:text-primary'" class="block text-sm transition">Tentang</a>
             <hr class="border-borderMain">
             @auth
                 <a href="{{ route('dashboard') }}" class="block w-full text-center bg-primary text-white rounded-full py-3 text-sm font-semibold hover:bg-primaryHover transition">
@@ -178,27 +209,27 @@
                 <!-- Kolom 4 — Kontak -->
                 <div>
                     <h4 class="text-white font-semibold text-sm mb-6 uppercase tracking-wider">Kontak</h4>
-                    <ul class="space-y-4 text-sm text-textMuted">
-                        <li class="flex items-start gap-3">
-                            <span class="mt-1">📧</span>
-                            <span>silomba@unsoed.ac.id</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="mt-1">🏛️</span>
-                            <span>Universitas Jenderal Soedirman</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="mt-1">📍</span>
+                    <div class="space-y-3 text-sm text-[#64748B]">
+                        <div class="flex items-center gap-2 hover:text-white transition">
+                            <span>📧</span>
+                            <a href="mailto:silomba@gmail.com" class="hover:text-white transition">silomba@gmail.com</a>
+                        </div>
+                        <div class="flex items-center gap-2 hover:text-white transition">
+                            <span>📱</span>
+                            <a href="tel:08312345678" class="hover:text-white transition">083 1234 5678</a>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span>📍</span>
                             <span>Purwokerto, Jawa Tengah</span>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Bottom Bar -->
             <div class="border-t border-[#334155] pt-8 mt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-textMuted text-center md:text-left">
                 <p>© 2026 SiLomba — Sistem Informasi Lomba & Event Mahasiswa</p>
-                <p>Informatika · Universitas Jenderal Soedirman</p>
+                <p>Informatika · Unsoed</p>
             </div>
         </div>
     </footer>
