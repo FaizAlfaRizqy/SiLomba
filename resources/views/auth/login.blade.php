@@ -1,82 +1,72 @@
 @extends('layouts.auth')
 
 @section('content')
-<div class="min-h-screen flex" x-data="{ loading: false }">
-    <!-- Kolom KIRI — Branding Panel (Hidden Mobile) -->
-    <div class="hidden md:flex w-1/2 bg-primary p-12 flex-col justify-between relative overflow-hidden">
-        <!-- Decoration -->
-        <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-400/20 rounded-full -ml-48 -mb-48 blur-3xl"></div>
+<div class="min-h-screen bg-[#000000] flex items-center justify-center px-4 py-8 relative overflow-hidden" x-data="{ loading: false }">
+    <!-- Elemen Dekoratif Halaman -->
+    <div class="fixed top-0 left-0 w-96 h-96 bg-[#00524D] opacity-40 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="fixed bottom-0 right-0 w-96 h-96 bg-[#48A89A] opacity-20 rounded-full blur-3xl pointer-events-none"></div>
 
-        <div class="relative z-10">
-            <!-- Logo -->
-            <a href="/" class="flex items-center space-x-1 font-bold text-2xl">
-                <span class="text-white">Si</span><span class="text-white/80">Lomba</span>
-            </a>
+    <!-- Card besar -->
+    <div class="max-w-4xl w-full bg-white rounded-[2rem] overflow-hidden shadow-2xl flex flex-col md:flex-row relative z-10 border border-[#00524D]/20">
+        
+        <!-- Wave Separator & Gradient Background (Desktop) -->
+        <svg class="absolute inset-0 w-full h-full z-0 hidden md:block pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <defs>
+                <linearGradient id="panelGradient" x1="30%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#48A89A" />
+                    <stop offset="50%" stop-color="#00524D" />
+                    <stop offset="100%" stop-color="#001F1D" />
+                </linearGradient>
+            </defs>
+            <path fill="url(#panelGradient)" d="M100,0 L42,0 C 25,25 60,45 42,70 S 25,100 42,100 L100,100 Z" />
+        </svg>
+
+        <!-- PANEL KIRI — Dekorasi & Logo -->
+        <div class="w-full md:w-5/12 h-64 md:h-auto relative overflow-hidden md:overflow-visible p-10 z-30">
+            <!-- Gelembung (Blob) dekoratif dengan efek blur (Aurora Style) -->
+            <!-- Kiri Atas Besar -->
+            <div class="absolute w-48 h-48 bg-[#CBEFEB] opacity-60 rounded-full blur-3xl -top-10 -left-10 pointer-events-none"></div>
+            <!-- Kiri Bawah Besar -->
+            <div class="absolute w-56 h-56 bg-[#48A89A] opacity-30 rounded-full blur-3xl -bottom-10 -left-10 pointer-events-none"></div>
+            
+            <!-- Tambahan Lembut di Tengah & Sudut -->
+            <div class="absolute w-24 h-24 bg-[#48A89A] opacity-40 rounded-full blur-xl top-[15%] left-[25%] pointer-events-none"></div>
+            <div class="absolute w-32 h-32 bg-[#CBEFEB] opacity-50 rounded-full blur-2xl bottom-[25%] left-[20%] pointer-events-none"></div>
+            <div class="absolute w-16 h-16 bg-[#00524D] opacity-20 rounded-full blur-lg top-[55%] left-[10%] pointer-events-none"></div>
+            <div class="absolute w-36 h-36 bg-[#CBEFEB] opacity-40 rounded-full blur-2xl top-[5%] left-[50%] transform -translate-x-1/2 pointer-events-none"></div>
+            <div class="absolute w-28 h-28 bg-[#48A89A] opacity-20 rounded-full blur-2xl bottom-[5%] left-[45%] transform -translate-x-1/2 pointer-events-none"></div>
+            
+            <!-- Ekstra Magis -->
+            <div class="absolute w-40 h-40 bg-[#93C5FD] opacity-30 rounded-full blur-3xl top-[40%] left-[30%] pointer-events-none"></div>
+            <div class="absolute w-20 h-20 bg-[#CBEFEB] opacity-60 rounded-full blur-xl bottom-[15%] left-[5%] pointer-events-none"></div>
+            <div class="absolute w-32 h-32 bg-[#48A89A] opacity-30 rounded-full blur-2xl top-[10%] left-[10%] pointer-events-none"></div>
+            <div class="absolute w-24 h-24 bg-[#93C5FD] opacity-40 rounded-full blur-2xl bottom-[45%] left-[15%] pointer-events-none"></div>
+            
+            <!-- Gelembung Solid (Aksen Bulat Tajam) -->
+            <div class="absolute w-12 h-12 bg-[#48A89A] opacity-40 rounded-full top-[20%] left-[10%] pointer-events-none"></div>
+            <div class="absolute w-6 h-6 bg-[#00524D] opacity-30 rounded-full top-[15%] left-[25%] pointer-events-none"></div>
+            <div class="absolute w-16 h-16 bg-[#CBEFEB] opacity-60 rounded-full bottom-[25%] left-[15%] pointer-events-none"></div>
+            <div class="absolute w-8 h-8 bg-[#48A89A] opacity-50 rounded-full bottom-[15%] left-[30%] pointer-events-none"></div>
+            <div class="absolute w-5 h-5 bg-[#00524D] opacity-20 rounded-full top-[45%] left-[5%] pointer-events-none"></div>
+            <div class="absolute w-10 h-10 bg-[#CBEFEB] opacity-70 rounded-full top-[60%] left-[35%] pointer-events-none"></div>
+            
+            <!-- Logo di tengah -->
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-full">
+                <img src="{{ asset('images/logo.png') }}" alt="SiLomba Logo" class="w-48 h-48 md:w-64 md:h-64 object-contain drop-shadow-xl hover:scale-105 transition-transform duration-300">
+            </div>
+            
+
         </div>
 
-        <div class="relative z-10 flex-1 flex flex-col justify-center">
-            <h1 class="text-white text-5xl font-black leading-tight mb-6">
-                Satu Platform,<br>
-                Semua Lomba<br>
-                & Tim Impianmu
-            </h1>
-            <p class="text-blue-100 text-lg leading-relaxed max-w-sm mb-10">
-                Bergabung dengan 2.000+ mahasiswa aktif yang sudah menggunakan SiLomba untuk menemukan lomba dan membentuk tim terbaik mereka.
-            </p>
+        <!-- PANEL KANAN — Form Login -->
+        <div class="w-full md:w-7/12 bg-gradient-to-br from-[#48A89A] to-[#00524D] md:bg-none px-6 py-8 md:px-10 md:py-12 flex flex-col justify-center">
+            
+            <div class="max-w-sm mx-auto w-full relative z-30">
+                <h1 class="text-white text-4xl font-bold mb-8 text-center">Login</h1>
 
-            <div class="space-y-5">
-                <div class="flex items-center gap-4 group">
-                    <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-white group-hover:bg-white/30 transition shadow-lg">
-                        <span class="text-sm">✓</span>
-                    </div>
-                    <span class="text-white font-medium">500+ lomba dari berbagai kategori</span>
-                </div>
-                <div class="flex items-center gap-4 group">
-                    <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-white group-hover:bg-white/30 transition shadow-lg">
-                        <span class="text-sm">✓</span>
-                    </div>
-                    <span class="text-white font-medium">Tim Finder — matching otomatis berbasis keahlian</span>
-                </div>
-                <div class="flex items-center gap-4 group">
-                    <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-white group-hover:bg-white/30 transition shadow-lg">
-                        <span class="text-sm">✓</span>
-                    </div>
-                    <span class="text-white font-medium">Portofolio prestasi terupdate otomatis</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Testimoni Card -->
-        <div class="relative z-10">
-            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/10 shadow-2xl">
-                <div class="flex text-white/80 text-xs mb-3">⭐⭐⭐⭐⭐</div>
-                <p class="text-white text-sm italic leading-relaxed">
-                    "Berkat Tim Finder, saya berhasil ikut hackathon nasional dan juara 2!"
-                </p>
-                <p class="text-white/70 text-[10px] mt-4 font-bold tracking-wider uppercase">
-                    — Rizky Pratama, Teknik Informatika Unsoed
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Kolom KANAN — Form Login -->
-    <div class="w-full md:w-1/2 bg-surface flex items-center justify-center p-8 md:p-12 min-h-screen">
-        <div class="w-full max-w-md mx-auto">
-            <!-- Header Form -->
-            <div class="mb-10 text-center md:text-left">
-                <!-- Logo Mobile -->
-                <a href="/" class="inline-block md:hidden mb-8 font-bold text-2xl">
-                    <span class="text-textMain">Si</span><span class="text-primary">Lomba</span>
-                </a>
-                <h1 class="text-3xl font-black text-textMain mb-3 tracking-tight">Selamat Datang Kembali!</h1>
-                <p class="text-sm text-textMuted font-medium">Masuk untuk melanjutkan perjalanan lombamu.</p>
-            </div>
-
-            <!-- Session Status -->
+                <!-- Session Status -->
             @if (session('status'))
-                <div class="bg-aksenLight border border-aksen/30 rounded-2xl p-4 mb-6 text-sm text-aksenDark font-medium flex items-center gap-3">
+                <div class="bg-[#000000]/30 border border-[#48A89A] rounded-xl p-4 mb-6 text-sm text-white font-medium flex items-center gap-3">
                     <span class="text-xl">✅</span>
                     {{ session('status') }}
                 </div>
@@ -84,63 +74,67 @@
 
             <!-- Validation Errors -->
             @if ($errors->any())
-                <div class="bg-red-50 border border-red-200 rounded-2xl p-5 mb-6">
-                    <p class="text-sm text-red-600 font-bold mb-2 flex items-center gap-2">
+                <div class="bg-red-500/10 border border-red-500/30 rounded-xl p-5 mb-6">
+                    <p class="text-sm text-red-400 font-bold mb-2 flex items-center gap-2">
                         <span>⚠️</span> Oops! Ada masalah:
                     </p>
-                    <ul class="list-disc list-inside text-xs text-red-500 space-y-1 ml-1">
+                    <ul class="list-disc list-inside text-xs text-red-300 space-y-1 ml-1">
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
                         @endforeach
                     </ul>
                 </div>
             @endif
-
-            <form method="POST" action="{{ route('login') }}" @submit="loading = true" class="space-y-6">
+            
+            <form method="POST" action="{{ route('login') }}" @submit="loading = true" class="space-y-5">
                 @csrf
 
-                <!-- Email Address -->
+                <!-- FIELD USERNAME/EMAIL -->
                 <div>
-                    <label for="email" class="text-sm font-bold text-textMain mb-2 block">Email</label>
-                    <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="username" 
-                           class="w-full px-5 py-3.5 rounded-2xl border border-borderMain bg-white text-textMain text-sm focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition shadow-sm"
-                           placeholder="email@mhs.unsoed.ac.id">
+                    <label for="email" class="text-white text-sm font-medium mb-1.5 block">Email</label>
+                    <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="username"
+                           class="w-full px-4 py-3 rounded-xl bg-[#000000]/40 border border-[#48A89A]/50 text-white text-sm placeholder:text-white/40 focus:outline-none focus:border-white focus:ring-2 focus:ring-white/30 transition duration-200"
+                           placeholder="Enter your email">
                 </div>
 
-                <!-- Password -->
+                <!-- FIELD PASSWORD -->
                 <div x-data="{ show: false }">
-                    <div class="flex justify-between items-center mb-2">
-                        <label for="password" class="text-sm font-bold text-textMain">Password</label>
-                        @if (Route::has('password.request'))
-                            <a class="text-xs font-bold text-primary hover:underline transition" href="{{ route('password.request') }}">
-                                Lupa password?
-                            </a>
-                        @endif
-                    </div>
-                    <div class="relative group">
+                    <label for="password" class="text-white text-sm font-medium mb-1.5 block">Password</label>
+                    <div class="relative">
                         <input :type="show ? 'text' : 'password'" id="password" name="password" required autocomplete="current-password"
-                               class="w-full px-5 py-3.5 pr-14 rounded-2xl border border-borderMain bg-white text-textMain text-sm focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition shadow-sm"
-                               placeholder="Masukkan password">
-                        <button type="button" @click="show = !show" class="absolute right-4 top-1/2 -translate-y-1/2 text-textMuted hover:text-primary transition p-1 rounded-lg">
-                            <span x-show="!show" class="text-xl">👁️</span>
-                            <span x-show="show" class="text-xl">🙈</span>
+                               class="w-full px-4 py-3 rounded-xl bg-[#000000]/40 border border-[#48A89A]/50 text-white text-sm placeholder:text-white/40 focus:outline-none focus:border-white focus:ring-2 focus:ring-white/30 transition duration-200"
+                               placeholder="Enter your password">
+                        <button type="button" @click="show = !show" class="absolute right-3 top-3 text-white/60 hover:text-white transition">
+                            <span x-show="!show">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                            </span>
+                            <span x-show="show" style="display: none;">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.542 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                                </svg>
+                            </span>
                         </button>
                     </div>
+                    @if (Route::has('password.request'))
+                    <div class="text-right mt-1">
+                        <a href="{{ route('password.request') }}" class="text-white/80 text-xs hover:text-white transition">
+                            Forgot Password?
+                        </a>
+                    </div>
+                    @endif
                 </div>
 
-                <!-- Remember Me -->
-                <div class="flex items-center gap-3">
-                    <input id="remember_me" type="checkbox" name="remember" 
-                           class="w-5 h-5 rounded-lg border-borderMain text-primary focus:ring-primary shadow-sm transition">
-                    <label for="remember_me" class="text-sm font-bold text-textMuted select-none">Ingat saya</label>
-                </div>
+                <input type="checkbox" name="remember" class="hidden" checked>
 
-                <!-- Submit Button -->
+                <!-- TOMBOL LOGIN -->
                 <button type="submit" :disabled="loading"
-                        class="w-full py-4 rounded-2xl bg-primary text-white font-bold text-sm hover:bg-primaryHover hover:shadow-xl hover:shadow-primary/20 transition active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed">
-                    <span x-show="!loading">Masuk Sekarang</span>
-                    <span x-show="loading" class="flex items-center justify-center gap-2">
-                        <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        class="w-full py-3 rounded-xl mt-2 bg-[#48A89A] text-white font-semibold text-sm hover:bg-[#CBEFEB] hover:text-[#00524D] transition duration-300 active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg shadow-[#000000]/20">
+                    <span x-show="!loading">Login to SiLomba</span>
+                    <span x-show="loading" class="flex items-center justify-center gap-2" style="display: none;">
+                        <svg class="animate-spin h-4 w-4 text-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                         </svg>
@@ -148,23 +142,20 @@
                     </span>
                 </button>
 
-                <!-- Divider -->
-                <div class="flex items-center gap-4 py-4">
-                    <div class="flex-1 h-px bg-borderMain"></div>
-                    <span class="text-xs font-bold text-[#94A3B8] uppercase tracking-widest">atau</span>
-                    <div class="flex-1 h-px bg-borderMain"></div>
+                <!-- LINK REGISTER -->
+                <div class="text-center mt-6 text-sm text-white/80">
+                    Don't have an account? 
+                    <a href="{{ route('register') }}" class="text-white font-bold hover:underline transition">
+                        Register Now
+                    </a>
                 </div>
 
-                <!-- Link Daftar -->
-                <div class="text-center">
-                    <p class="text-sm text-textMuted font-medium">
-                        Belum punya akun? 
-                        <a href="{{ route('register') }}" class="text-primary font-black hover:underline ml-1 transition">
-                            Daftar di sini
-                        </a>
-                    </p>
+                <!-- TERMS & SERVICES -->
+                <div class="text-center mt-8 text-xs text-white/60">
+                    <a href="#" class="hover:text-white transition">Terms and Services</a>
                 </div>
             </form>
+            </div>
         </div>
     </div>
 </div>

@@ -1,240 +1,201 @@
 @extends('layouts.auth')
 
 @section('content')
-<div class="min-h-screen flex" x-data="{ loading: false, password: '' }">
-    <!-- Kolom KIRI — Branding Panel (Hidden Mobile) -->
-    <div class="hidden md:flex w-1/2 bg-primary p-12 flex-col justify-between relative overflow-hidden">
-        <!-- Decoration -->
-        <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-400/20 rounded-full -ml-48 -mb-48 blur-3xl"></div>
+<div class="min-h-screen bg-[#000000] flex items-center justify-center px-4 py-8 relative overflow-hidden" x-data="{ loading: false, password: '' }">
+    <!-- Elemen Dekoratif Halaman -->
+    <div class="fixed top-0 left-0 w-96 h-96 bg-[#00524D] opacity-40 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="fixed bottom-0 right-0 w-96 h-96 bg-[#48A89A] opacity-20 rounded-full blur-3xl pointer-events-none"></div>
 
-        <div class="relative z-10">
-            <!-- Logo -->
-            <a href="/" class="flex items-center space-x-1 font-bold text-2xl">
-                <span class="text-white">Si</span><span class="text-white/80">Lomba</span>
-            </a>
-        </div>
+    <!-- Card besar -->
+    <div class="max-w-5xl w-full bg-white rounded-[2rem] overflow-hidden shadow-2xl flex flex-col md:flex-row relative z-10 border border-[#00524D]/20">
+        
+        <!-- Wave Separator & Gradient Background (Desktop) -->
+        <svg class="absolute inset-0 w-full h-full z-0 hidden md:block pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <defs>
+                <linearGradient id="panelGradient" x1="30%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#48A89A" />
+                    <stop offset="50%" stop-color="#00524D" />
+                    <stop offset="100%" stop-color="#001F1D" />
+                </linearGradient>
+            </defs>
+            <path fill="url(#panelGradient)" d="M100,0 L42,0 C 25,25 60,45 42,70 S 25,100 42,100 L100,100 Z" />
+        </svg>
 
-        <div class="relative z-10 flex-1 flex flex-col justify-center">
-            <h1 class="text-white text-5xl font-black leading-tight mb-6">
-                Satu Platform,<br>
-                Semua Lomba<br>
-                & Tim Impianmu
-            </h1>
-            <p class="text-blue-100 text-lg leading-relaxed max-w-sm mb-10">
-                Bergabung dengan 2.000+ mahasiswa aktif yang sudah menggunakan SiLomba untuk menemukan lomba dan membentuk tim terbaik mereka.
-            </p>
-
-            <div class="space-y-5">
-                <div class="flex items-center gap-4 group">
-                    <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-white group-hover:bg-white/30 transition shadow-lg">
-                        <span class="text-sm">✓</span>
-                    </div>
-                    <span class="text-white font-medium">500+ lomba dari berbagai kategori</span>
-                </div>
-                <div class="flex items-center gap-4 group">
-                    <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-white group-hover:bg-white/30 transition shadow-lg">
-                        <span class="text-sm">✓</span>
-                    </div>
-                    <span class="text-white font-medium">Tim Finder — matching otomatis berbasis keahlian</span>
-                </div>
-                <div class="flex items-center gap-4 group">
-                    <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-white group-hover:bg-white/30 transition shadow-lg">
-                        <span class="text-sm">✓</span>
-                    </div>
-                    <span class="text-white font-medium">Portofolio prestasi terupdate otomatis</span>
-                </div>
+        <!-- PANEL KIRI — Dekorasi & Logo -->
+        <div class="w-full md:w-5/12 h-64 md:h-auto relative overflow-hidden md:overflow-visible p-10 z-30">
+            <!-- Gelembung (Blob) dekoratif dengan efek blur (Aurora Style) -->
+            <!-- Kiri Atas Besar -->
+            <div class="absolute w-48 h-48 bg-[#CBEFEB] opacity-60 rounded-full blur-3xl -top-10 -left-10 pointer-events-none"></div>
+            <!-- Kiri Bawah Besar -->
+            <div class="absolute w-56 h-56 bg-[#48A89A] opacity-30 rounded-full blur-3xl -bottom-10 -left-10 pointer-events-none"></div>
+            
+            <!-- Tambahan Lembut di Tengah & Sudut -->
+            <div class="absolute w-24 h-24 bg-[#48A89A] opacity-40 rounded-full blur-xl top-[15%] left-[25%] pointer-events-none"></div>
+            <div class="absolute w-32 h-32 bg-[#CBEFEB] opacity-50 rounded-full blur-2xl bottom-[25%] left-[20%] pointer-events-none"></div>
+            <div class="absolute w-16 h-16 bg-[#00524D] opacity-20 rounded-full blur-lg top-[55%] left-[10%] pointer-events-none"></div>
+            <div class="absolute w-36 h-36 bg-[#CBEFEB] opacity-40 rounded-full blur-2xl top-[5%] left-[50%] transform -translate-x-1/2 pointer-events-none"></div>
+            <div class="absolute w-28 h-28 bg-[#48A89A] opacity-20 rounded-full blur-2xl bottom-[5%] left-[45%] transform -translate-x-1/2 pointer-events-none"></div>
+            
+            <!-- Ekstra Magis -->
+            <div class="absolute w-40 h-40 bg-[#93C5FD] opacity-30 rounded-full blur-3xl top-[40%] left-[30%] pointer-events-none"></div>
+            <div class="absolute w-20 h-20 bg-[#CBEFEB] opacity-60 rounded-full blur-xl bottom-[15%] left-[5%] pointer-events-none"></div>
+            <div class="absolute w-32 h-32 bg-[#48A89A] opacity-30 rounded-full blur-2xl top-[10%] left-[10%] pointer-events-none"></div>
+            <div class="absolute w-24 h-24 bg-[#93C5FD] opacity-40 rounded-full blur-2xl bottom-[45%] left-[15%] pointer-events-none"></div>
+            
+            <!-- Logo di tengah -->
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-full">
+                <img src="{{ asset('images/logo.png') }}" alt="SiLomba Logo" class="w-48 h-48 md:w-64 md:h-64 object-contain drop-shadow-xl hover:scale-105 transition-transform duration-300">
             </div>
         </div>
 
-        <!-- Testimoni Card -->
-        <div class="relative z-10">
-            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/10 shadow-2xl">
-                <div class="flex text-white/80 text-xs mb-3">⭐⭐⭐⭐⭐</div>
-                <p class="text-white text-sm italic leading-relaxed">
-                    "Berkat Tim Finder, saya berhasil ikut hackathon nasional dan juara 2!"
-                </p>
-                <p class="text-white/70 text-[10px] mt-4 font-bold tracking-wider uppercase">
-                    — Rizky Pratama, Teknik Informatika Unsoed
-                </p>
-            </div>
-        </div>
-    </div>
+        <!-- PANEL KANAN — Form Register -->
+        <div class="w-full md:w-7/12 bg-gradient-to-br from-[#48A89A] to-[#00524D] md:bg-none px-6 py-8 md:px-10 md:py-12 flex flex-col justify-center">
+            
+            <div class="max-w-md mx-auto w-full relative z-30">
+                <h1 class="text-white text-3xl font-bold mb-2 text-center tracking-tight">Buat Akun SiLomba</h1>
+                <p class="text-sm text-white/80 font-medium text-center mb-8">Daftar gratis dan mulai temukan lomba impianmu.</p>
 
-    <!-- Kolom KANAN — Form Register -->
-    <div class="w-full md:w-1/2 bg-surface flex items-start justify-center p-8 md:p-12 overflow-y-auto min-h-screen">
-        <div class="w-full max-w-md mx-auto py-8">
-            <!-- Header Form -->
-            <div class="mb-8 text-center md:text-left">
-                <!-- Logo Mobile -->
-                <a href="/" class="inline-block md:hidden mb-8 font-bold text-2xl">
-                    <span class="text-textMain">Si</span><span class="text-primary">Lomba</span>
-                </a>
-                <h1 class="text-3xl font-black text-textMain mb-3 tracking-tight">Buat Akun SiLomba</h1>
-                <p class="text-sm text-textMuted font-medium">Daftar gratis dan mulai temukan lomba impianmu.</p>
-            </div>
-
-            <!-- Progress Steps (Visual Only) -->
-            <div class="flex items-center gap-4 mb-10 px-2">
-                <div class="flex flex-col items-center gap-2">
-                    <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold shadow-lg shadow-primary/20 ring-4 ring-primary/10">1</div>
-                    <span class="text-[10px] font-bold text-primary uppercase tracking-widest">Akun</span>
-                </div>
-                <div class="flex-1 h-px bg-borderMain mb-4"></div>
-                <div class="flex flex-col items-center gap-2 text-textMuted">
-                    <div class="w-8 h-8 rounded-full bg-borderMain flex items-center justify-center text-xs font-bold">2</div>
-                    <span class="text-[10px] font-bold uppercase tracking-widest">Profil</span>
-                </div>
-                <div class="flex-1 h-px bg-borderMain mb-4"></div>
-                <div class="flex flex-col items-center gap-2 text-textMuted">
-                    <div class="w-8 h-8 rounded-full bg-borderMain flex items-center justify-center text-xs font-bold">3</div>
-                    <span class="text-[10px] font-bold uppercase tracking-widest">Selesai</span>
-                </div>
-            </div>
-
-            <!-- Validation Errors -->
-            @if ($errors->any())
-                <div class="bg-red-50 border border-red-200 rounded-2xl p-5 mb-8">
-                    <p class="text-sm text-red-600 font-bold mb-2 flex items-center gap-2">
-                        <span>⚠️</span> Mohon perbaiki kesalahan berikut:
-                    </p>
-                    <ul class="list-disc list-inside text-xs text-red-500 space-y-1 ml-1">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-
-            <form method="POST" action="{{ route('register') }}" @submit="loading = true" class="space-y-5">
-                @csrf
-
-                <!-- Row Nama & NIM -->
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label for="name" class="text-sm font-bold text-textMain mb-2 block">Nama Lengkap</label>
-                        <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name"
-                               class="w-full px-5 py-3.5 rounded-2xl border border-borderMain bg-white text-textMain text-sm focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition shadow-sm @error('name') border-red-400 @enderror"
-                               placeholder="Nama lengkap">
+                <!-- Validation Errors -->
+                @if ($errors->any())
+                    <div class="bg-red-500/10 border border-red-500/30 rounded-xl p-5 mb-6">
+                        <p class="text-sm text-red-400 font-bold mb-2 flex items-center gap-2">
+                            <span>⚠️</span> Oops! Ada masalah:
+                        </p>
+                        <ul class="list-disc list-inside text-xs text-red-300 space-y-1 ml-1">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
                     </div>
-                    <div>
-                        <label for="nim" class="text-sm font-bold text-textMain mb-2 block">NIM</label>
-                        <input id="nim" type="text" name="nim" value="{{ old('nim') }}" required maxlength="10"
-                               class="w-full px-5 py-3.5 rounded-2xl border border-borderMain bg-white text-textMain text-sm focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition shadow-sm @error('nim') border-red-400 @enderror"
-                               placeholder="H1D0XXXXXX">
-                    </div>
-                </div>
+                @endif
+                
+                <form method="POST" action="{{ route('register') }}" @submit="loading = true" class="space-y-4">
+                    @csrf
 
-                <!-- Email Address -->
-                <div>
-                    <label for="email" class="text-sm font-bold text-textMain mb-2 block">Email Institusi</label>
-                    <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="username"
-                           class="w-full px-5 py-3.5 rounded-2xl border border-borderMain bg-white text-textMain text-sm focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition shadow-sm @error('email') border-red-400 @enderror"
-                           placeholder="email@mhs.unsoed.ac.id">
-                </div>
-
-                <!-- Program Studi -->
-                <div>
-                    <label for="program_studi" class="text-sm font-bold text-textMain mb-2 block">Program Studi</label>
-                    <div class="relative">
-                        <select id="program_studi" name="program_studi" required
-                                class="w-full px-5 py-3.5 rounded-2xl border border-borderMain bg-white text-textMain text-sm focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition shadow-sm appearance-none @error('program_studi') border-red-400 @enderror">
-                            <option value="">-- Pilih Program Studi --</option>
-                            <option value="Teknik Informatika" {{ old('program_studi') == 'Teknik Informatika' ? 'selected' : '' }}>Teknik Informatika</option>
-                            <option value="Sistem Informasi" {{ old('program_studi') == 'Sistem Informasi' ? 'selected' : '' }}>Sistem Informasi</option>
-                            <option value="Manajemen" {{ old('program_studi') == 'Manajemen' ? 'selected' : '' }}>Manajemen</option>
-                            <option value="Akuntansi" {{ old('program_studi') == 'Akuntansi' ? 'selected' : '' }}>Akuntansi</option>
-                            <option value="Ilmu Komunikasi" {{ old('program_studi') == 'Ilmu Komunikasi' ? 'selected' : '' }}>Ilmu Komunikasi</option>
-                            <option value="Hukum" {{ old('program_studi') == 'Hukum' ? 'selected' : '' }}>Hukum</option>
-                            <option value="Kedokteran" {{ old('program_studi') == 'Kedokteran' ? 'selected' : '' }}>Kedokteran</option>
-                        </select>
-                        <div class="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-textMuted">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    <!-- Row Nama & NIM -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="name" class="text-white text-sm font-medium mb-1.5 block">Nama Lengkap</label>
+                            <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name"
+                                   class="w-full px-4 py-3 rounded-xl bg-[#000000]/40 border border-[#48A89A]/50 text-white text-sm placeholder:text-white/40 focus:outline-none focus:border-white focus:ring-2 focus:ring-white/30 transition duration-200"
+                                   placeholder="Nama lengkap">
+                        </div>
+                        <div>
+                            <label for="nim" class="text-white text-sm font-medium mb-1.5 block">NIM</label>
+                            <input id="nim" type="text" name="nim" value="{{ old('nim') }}" required maxlength="10"
+                                   class="w-full px-4 py-3 rounded-xl bg-[#000000]/40 border border-[#48A89A]/50 text-white text-sm placeholder:text-white/40 focus:outline-none focus:border-white focus:ring-2 focus:ring-white/30 transition duration-200"
+                                   placeholder="H1D0XXXXXX">
                         </div>
                     </div>
-                </div>
 
-                <!-- Domisili -->
-                <div>
-                    <label for="domisili" class="text-sm font-bold text-textMain mb-2 block">Domisili / Kota</label>
-                    <input id="domisili" type="text" name="domisili" value="{{ old('domisili') }}" required
-                           class="w-full px-5 py-3.5 rounded-2xl border border-borderMain bg-white text-textMain text-sm focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition shadow-sm @error('domisili') border-red-400 @enderror"
-                           placeholder="Purwokerto">
-                </div>
+                    <!-- Email Address -->
+                    <div>
+                        <label for="email" class="text-white text-sm font-medium mb-1.5 block">Email Institusi</label>
+                        <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="username"
+                               class="w-full px-4 py-3 rounded-xl bg-[#000000]/40 border border-[#48A89A]/50 text-white text-sm placeholder:text-white/40 focus:outline-none focus:border-white focus:ring-2 focus:ring-white/30 transition duration-200"
+                               placeholder="email@mhs.unsoed.ac.id">
+                    </div>
 
-                <!-- Password -->
-                <div x-data="{ show: false }">
-                    <label for="password" class="text-sm font-bold text-textMain mb-2 block">Password</label>
-                    <div class="relative group">
-                        <input :type="show ? 'text' : 'password'" id="password" name="password" required autocomplete="new-password"
-                               x-model="password"
-                               class="w-full px-5 py-3.5 pr-14 rounded-2xl border border-borderMain bg-white text-textMain text-sm focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition shadow-sm @error('password') border-red-400 @enderror"
-                               placeholder="Minimal 8 karakter">
-                        <button type="button" @click="show = !show" class="absolute right-4 top-1/2 -translate-y-1/2 text-textMuted hover:text-primary transition p-1 rounded-lg">
-                            <span x-show="!show" class="text-xl">👁️</span>
-                            <span x-show="show" class="text-xl">🙈</span>
-                        </button>
+                    <!-- Program Studi -->
+                    <div>
+                        <label for="program_studi" class="text-white text-sm font-medium mb-1.5 block">Program Studi</label>
+                        <div class="relative">
+                            <select id="program_studi" name="program_studi" required
+                                    class="w-full px-4 py-3 rounded-xl bg-[#000000]/40 border border-[#48A89A]/50 text-white text-sm focus:outline-none focus:border-white focus:ring-2 focus:ring-white/30 transition duration-200 appearance-none">
+                                <option value="" class="bg-[#00524D] text-white">-- Pilih Program Studi --</option>
+                                <option value="Teknik Informatika" class="bg-[#00524D] text-white" {{ old('program_studi') == 'Teknik Informatika' ? 'selected' : '' }}>Teknik Informatika</option>
+                                <option value="Sistem Informasi" class="bg-[#00524D] text-white" {{ old('program_studi') == 'Sistem Informasi' ? 'selected' : '' }}>Sistem Informasi</option>
+                                <option value="Manajemen" class="bg-[#00524D] text-white" {{ old('program_studi') == 'Manajemen' ? 'selected' : '' }}>Manajemen</option>
+                                <option value="Akuntansi" class="bg-[#00524D] text-white" {{ old('program_studi') == 'Akuntansi' ? 'selected' : '' }}>Akuntansi</option>
+                                <option value="Ilmu Komunikasi" class="bg-[#00524D] text-white" {{ old('program_studi') == 'Ilmu Komunikasi' ? 'selected' : '' }}>Ilmu Komunikasi</option>
+                                <option value="Hukum" class="bg-[#00524D] text-white" {{ old('program_studi') == 'Hukum' ? 'selected' : '' }}>Hukum</option>
+                                <option value="Kedokteran" class="bg-[#00524D] text-white" {{ old('program_studi') == 'Kedokteran' ? 'selected' : '' }}>Kedokteran</option>
+                            </select>
+                            <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-white/60">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Domisili -->
+                    <div>
+                        <label for="domisili" class="text-white text-sm font-medium mb-1.5 block">Domisili / Kota</label>
+                        <input id="domisili" type="text" name="domisili" value="{{ old('domisili') }}" required
+                               class="w-full px-4 py-3 rounded-xl bg-[#000000]/40 border border-[#48A89A]/50 text-white text-sm placeholder:text-white/40 focus:outline-none focus:border-white focus:ring-2 focus:ring-white/30 transition duration-200"
+                               placeholder="Purwokerto">
+                    </div>
+
+                    <!-- Password Row -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div x-data="{ show: false }">
+                            <label for="password" class="text-white text-sm font-medium mb-1.5 block">Password</label>
+                            <div class="relative group">
+                                <input :type="show ? 'text' : 'password'" id="password" name="password" required autocomplete="new-password"
+                                       x-model="password"
+                                       class="w-full px-4 py-3 pr-10 rounded-xl bg-[#000000]/40 border border-[#48A89A]/50 text-white text-sm placeholder:text-white/40 focus:outline-none focus:border-white focus:ring-2 focus:ring-white/30 transition duration-200"
+                                       placeholder="Min 8 karakter">
+                                <button type="button" @click="show = !show" class="absolute right-3 top-3 text-white/60 hover:text-white transition">
+                                    <span x-show="!show"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg></span>
+                                    <span x-show="show" style="display: none;"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.542 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" /></svg></span>
+                                </button>
+                            </div>
+                            <!-- Password Strength Indicator -->
+                            <div class="flex gap-1 mt-1.5" x-show="password.length > 0" style="display: none;">
+                                <div class="h-1 flex-1 rounded-full transition-all duration-500" :class="password.length > 0 ? (password.length < 5 ? 'bg-red-500' : (password.length < 8 ? 'bg-yellow-500' : 'bg-[#CBEFEB]')) : 'bg-white/20'"></div>
+                                <div class="h-1 flex-1 rounded-full transition-all duration-500" :class="password.length >= 5 ? (password.length < 8 ? 'bg-yellow-500' : 'bg-[#CBEFEB]') : 'bg-white/20'"></div>
+                                <div class="h-1 flex-1 rounded-full transition-all duration-500" :class="password.length >= 8 ? 'bg-[#CBEFEB]' : 'bg-white/20'"></div>
+                            </div>
+                        </div>
+                        
+                        <div x-data="{ show: false }">
+                            <label for="password_confirmation" class="text-white text-sm font-medium mb-1.5 block">Konfirmasi</label>
+                            <div class="relative group">
+                                <input :type="show ? 'text' : 'password'" id="password_confirmation" name="password_confirmation" required autocomplete="new-password"
+                                       class="w-full px-4 py-3 pr-10 rounded-xl bg-[#000000]/40 border border-[#48A89A]/50 text-white text-sm placeholder:text-white/40 focus:outline-none focus:border-white focus:ring-2 focus:ring-white/30 transition duration-200"
+                                       placeholder="Ulangi password">
+                                <button type="button" @click="show = !show" class="absolute right-3 top-3 text-white/60 hover:text-white transition">
+                                    <span x-show="!show"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg></span>
+                                    <span x-show="show" style="display: none;"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.542 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" /></svg></span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                     
-                    <!-- Password Strength Indicator -->
-                    <div class="flex gap-1 mt-3" x-show="password.length > 0">
-                        <div class="h-1 flex-1 rounded-full transition-all duration-500" :class="password.length > 0 ? (password.length < 5 ? 'bg-red-500' : (password.length < 8 ? 'bg-yellow-500' : (password.length < 12 ? 'bg-primary' : 'bg-aksen'))) : 'bg-borderMain'"></div>
-                        <div class="h-1 flex-1 rounded-full transition-all duration-500" :class="password.length >= 5 ? (password.length < 8 ? 'bg-yellow-500' : (password.length < 12 ? 'bg-primary' : 'bg-aksen')) : 'bg-borderMain'"></div>
-                        <div class="h-1 flex-1 rounded-full transition-all duration-500" :class="password.length >= 8 ? (password.length < 12 ? 'bg-primary' : 'bg-aksen') : 'bg-borderMain'"></div>
-                        <div class="h-1 flex-1 rounded-full transition-all duration-500" :class="password.length >= 12 ? 'bg-aksen' : 'bg-borderMain'"></div>
+                    <!-- Terms & Conditions -->
+                    <div class="flex items-start gap-3 mt-4">
+                        <input id="terms" type="checkbox" required
+                               class="w-4 h-4 mt-0.5 rounded border-none bg-[#000000]/40 text-[#48A89A] focus:ring-2 focus:ring-[#CBEFEB]/30 focus:ring-offset-0 focus:ring-offset-transparent transition">
+                        <label for="terms" class="text-xs text-white/70 leading-relaxed font-medium">
+                            Dengan mendaftar, saya menyetujui 
+                            <a href="#" class="text-white font-bold hover:underline">Syarat & Ketentuan</a> 
+                            serta 
+                            <a href="#" class="text-white font-bold hover:underline">Kebijakan Privasi</a> 
+                            SiLomba.
+                        </label>
                     </div>
-                </div>
 
-                <!-- Confirm Password -->
-                <div x-data="{ show: false }">
-                    <label for="password_confirmation" class="text-sm font-bold text-textMain mb-2 block">Konfirmasi Password</label>
-                    <div class="relative group">
-                        <input :type="show ? 'text' : 'password'" id="password_confirmation" name="password_confirmation" required autocomplete="new-password"
-                               class="w-full px-5 py-3.5 pr-14 rounded-2xl border border-borderMain bg-white text-textMain text-sm focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition shadow-sm"
-                               placeholder="Ulangi password">
-                        <button type="button" @click="show = !show" class="absolute right-4 top-1/2 -translate-y-1/2 text-textMuted hover:text-primary transition p-1 rounded-lg">
-                            <span x-show="!show" class="text-xl">👁️</span>
-                            <span x-show="show" class="text-xl">🙈</span>
-                        </button>
-                    </div>
-                </div>
+                    <!-- Submit Button -->
+                    <button type="submit" :disabled="loading"
+                            class="w-full py-3 rounded-xl mt-4 bg-[#48A89A] text-white font-semibold text-sm hover:bg-[#CBEFEB] hover:text-[#00524D] transition duration-300 active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg shadow-[#000000]/20">
+                        <span x-show="!loading">Buat Akun Sekarang</span>
+                        <span x-show="loading" class="flex items-center justify-center gap-2" style="display: none;">
+                            <svg class="animate-spin h-4 w-4 text-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            Memproses...
+                        </span>
+                    </button>
 
-                <!-- Terms & Conditions -->
-                <div class="flex items-start gap-3 pt-2">
-                    <input id="terms" type="checkbox" required
-                           class="w-5 h-5 mt-0.5 rounded-lg border-borderMain text-primary focus:ring-primary shadow-sm transition">
-                    <label for="terms" class="text-xs text-textMuted leading-relaxed font-medium">
-                        Dengan mendaftar, saya menyetujui 
-                        <a href="#" class="text-primary font-bold hover:underline">Syarat & Ketentuan</a> 
-                        serta 
-                        <a href="#" class="text-primary font-bold hover:underline">Kebijakan Privasi</a> 
-                        SiLomba.
-                    </label>
-                </div>
-
-                <!-- Submit Button -->
-                <button type="submit" :disabled="loading"
-                        class="w-full py-4 rounded-2xl bg-primary text-white font-bold text-sm hover:bg-primaryHover hover:shadow-xl hover:shadow-primary/20 transition active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed">
-                    <span x-show="!loading">Buat Akun Sekarang</span>
-                    <span x-show="loading" class="flex items-center justify-center gap-2">
-                        <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                        Memproses...
-                    </span>
-                </button>
-
-                <!-- Link Login -->
-                <div class="text-center pt-2 pb-10">
-                    <p class="text-sm text-textMuted font-medium">
+                    <!-- Link Login -->
+                    <div class="text-center mt-6 text-sm text-white/80">
                         Sudah punya akun? 
-                        <a href="{{ route('login') }}" class="text-primary font-black hover:underline ml-1 transition">
+                        <a href="{{ route('login') }}" class="text-white font-bold hover:underline transition">
                             Masuk di sini
                         </a>
-                    </p>
-                </div>
-            </form>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
