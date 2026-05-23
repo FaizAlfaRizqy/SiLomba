@@ -1,4 +1,18 @@
 <x-app-layout>
+
+@push('styles')
+<style>
+    html, body {
+        background-color: #0D3B36 !important;
+    }
+    #page-bg {
+        background-color: #0D3B36 !important;
+        position: relative;
+    }
+    #page-bg > * { position: relative; z-index: 1; }
+</style>
+@endpush
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Tim Saya') }}

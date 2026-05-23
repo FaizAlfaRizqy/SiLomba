@@ -2,8 +2,38 @@
 
 @push('styles')
 <style>
-    html, body { background-color: #CBEFEB !important; }
-    #page-bg { background-color: #CBEFEB !important; }
+    html, body {
+        background: linear-gradient(135deg, #48A89A 0%, #00524D 50%, #000000 100%) !important;
+        background-attachment: fixed !important;
+    }
+    #page-bg {
+        background: linear-gradient(135deg, #48A89A 0%, #00524D 50%, #000000 100%) !important;
+        background-attachment: fixed !important;
+        position: relative;
+    }
+    #page-bg::before {
+        content: '';
+        position: fixed;
+        top: -20%;
+        right: -10%;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, #48A89A44 0%, transparent 70%);
+        pointer-events: none;
+        z-index: 0;
+    }
+    #page-bg::after {
+        content: '';
+        position: fixed;
+        bottom: -20%;
+        left: -10%;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, #CBEFEB33 0%, transparent 70%);
+        pointer-events: none;
+        z-index: 0;
+    }
+    #page-bg > * { position: relative; z-index: 1; }
 </style>
 @endpush
     <x-slot name="header">
@@ -27,7 +57,7 @@
         </div>
     </x-slot>
 
-    <div class="py-8 bg-[#CBEFEB] min-h-screen">
+    <div class="py-8 min-h-screen">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
             
             <!-- Sticky Flash Messages -->

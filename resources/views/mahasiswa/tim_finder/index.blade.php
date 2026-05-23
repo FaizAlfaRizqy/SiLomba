@@ -2,8 +2,14 @@
 
 @push('styles')
 <style>
-    html, body { background-color: #CBEFEB !important; }
-    #page-bg { background-color: #CBEFEB !important; }
+    html, body {
+        background-color: #0D3B36 !important;
+    }
+    #page-bg {
+        background-color: #0D3B36 !important;
+        position: relative;
+    }
+    #page-bg > * { position: relative; z-index: 1; }
 </style>
 @endpush
     <x-slot name="header">
@@ -12,7 +18,7 @@
         </h2>
     </x-slot>
 
-    <div class="py-8 bg-[#CBEFEB] min-h-screen">
+    <div class="py-8 min-h-screen">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-10">
             
             <!-- Recommendations Section -->

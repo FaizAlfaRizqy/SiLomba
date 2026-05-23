@@ -2,12 +2,18 @@
 
 @push('styles')
 <style>
-    html, body { background-color: #CBEFEB !important; }
-    #page-bg { background-color: #CBEFEB !important; }
+    html, body {
+        background-color: #0D3B36 !important;
+    }
+    #page-bg {
+        background-color: #0D3B36 !important;
+        position: relative;
+    }
+    #page-bg > * { position: relative; z-index: 1; }
 </style>
 @endpush
 
-    <div class="py-8 bg-[#CBEFEB] min-h-screen" x-data="{ 
+    <div class="py-8 min-h-screen" x-data="{ 
         tab: '{{ request('tab', 'aktif') }}',
         search: '{{ request('search', '') }}', 
         kategori: '{{ request('kategori', '') }}', 
