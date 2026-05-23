@@ -1,23 +1,25 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Direktori Lomba') }}
-        </h2>
-    </x-slot>
 
-    <div class="py-8" x-data="{ 
-        search: '', 
-        kategori: '', 
-        tingkat: '', 
-        status: '', 
+@push('styles')
+<style>
+    html, body { background-color: #CBEFEB !important; }
+    #page-bg { background-color: #CBEFEB !important; }
+</style>
+@endpush
+
+    <div class="py-8 bg-[#CBEFEB] min-h-screen" x-data="{ 
+        tab: '{{ request('tab', 'aktif') }}',
+        search: '{{ request('search', '') }}', 
+        kategori: '{{ request('kategori', '') }}', 
+        tingkat: '{{ request('tingkat', '') }}', 
         loading: false,
         fetchLomba() {
             this.loading = true;
             let url = new URL('{{ route('mahasiswa.lomba.index') }}');
+            url.searchParams.set('tab', this.tab);
             if (this.search) url.searchParams.set('search', this.search);
             if (this.kategori) url.searchParams.set('kategori', this.kategori);
             if (this.tingkat) url.searchParams.set('tingkat', this.tingkat);
-            if (this.status) url.searchParams.set('status', this.status);
 
             fetch(url, {
                 headers: { 'X-Requested-With': 'XMLHttpRequest' }
@@ -30,48 +32,126 @@
         }
     }">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <!-- Filter Section -->
-            <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 mb-8">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+
+            {{-- TAB SWITCHER --}}
+            <div class="flex items-center gap-3 mb-6">
+                <button @click="tab = 'aktif'; fetchLomba()"
+                    :class="tab === 'aktif' 
+                        ? 'bg-[#00524D] text-white shadow-lg shadow-[#00524D]/20' 
+                        : 'bg-white text-gray-500 border border-gray-200 hover:border-[#00524D] hover:text-[#00524D]'"
+                    class="px-5 py-2.5 rounded-2xl text-sm font-bold transition-all duration-200 flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Lomba Aktif
+                    <span class="px-2 py-0.5 rounded-full text-[10px] font-black"
+                        :class="tab === 'aktif' ? 'bg-white/20 text-white' : 'bg-gray-100 text-gray-500'">
+                        {{ $totalAktif }}
+                    </span>
+                </button>
+
+                <button @click="tab = 'arsip'; fetchLomba()"
+                    :class="tab === 'arsip' 
+                        ? 'bg-gray-700 text-white shadow-lg shadow-gray-700/20' 
+                        : 'bg-white text-gray-500 border border-gray-200 hover:border-gray-700 hover:text-gray-700'"
+                    class="px-5 py-2.5 rounded-2xl text-sm font-bold transition-all duration-200 flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/>
+                    </svg>
+                    Arsip Lomba
+                    <span class="px-2 py-0.5 rounded-full text-[10px] font-black"
+                        :class="tab === 'arsip' ? 'bg-white/20 text-white' : 'bg-gray-100 text-gray-500'">
+                        {{ $totalArsip }}
+                    </span>
+                </button>
+
+                {{-- Deskripsi tab arsip --}}
+                <p x-show="tab === 'arsip'" x-cloak class="text-xs text-gray-400 italic ml-2">
+                    📚 Lomba yang sudah berakhir — hanya untuk referensi & evaluasi
+                </p>
+            </div>
+
+            {{-- FILTER SECTION --}}
+            <div class="bg-white p-5 rounded-3xl shadow-sm border border-gray-100 mb-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {{-- Search --}}
                     <div class="relative">
-                        <x-text-input x-model="search" @input.debounce.500ms="fetchLomba()" placeholder="Cari lomba atau penyelenggara..." class="w-full pl-10" />
-                        <div class="absolute left-3 top-3 text-gray-400">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1.5 block">Cari Lomba</label>
+                        <div class="relative">
+                            <input 
+                                x-model="search" 
+                                @input.debounce.500ms="fetchLomba()" 
+                                placeholder="Nama lomba atau penyelenggara..." 
+                                class="w-full pl-10 pr-4 py-2.5 text-sm rounded-xl border border-gray-200 focus:border-[#00524D] focus:ring-1 focus:ring-[#00524D]/30 outline-none transition"
+                            >
+                            <div class="absolute left-3 top-2.5 text-gray-400">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                            </div>
                         </div>
                     </div>
-                    
-                    <select x-model="kategori" @change="fetchLomba()" class="rounded-xl border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                        <option value="">Semua Kategori</option>
-                        <option value="Sains">Sains</option>
-                        <option value="Teknologi">Teknologi</option>
-                        <option value="Bisnis">Bisnis</option>
-                        <option value="Seni">Seni</option>
-                        <option value="Olahraga">Olahraga</option>
-                    </select>
 
-                    <select x-model="tingkat" @change="fetchLomba()" class="rounded-xl border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                        <option value="">Semua Tingkat</option>
-                        <option value="nasional">Nasional</option>
-                        <option value="internasional">Internasional</option>
-                        <option value="regional">Regional</option>
-                    </select>
+                    {{-- Kategori --}}
+                    <div>
+                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1.5 block">Kategori</label>
+                        <select x-model="kategori" @change="fetchLomba()" 
+                            class="w-full py-2.5 px-3 text-sm rounded-xl border border-gray-200 focus:border-[#00524D] focus:ring-1 focus:ring-[#00524D]/30 outline-none transition">
+                            <option value="">Semua Kategori</option>
+                            <option value="Sains">🔬 Sains</option>
+                            <option value="Teknologi">💻 Teknologi</option>
+                            <option value="Bisnis">📈 Bisnis</option>
+                            <option value="Seni">🎨 Seni</option>
+                            <option value="Olahraga">⚽ Olahraga</option>
+                        </select>
+                    </div>
 
-                    <select x-model="status" @change="fetchLomba()" class="rounded-xl border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                        <option value="">Semua Status</option>
-                        <option value="buka">Buka</option>
-                        <option value="tutup">Tutup</option>
-                        <option value="selesai">Selesai</option>
-                    </select>
+                    {{-- Tingkat --}}
+                    <div>
+                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1.5 block">Tingkat</label>
+                        <select x-model="tingkat" @change="fetchLomba()" 
+                            class="w-full py-2.5 px-3 text-sm rounded-xl border border-gray-200 focus:border-[#00524D] focus:ring-1 focus:ring-[#00524D]/30 outline-none transition">
+                            <option value="">Semua Tingkat</option>
+                            <option value="nasional">🇮🇩 Nasional</option>
+                            <option value="internasional">🌏 Internasional</option>
+                            <option value="regional">📍 Regional</option>
+                        </select>
+                    </div>
+                </div>
+
+                {{-- Active filter indicator --}}
+                <div class="flex items-center gap-2 mt-3" x-show="search || kategori || tingkat" x-cloak>
+                    <span class="text-xs text-gray-400">Filter aktif:</span>
+                    <template x-if="search">
+                        <span class="px-2 py-0.5 bg-[#00524D]/10 text-[#00524D] text-xs font-bold rounded-lg flex items-center gap-1">
+                            <span x-text="'Cari: ' + search"></span>
+                            <button @click="search = ''; fetchLomba()" class="hover:text-red-500">×</button>
+                        </span>
+                    </template>
+                    <template x-if="kategori">
+                        <span class="px-2 py-0.5 bg-[#00524D]/10 text-[#00524D] text-xs font-bold rounded-lg flex items-center gap-1">
+                            <span x-text="kategori"></span>
+                            <button @click="kategori = ''; fetchLomba()" class="hover:text-red-500">×</button>
+                        </span>
+                    </template>
+                    <template x-if="tingkat">
+                        <span class="px-2 py-0.5 bg-[#00524D]/10 text-[#00524D] text-xs font-bold rounded-lg flex items-center gap-1">
+                            <span x-text="tingkat"></span>
+                            <button @click="tingkat = ''; fetchLomba()" class="hover:text-red-500">×</button>
+                        </span>
+                    </template>
+                    <button @click="search = ''; kategori = ''; tingkat = ''; fetchLomba()" 
+                        class="ml-auto text-xs text-red-400 hover:text-red-600 font-bold">
+                        Reset semua
+                    </button>
                 </div>
             </div>
 
-            <!-- List Section -->
+            {{-- LIST SECTION --}}
             <div id="lomba-list" class="relative min-h-[400px]">
                 <div x-show="loading" class="absolute inset-0 bg-white/50 backdrop-blur-sm z-10 flex items-center justify-center rounded-3xl">
-                    <div class="animate-spin rounded-full h-12 w-12 border-4 border-indigo-600 border-t-transparent"></div>
+                    <div class="animate-spin rounded-full h-12 w-12 border-4 border-[#00524D] border-t-transparent"></div>
                 </div>
-                
-                @include('mahasiswa.lomba._list', ['lombas' => $lombas])
+
+                @include('mahasiswa.lomba._list', ['lombas' => $lombas, 'tab' => request('tab', 'aktif')])
             </div>
         </div>
     </div>

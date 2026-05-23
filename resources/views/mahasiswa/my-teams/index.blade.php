@@ -1,4 +1,11 @@
 <x-app-layout>
+
+@push('styles')
+<style>
+    html, body { background-color: #CBEFEB !important; }
+    #page-bg { background-color: #CBEFEB !important; }
+</style>
+@endpush
     <x-slot name="header">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
@@ -20,7 +27,7 @@
         </div>
     </x-slot>
 
-    <div class="py-8 bg-[#EFF6FF] min-h-screen">
+    <div class="py-8 bg-[#CBEFEB] min-h-screen">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
             
             <!-- Sticky Flash Messages -->

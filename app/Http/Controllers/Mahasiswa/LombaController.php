@@ -12,51 +12,55 @@ class LombaController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Lomba::query();
+        $tab = $request->get('tab', 'aktif');
+        $now = Carbon::now()->startOfDay();
 
-        // Search
+        // Base query dengan filter umum
+        $baseQuery = Lomba::query();
+
         if ($request->filled('search')) {
-            $query->where(function($q) use ($request) {
+            $baseQuery->where(function ($q) use ($request) {
                 $q->where('nama', 'like', '%' . $request->search . '%')
                   ->orWhere('penyelenggara', 'like', '%' . $request->search . '%');
             });
         }
 
-        // Filters
         if ($request->filled('kategori')) {
-            $query->where('kategori', $request->kategori);
+            $baseQuery->where('kategori', $request->kategori);
         }
 
         if ($request->filled('tingkat')) {
-            $query->where('tingkat', $request->tingkat);
+            $baseQuery->where('tingkat', $request->tingkat);
         }
 
-        if ($request->filled('status')) {
-            $query->where('status', $request->status);
+        // Hitung total untuk badge tab (tanpa filter search/kategori/tingkat)
+        $totalAktif = Lomba::where('deadline', '>=', $now)->count();
+        $totalArsip = Lomba::where('deadline', '<', $now)->count();
+
+        // Query utama berdasarkan tab
+        if ($tab === 'arsip') {
+            // Lomba yang sudah melewati deadline
+            $query = (clone $baseQuery)->where('deadline', '<', $now)
+                ->orderBy('deadline', 'desc');
+        } else {
+            // Lomba aktif: deadline >= hari ini
+            $query = (clone $baseQuery)->where('deadline', '>=', $now)
+                ->orderBy('deadline', 'asc');
         }
 
-        if ($request->filled('deadline_from')) {
-            $query->where('deadline', '>=', $request->deadline_from);
-        }
-
-        if ($request->filled('deadline_to')) {
-            $query->where('deadline', '<=', $request->deadline_to);
-        }
-
-        // Default Sort
-        $lombas = $query->orderBy('deadline', 'asc')->paginate(12);
+        $lombas = $query->paginate(16)->appends($request->query());
 
         if ($request->ajax()) {
-            return view('mahasiswa.lomba._list', compact('lombas'))->render();
+            return view('mahasiswa.lomba._list', compact('lombas', 'tab'))->render();
         }
 
-        return view('mahasiswa.lomba.index', compact('lombas'));
+        return view('mahasiswa.lomba.index', compact('lombas', 'tab', 'totalAktif', 'totalArsip'));
     }
 
     public function show($id)
     {
         $lomba = Lomba::findOrFail($id);
-        return view('mahasiswa.lomba.show', compact('lomba'));
+        $isArsip = $lomba->deadline->lt(Carbon::now()->startOfDay());
+        return view('mahasiswa.lomba.show', compact('lomba', 'isArsip'));
     }
-
 }

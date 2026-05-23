@@ -23,9 +23,10 @@
             }
             [x-cloak] { display: none !important; }
         </style>
+        @stack('styles')
     </head>
     <body class="h-full antialiased text-gray-900 selection:bg-indigo-500 selection:text-white">
-        <div class="min-h-screen bg-gray-50/50">
+        <div id="page-bg" class="min-h-screen bg-gray-50/50">
             @include('layouts.navigation')
 
             <!-- Page Heading -->

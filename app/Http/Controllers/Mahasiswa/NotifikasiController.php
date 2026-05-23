@@ -11,6 +11,11 @@ class NotifikasiController extends Controller
 {
     public function index()
     {
+        // Auto mark semua notifikasi sebagai sudah dibaca saat halaman dibuka
+        Notification::where('id_penerima', Auth::id())
+            ->where('is_read', false)
+            ->update(['is_read' => true]);
+
         $notifikasis = Notification::where('id_penerima', Auth::id())
             ->latest()
             ->paginate(20);

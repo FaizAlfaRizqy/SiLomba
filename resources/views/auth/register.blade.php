@@ -14,7 +14,8 @@
             <defs>
                 <linearGradient id="panelGradient" x1="30%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stop-color="#48A89A" />
-                    <stop offset="50%" stop-color="#00524D" />
+                    <stop offset="30%" stop-color="#48A89A" />
+                    <stop offset="65%" stop-color="#00524D" />
                     <stop offset="100%" stop-color="#001F1D" />
                 </linearGradient>
             </defs>
@@ -41,6 +42,17 @@
             <div class="absolute w-20 h-20 bg-[#CBEFEB] opacity-60 rounded-full blur-xl bottom-[15%] left-[5%] pointer-events-none"></div>
             <div class="absolute w-32 h-32 bg-[#48A89A] opacity-30 rounded-full blur-2xl top-[10%] left-[10%] pointer-events-none"></div>
             <div class="absolute w-24 h-24 bg-[#93C5FD] opacity-40 rounded-full blur-2xl bottom-[45%] left-[15%] pointer-events-none"></div>
+            
+            <!-- Gelembung Solid (Aksen Bulat Tajam) -->
+            <div class="absolute w-12 h-12 bg-[#48A89A] opacity-40 rounded-full top-[20%] left-[10%] pointer-events-none"></div>
+            <div class="absolute w-6 h-6 bg-[#00524D] opacity-30 rounded-full top-[15%] left-[25%] pointer-events-none"></div>
+            <div class="absolute w-16 h-16 bg-[#CBEFEB] opacity-60 rounded-full bottom-[25%] left-[15%] pointer-events-none"></div>
+            <div class="absolute w-8 h-8 bg-[#48A89A] opacity-50 rounded-full bottom-[15%] left-[30%] pointer-events-none"></div>
+            <div class="absolute w-5 h-5 bg-[#00524D] opacity-20 rounded-full top-[45%] left-[5%] pointer-events-none"></div>
+            <div class="absolute w-10 h-10 bg-[#CBEFEB] opacity-70 rounded-full top-[60%] left-[35%] pointer-events-none"></div>
+            <div class="absolute w-7 h-7 bg-[#48A89A] opacity-35 rounded-full top-[75%] left-[55%] pointer-events-none"></div>
+            <div class="absolute w-4 h-4 bg-[#CBEFEB] opacity-50 rounded-full top-[35%] left-[60%] pointer-events-none"></div>
+            <div class="absolute w-9 h-9 bg-[#00524D] opacity-25 rounded-full bottom-[40%] left-[50%] pointer-events-none"></div>
             
             <!-- Logo di tengah -->
             <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-full">

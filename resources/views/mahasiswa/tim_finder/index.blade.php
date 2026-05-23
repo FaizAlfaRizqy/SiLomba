@@ -1,11 +1,18 @@
 <x-app-layout>
+
+@push('styles')
+<style>
+    html, body { background-color: #CBEFEB !important; }
+    #page-bg { background-color: #CBEFEB !important; }
+</style>
+@endpush
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Tim Finder') }}
         </h2>
     </x-slot>
 
-    <div class="py-8">
+    <div class="py-8 bg-[#CBEFEB] min-h-screen">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-10">
             
             <!-- Recommendations Section -->
