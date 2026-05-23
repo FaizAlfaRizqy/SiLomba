@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Model;
 
 #[Fillable([
-    'user_id', 'nim', 'program_studi', 'domisili', 'keahlian', 
-    'minat_lomba', 'link_portofolio', 'ketersediaan_waktu', 
-    'level_privasi', 'foto_profil'
+    'user_id', 'nim', 'program_studi', 'domisili', 'keahlian',
+    'minat_lomba', 'link_portofolio', 'ketersediaan_waktu',
+    'level_privasi', 'foto_profil',
 ])]
 class Mahasiswa extends Model
 {

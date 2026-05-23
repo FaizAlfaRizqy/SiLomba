@@ -17,18 +17,18 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#4F7EF7',
-                        primaryHover: '#3B6EF0',
-                        primaryLight: '#DBEAFE',
-                        primaryDark: '#1E3A6E',
-                        bgPage: '#EFF6FF',
-                        surface: '#F8FAFC',
-                        textMain: '#1E293B',
-                        textMuted: '#64748B',
-                        aksen: '#10B981',
-                        aksenLight: '#D1FAE5',
-                        aksenDark: '#065F46',
-                        borderMain: '#E2E8F0',
+                        primary: '#48A89A',
+                        primaryHover: '#398C7F',
+                        primaryLight: '#C0E8DF',
+                        primaryDark: '#053931',
+                        bgPage: '#E3EFEA',
+                        surface: '#FFFFFF',
+                        textMain: '#053931',
+                        textMuted: '#3E615D',
+                        aksen: '#48A89A',
+                        aksenLight: '#C0E8DF',
+                        aksenDark: '#053931',
+                        borderMain: '#CBDED6',
                     },
                     fontFamily: {
                         sans: ['Plus Jakarta Sans', 'sans-serif'],
@@ -46,7 +46,7 @@
         * { font-family: 'Plus Jakarta Sans', sans-serif; }
     </style>
 </head>
-<body class="bg-[#EFF6FF] min-h-screen antialiased">
+<body class="bg-bgPage min-h-screen antialiased">
     @yield('content')
 </body>
 </html>

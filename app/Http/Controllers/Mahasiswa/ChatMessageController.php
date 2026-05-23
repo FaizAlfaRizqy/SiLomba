@@ -13,9 +13,9 @@ class ChatMessageController extends Controller
     public function index($teamId)
     {
         $tim = Tim::findOrFail($teamId);
-        
+
         // Ensure user is member
-        if (!$tim->anggota()->where('id_mahasiswa', Auth::id())->exists()) {
+        if (! $tim->anggota()->where('id_mahasiswa', Auth::id())->exists()) {
             abort(403);
         }
 
@@ -31,8 +31,8 @@ class ChatMessageController extends Controller
     public function store(Request $request, $teamId)
     {
         $tim = Tim::findOrFail($teamId);
-        
-        if (!$tim->anggota()->where('id_mahasiswa', Auth::id())->exists()) {
+
+        if (! $tim->anggota()->where('id_mahasiswa', Auth::id())->exists()) {
             abort(403);
         }
 

@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\LombaExport;
 use App\Http\Controllers\Controller;
-use App\Models\User;
-use App\Models\Mahasiswa;
 use App\Models\Lomba;
+use App\Models\Mahasiswa;
 use App\Models\Tim;
-use Illuminate\Http\Request;
+use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DashboardController extends Controller
 {
@@ -28,7 +30,7 @@ class DashboardController extends Controller
         // Participation Trends
         $trends = [
             'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-            'data' => [10, 25, 45, 30, 60, 85]
+            'data' => [10, 25, 45, 30, 60, 85],
         ];
 
         return view('admin.dashboard', compact('stats', 'prodiDist', 'trends'));
@@ -37,12 +39,13 @@ class DashboardController extends Controller
     public function exportPDF()
     {
         $lombas = Lomba::all();
-        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('admin.reports.lomba_pdf', compact('lombas'));
+        $pdf = Pdf::loadView('admin.reports.lomba_pdf', compact('lombas'));
+
         return $pdf->download('laporan_lomba.pdf');
     }
 
     public function exportExcel()
     {
-        return \Maatwebsite\Excel\Facades\Excel::download(new \App\Exports\LombaExport, 'laporan_lomba.xlsx');
+        return Excel::download(new LombaExport, 'laporan_lomba.xlsx');
     }
 }

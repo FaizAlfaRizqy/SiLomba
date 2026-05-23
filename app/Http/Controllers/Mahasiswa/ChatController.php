@@ -3,27 +3,26 @@
 namespace App\Http\Controllers\Mahasiswa;
 
 use App\Http\Controllers\Controller;
-use App\Models\Tim;
 use App\Models\ChatMessage;
 use App\Models\Notification;
+use App\Models\Tim;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 
 class ChatController extends Controller
 {
     public function index()
     {
         $user = Auth::user();
-        
+
         // Get all teams where user is a member
-        $tims = Tim::whereHas('anggota', function($query) use ($user) {
+        $tims = Tim::whereHas('anggota', function ($query) use ($user) {
             $query->where('id_mahasiswa', $user->id);
         })->orWhere('id_ketua', $user->id)
-        ->with(['lomba', 'chatMessages' => function($query) {
-            $query->latest()->limit(1);
-        }])
-        ->get();
+            ->with(['lomba', 'chatMessages' => function ($query) {
+                $query->latest()->limit(1);
+            }])
+            ->get();
 
         return view('mahasiswa.chat.index', compact('tims'));
     }
@@ -35,7 +34,7 @@ class ChatController extends Controller
 
         // Security Check
         $isMember = $tim->anggota->contains('id_mahasiswa', $user->id) || $tim->id_ketua == $user->id;
-        if (!$isMember) {
+        if (! $isMember) {
             return redirect()->route('mahasiswa.chat.index')->with('error', 'Anda bukan anggota tim ini.');
         }
 
@@ -73,8 +72,8 @@ class ChatController extends Controller
             if ($memberId != $user->id) {
                 Notification::create([
                     'id_penerima' => $memberId,
-                    'judul' => '💬 Pesan baru di ' . $tim->nama_tim,
-                    'isi' => $user->name . ': ' . substr($request->pesan, 0, 50),
+                    'judul' => '💬 Pesan baru di '.$tim->nama_tim,
+                    'isi' => $user->name.': '.substr($request->pesan, 0, 50),
                     'tipe' => 'chat_baru',
                     'link' => route('mahasiswa.chat.show', $tim->id),
                 ]);
@@ -93,7 +92,7 @@ class ChatController extends Controller
             'file' => 'required|file|max:10240|mimes:pdf,doc,docx,jpg,jpeg,png',
         ]);
 
-        $path = $request->file('file')->store('chat-files/' . $tim->id, 'public');
+        $path = $request->file('file')->store('chat-files/'.$tim->id, 'public');
 
         $message = ChatMessage::create([
             'id_tim' => $tim->id,
@@ -102,7 +101,7 @@ class ChatController extends Controller
             'file_attachment' => $path,
         ]);
 
-        return response()->json(['success' => true, 'url' => asset('storage/' . $path)]);
+        return response()->json(['success' => true, 'url' => asset('storage/'.$path)]);
     }
 
     public function pesanBaru(Request $request, $id)
@@ -115,7 +114,7 @@ class ChatController extends Controller
 
         return response()->json([
             'pesan' => $messages,
-            'timestamp' => now()->timestamp * 1000
+            'timestamp' => now()->timestamp * 1000,
         ]);
     }
 
@@ -131,8 +130,8 @@ class ChatController extends Controller
         // Unpin all other messages for this team if needed, or allow multiple
         // For simplicity, let's allow only one pinned message
         ChatMessage::where('id_tim', $tim->id)->update(['is_pinned' => false]);
-        
-        $message->is_pinned = !$message->is_pinned;
+
+        $message->is_pinned = ! $message->is_pinned;
         $message->save();
 
         return response()->json(['success' => true, 'pinned' => $message->is_pinned]);

@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Mahasiswa;
 
 use App\Http\Controllers\Controller;
-use App\Models\Lamaran;
-use App\Models\SlotTim;
-use App\Models\Notification;
 use App\Models\AnggotaTim;
+use App\Models\Lamaran;
+use App\Models\Lomba;
+use App\Models\Notification;
+use App\Models\SlotTim;
 use App\Models\Tim;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +29,7 @@ class TeamController extends Controller
             'jumlah_slot' => 'required|integer|min:1',
             'keahlian_dibutuhkan' => 'required|array',
             'deskripsi_slot' => 'required|string',
-            'batas_waktu' => 'required|date|before_or_equal:' . \App\Models\Lomba::find($request->id_lomba)->deadline->toDateString(),
+            'batas_waktu' => 'required|date|before_or_equal:'.Lomba::find($request->id_lomba)->deadline->toDateString(),
         ]);
 
         $user = Auth::user();
@@ -57,7 +58,7 @@ class TeamController extends Controller
             'status' => 'buka',
         ]);
 
-        if (!$user->hasRole('ketua_tim')) {
+        if (! $user->hasRole('ketua_tim')) {
             $user->assignRole('ketua_tim');
         }
 
@@ -68,7 +69,7 @@ class TeamController extends Controller
     {
         $user = Auth::user();
         $ledTeams = Tim::where('id_ketua', $user->id)->with('lomba')->get();
-        $joinedTeams = Tim::whereHas('anggota', function($q) use ($user) {
+        $joinedTeams = Tim::whereHas('anggota', function ($q) use ($user) {
             $q->where('id_mahasiswa', $user->id)->where('peran', '!=', 'ketua');
         })->with('lomba')->get();
 
@@ -78,7 +79,7 @@ class TeamController extends Controller
     public function manage($id)
     {
         $tim = Tim::with(['lomba', 'anggota.user.mahasiswa', 'slots.lamarans.pelamar.mahasiswa'])->findOrFail($id);
-        
+
         if ($tim->id_ketua !== Auth::id()) {
             abort(403);
         }
@@ -92,7 +93,7 @@ class TeamController extends Controller
         $user = Auth::user();
 
         $alreadyInTeam = AnggotaTim::where('id_mahasiswa', $user->id)
-            ->whereHas('tim', function($q) use ($slot) {
+            ->whereHas('tim', function ($q) use ($slot) {
                 $q->where('id_lomba', $slot->tim->id_lomba);
             })->exists();
 
@@ -118,7 +119,7 @@ class TeamController extends Controller
         Notification::create([
             'id_penerima' => $slot->tim->id_ketua,
             'judul' => 'Lamaran Baru!',
-            'isi' => $user->name . ' melamar untuk posisi ' . $slot->posisi . ' di tim ' . $slot->tim->nama_tim,
+            'isi' => $user->name.' melamar untuk posisi '.$slot->posisi.' di tim '.$slot->tim->nama_tim,
             'tipe' => 'application',
         ]);
 
@@ -128,7 +129,7 @@ class TeamController extends Controller
     public function acceptApplication($id)
     {
         $lamaran = Lamaran::with('slot.tim')->findOrFail($id);
-        
+
         if ($lamaran->slot->tim->id_ketua !== Auth::id()) {
             abort(403);
         }
@@ -145,7 +146,7 @@ class TeamController extends Controller
         Notification::create([
             'id_penerima' => $lamaran->id_pelamar,
             'judul' => 'Lamaran Diterima!',
-            'isi' => 'Selamat! Lamaran Anda diterima di tim ' . $lamaran->slot->tim->nama_tim,
+            'isi' => 'Selamat! Lamaran Anda diterima di tim '.$lamaran->slot->tim->nama_tim,
             'tipe' => 'application',
         ]);
 
@@ -155,21 +156,21 @@ class TeamController extends Controller
     public function rejectApplication(Request $request, $id)
     {
         $lamaran = Lamaran::with('slot.tim')->findOrFail($id);
-        
+
         if ($lamaran->slot->tim->id_ketua !== Auth::id()) {
             abort(403);
         }
 
         $lamaran->update([
-            'status' => 'ditolak', 
+            'status' => 'ditolak',
             'alasan_penolakan' => $request->alasan,
-            'processed_at' => now()
+            'processed_at' => now(),
         ]);
 
         Notification::create([
             'id_penerima' => $lamaran->id_pelamar,
             'judul' => 'Lamaran Ditolak',
-            'isi' => 'Maaf, lamaran Anda untuk tim ' . $lamaran->slot->tim->nama_tim . ' ditolak. Alasan: ' . ($request->alasan ?: '-'),
+            'isi' => 'Maaf, lamaran Anda untuk tim '.$lamaran->slot->tim->nama_tim.' ditolak. Alasan: '.($request->alasan ?: '-'),
             'tipe' => 'application',
         ]);
 

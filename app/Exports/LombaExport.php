@@ -3,14 +3,15 @@
 namespace App\Exports;
 
 use App\Models\Lomba;
+use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
 class LombaExport implements FromCollection, WithHeadings
 {
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return Collection
+     */
     public function collection()
     {
         return Lomba::select('nama', 'penyelenggara', 'kategori', 'tingkat', 'deadline', 'status')->get();

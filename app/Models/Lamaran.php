@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Model;
 
 #[Fillable(['id_slot', 'id_pelamar', 'pesan_motivasi', 'status', 'alasan_penolakan', 'processed_at'])]
 class Lamaran extends Model

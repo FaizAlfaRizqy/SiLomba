@@ -13,6 +13,7 @@ class LombaController extends Controller
     public function index()
     {
         $lombas = Lomba::latest()->paginate(10);
+
         return view('admin.lomba.index', compact('lombas'));
     }
 
@@ -41,12 +42,12 @@ class LombaController extends Controller
 
         if ($request->hasFile('poster')) {
             $image = $request->file('poster');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            $path = 'posters/' . $filename;
+            $filename = time().'.'.$image->getClientOriginalExtension();
+            $path = 'posters/'.$filename;
 
             $img = Image::decode($image);
             $img->scale(width: 800); // Scale to 800px width
-            
+
             Storage::disk('public')->put($path, (string) $img->encodeUsingFileExtension($image->getClientOriginalExtension()));
             $data['poster'] = $path;
         }
@@ -84,12 +85,12 @@ class LombaController extends Controller
             }
 
             $image = $request->file('poster');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            $path = 'posters/' . $filename;
+            $filename = time().'.'.$image->getClientOriginalExtension();
+            $path = 'posters/'.$filename;
 
             $img = Image::decode($image);
             $img->scale(width: 800);
-            
+
             Storage::disk('public')->put($path, (string) $img->encodeUsingFileExtension($image->getClientOriginalExtension()));
             $data['poster'] = $path;
         }
@@ -102,6 +103,7 @@ class LombaController extends Controller
     public function destroy(Lomba $lomba)
     {
         $lomba->delete();
+
         return redirect()->route('admin.lomba.index')->with('success', 'Lomba berhasil dihapus (soft delete).');
     }
 }

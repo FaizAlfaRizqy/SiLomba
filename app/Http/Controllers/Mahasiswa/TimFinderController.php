@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Mahasiswa;
 
 use App\Http\Controllers\Controller;
-use App\Models\SlotTim;
-use App\Models\Lamaran;
 use App\Models\AnggotaTim;
+use App\Models\Lamaran;
 use App\Models\Notification;
+use App\Models\SlotTim;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
 
 class TimFinderController extends Controller
 {
@@ -17,20 +17,20 @@ class TimFinderController extends Controller
     {
         $user = Auth::user();
         $mahasiswa = $user->mahasiswa;
-        
+
         $query = SlotTim::with(['tim.lomba', 'tim.ketua'])
             ->where('status', 'buka')
             ->where('batas_waktu', '>=', now());
 
         // Filters
         if ($request->filled('lomba_id')) {
-            $query->whereHas('tim', function($q) use ($request) {
+            $query->whereHas('tim', function ($q) use ($request) {
                 $q->where('id_lomba', $request->lomba_id);
             });
         }
 
         if ($request->filled('kategori')) {
-            $query->whereHas('tim.lomba', function($q) use ($request) {
+            $query->whereHas('tim.lomba', function ($q) use ($request) {
                 $q->where('kategori', $request->kategori);
             });
         }
@@ -39,9 +39,9 @@ class TimFinderController extends Controller
 
         // Recommendation Logic
         $recommendations = collect();
-        if ($mahasiswa && !empty($mahasiswa->keahlian)) {
+        if ($mahasiswa && ! empty($mahasiswa->keahlian)) {
             $userSkills = collect($mahasiswa->keahlian);
-            
+
             $allOpenSlots = SlotTim::with(['tim.lomba', 'tim.ketua'])
                 ->where('status', 'buka')
                 ->where('batas_waktu', '>=', now())
@@ -49,7 +49,9 @@ class TimFinderController extends Controller
 
             foreach ($allOpenSlots as $slot) {
                 $requiredSkills = collect($slot->keahlian_dibutuhkan);
-                if ($requiredSkills->isEmpty()) continue;
+                if ($requiredSkills->isEmpty()) {
+                    continue;
+                }
 
                 $matched = $userSkills->intersect($requiredSkills)->count();
                 $score = ($matched / $requiredSkills->count()) * 100;
@@ -70,17 +72,17 @@ class TimFinderController extends Controller
     {
         $user = Auth::user();
         $mahasiswa = $user->mahasiswa;
-        
+
         $slot = SlotTim::with([
             'tim.lomba',
             'tim.ketua.mahasiswa',
-            'tim.anggota' => function($query) {
+            'tim.anggota' => function ($query) {
                 $query->with(['mahasiswa', 'user'])
-                      ->orderBy('peran', 'asc');
+                    ->orderBy('peran', 'asc');
             },
-            'lamarans' => function($query) {
+            'lamarans' => function ($query) {
                 $query->where('status', 'diterima');
-            }
+            },
         ])->findOrFail($id);
 
         $anggotaTim = $slot->tim->anggota ?? collect();
@@ -94,12 +96,12 @@ class TimFinderController extends Controller
             ->first();
 
         $sudahDiTim = AnggotaTim::where('id_mahasiswa', $user->id)
-            ->whereHas('tim', function($q) use ($slot) {
+            ->whereHas('tim', function ($q) use ($slot) {
                 $q->where('id_lomba', $slot->tim->id_lomba);
             })->exists();
 
         $slotTersisa = $slot->jumlah_slot - $slot->lamarans->count();
-        
+
         $lamaranHariIni = Lamaran::where('id_pelamar', $user->id)
             ->whereDate('created_at', Carbon::today())
             ->count();
@@ -133,7 +135,7 @@ class TimFinderController extends Controller
         $slot = SlotTim::findOrFail($id);
 
         // 1. Cek profil lengkap
-        if (!$mahasiswa || empty($mahasiswa->keahlian)) {
+        if (! $mahasiswa || empty($mahasiswa->keahlian)) {
             return back()->with('error', 'Lengkapi profil keahlianmu terlebih dahulu');
         }
 
@@ -161,7 +163,7 @@ class TimFinderController extends Controller
 
         // 6. Cek belum di tim lain di lomba yang sama
         $inOtherTeam = AnggotaTim::where('id_mahasiswa', $user->id)
-            ->whereHas('tim', function($q) use ($slot) {
+            ->whereHas('tim', function ($q) use ($slot) {
                 $q->where('id_lomba', $slot->tim->id_lomba);
             })->exists();
         if ($inOtherTeam) {
@@ -182,7 +184,7 @@ class TimFinderController extends Controller
         ]);
 
         // Save
-        $lamaran = new Lamaran();
+        $lamaran = new Lamaran;
         $lamaran->id_slot = $slot->id;
         $lamaran->id_pelamar = $user->id;
         $lamaran->pesan_motivasi = $request->pesan_motivasi;
@@ -193,7 +195,7 @@ class TimFinderController extends Controller
         Notification::create([
             'id_penerima' => $slot->tim->id_ketua,
             'judul' => 'Lamaran Baru Masuk!',
-            'isi' => $user->name . ' melamar posisi ' . $slot->posisi . ' di tim ' . $slot->tim->nama_tim,
+            'isi' => $user->name.' melamar posisi '.$slot->posisi.' di tim '.$slot->tim->nama_tim,
             'tipe' => 'lamaran_masuk',
             'link' => route('mahasiswa.team.manage', $slot->id_tim),
         ]);

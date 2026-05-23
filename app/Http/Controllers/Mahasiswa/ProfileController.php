@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Mahasiswa;
 
 use App\Http\Controllers\Controller;
 use App\Models\Mahasiswa;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -15,7 +16,7 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $mahasiswa = $user->mahasiswa;
-        
+
         return view('mahasiswa.profile.edit', compact('user', 'mahasiswa'));
     }
 
@@ -43,15 +44,15 @@ class ProfileController extends Controller
             }
 
             $image = $request->file('foto_profil');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            $path = 'profiles/' . $filename;
+            $filename = time().'.'.$image->getClientOriginalExtension();
+            $path = 'profiles/'.$filename;
 
             // Resize image using Intervention Image
             $img = Image::decode($image);
             $img->cover(300, 300); // Resize and crop
-            
+
             Storage::disk('public')->put($path, (string) $img->encodeUsingFileExtension($image->getClientOriginalExtension()));
-            
+
             $mahasiswa->foto_profil = $path;
         }
 
@@ -71,17 +72,18 @@ class ProfileController extends Controller
     public function portfolio($nim)
     {
         $mahasiswa = Mahasiswa::where('nim', $nim)->where('level_privasi', 'publik')->firstOrFail();
+
         return view('mahasiswa.profile.portfolio', compact('mahasiswa'));
     }
 
     public function notifications()
     {
-        $notifications = \App\Models\Notification::where('id_penerima', Auth::id())
+        $notifications = Notification::where('id_penerima', Auth::id())
             ->orderBy('created_at', 'desc')
             ->paginate(10);
-            
+
         // Mark all as read
-        \App\Models\Notification::where('id_penerima', Auth::id())
+        Notification::where('id_penerima', Auth::id())
             ->where('is_read', false)
             ->update(['is_read' => true]);
 

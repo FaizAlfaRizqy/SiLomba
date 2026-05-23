@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Attributes\Fillable;
 
 #[Fillable([
-    'nama', 'penyelenggara', 'kategori', 'tingkat', 'deadline', 
-    'hadiah', 'syarat_peserta', 'deskripsi', 'link_resmi', 
-    'poster', 'status', 'id_admin'
+    'nama', 'penyelenggara', 'kategori', 'tingkat', 'deadline',
+    'hadiah', 'syarat_peserta', 'deskripsi', 'link_resmi',
+    'poster', 'status', 'id_admin',
 ])]
 class Lomba extends Model
 {
