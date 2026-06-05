@@ -62,7 +62,7 @@
         <div class="w-full md:w-7/12 bg-gradient-to-br from-[#48A89A] to-[#00524D] md:bg-none px-6 py-8 md:px-10 md:py-12 flex flex-col justify-center">
             
             <div class="max-w-sm mx-auto w-full relative z-30">
-                <h1 class="text-white text-4xl font-bold mb-8 text-center">Login</h1>
+                <h1 class="text-white text-4xl font-bold mb-8 text-center">Masuk</h1>
 
                 <!-- Session Status -->
             @if (session('status'))
@@ -94,7 +94,7 @@
                     <label for="email" class="text-white text-sm font-medium mb-1.5 block">Email</label>
                     <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="username"
                            class="w-full px-4 py-3 rounded-xl bg-[#000000]/40 border border-[#48A89A]/50 text-white text-sm placeholder:text-white/40 focus:outline-none focus:border-white focus:ring-2 focus:ring-white/30 transition duration-200"
-                           placeholder="Enter your email">
+                           placeholder="Masukkan email kamu">
                 </div>
 
                 <!-- FIELD PASSWORD -->
@@ -103,7 +103,7 @@
                     <div class="relative">
                         <input :type="show ? 'text' : 'password'" id="password" name="password" required autocomplete="current-password"
                                class="w-full px-4 py-3 rounded-xl bg-[#000000]/40 border border-[#48A89A]/50 text-white text-sm placeholder:text-white/40 focus:outline-none focus:border-white focus:ring-2 focus:ring-white/30 transition duration-200"
-                               placeholder="Enter your password">
+                               placeholder="Masukkan password kamu">
                         <button type="button" @click="show = !show" class="absolute right-3 top-3 text-white/60 hover:text-white transition">
                             <span x-show="!show">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -121,7 +121,7 @@
                     @if (Route::has('password.request'))
                     <div class="text-right mt-1">
                         <a href="{{ route('password.request') }}" class="text-white/80 text-xs hover:text-white transition">
-                            Forgot Password?
+                            Lupa Password?
                         </a>
                     </div>
                     @endif
@@ -132,7 +132,7 @@
                 <!-- TOMBOL LOGIN -->
                 <button type="submit" :disabled="loading"
                         class="w-full py-3 rounded-xl mt-2 bg-[#48A89A] text-white font-semibold text-sm hover:bg-[#CBEFEB] hover:text-[#00524D] transition duration-300 active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg shadow-[#000000]/20">
-                    <span x-show="!loading">Login to SiLomba</span>
+                    <span x-show="!loading">Masuk ke SiLomba</span>
                     <span x-show="loading" class="flex items-center justify-center gap-2" style="display: none;">
                         <svg class="animate-spin h-4 w-4 text-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -144,15 +144,15 @@
 
                 <!-- LINK REGISTER -->
                 <div class="text-center mt-6 text-sm text-white/80">
-                    Don't have an account? 
+                    Belum punya akun? 
                     <a href="{{ route('register') }}" class="text-white font-bold hover:underline transition">
-                        Register Now
+                        Daftar Sekarang
                     </a>
                 </div>
 
                 <!-- TERMS & SERVICES -->
                 <div class="text-center mt-8 text-xs text-white/60">
-                    <a href="#" class="hover:text-white transition">Terms and Services</a>
+                    <a href="#" class="hover:text-white transition">Syarat &amp; Ketentuan</a>
                 </div>
             </form>
             </div>

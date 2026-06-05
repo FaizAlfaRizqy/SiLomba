@@ -5,15 +5,20 @@
             $daysRemaining = \Carbon\Carbon::now()->diffInDays($lomba->deadline, false);
         @endphp
 
-        <div class="group bg-white rounded-3xl border {{ $isArsip ? 'border-gray-200 opacity-90' : 'border-gray-100 hover:shadow-xl hover:-translate-y-1' }} shadow-sm transition duration-300 overflow-hidden flex flex-col">
+        <a href="{{ route('mahasiswa.lomba.show', $lomba->id) }}"
+           class="group bg-white rounded-3xl border {{ $isArsip ? 'border-gray-200 opacity-90' : 'border-gray-100 hover:shadow-xl hover:-translate-y-1' }} shadow-sm transition duration-300 overflow-hidden flex flex-col cursor-pointer">
             
-            {{-- Poster / Image --}}
-            <div class="relative h-40 {{ $isArsip ? 'bg-gradient-to-br from-gray-400 to-gray-600' : 'bg-gradient-to-br from-[#48A89A] to-[#00524D]' }} flex items-center justify-center text-white overflow-hidden">
-                @if($lomba->poster)
-                    <img src="{{ asset('storage/' . $lomba->poster) }}" class="w-full h-full object-cover {{ $isArsip ? 'grayscale' : 'group-hover:scale-110' }} transition duration-500">
-                @else
-                    <svg class="w-12 h-12 opacity-20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                @endif
+            {{-- Poster / Image — portrait ratio (3:4) --}}
+            <div class="relative w-full overflow-hidden" style="aspect-ratio: 3/4; max-height: 280px;">
+                <div class="absolute inset-0 {{ $isArsip ? 'bg-gradient-to-br from-gray-400 to-gray-600' : 'bg-gradient-to-br from-[#48A89A] to-[#00524D]' }} flex items-center justify-center text-white">
+                    @if($lomba->poster)
+                        <img src="{{ asset('storage/' . $lomba->poster) }}" 
+                             class="w-full h-full object-cover {{ $isArsip ? 'grayscale' : 'group-hover:scale-105' }} transition duration-500"
+                             alt="{{ $lomba->nama }}">
+                    @else
+                        <svg class="w-12 h-12 opacity-20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    @endif
+                </div>
 
                 {{-- Kategori Badge --}}
                 <div class="absolute top-3 left-3">
@@ -41,11 +46,11 @@
             {{-- Content --}}
             <div class="p-4 flex-1 flex flex-col">
                 <div class="mb-3">
-                    <span class="text-[10px] font-semibold {{ $isArsip ? 'text-gray-400' : 'text-gray-400' }} uppercase tracking-wider block truncate">{{ $lomba->penyelenggara }}</span>
+                    <span class="text-[10px] font-semibold text-gray-400 uppercase tracking-wider block truncate">{{ $lomba->penyelenggara }}</span>
                     <h3 class="text-sm font-bold {{ $isArsip ? 'text-gray-500' : 'text-gray-900 group-hover:text-[#00524D]' }} transition line-clamp-2 leading-snug mt-0.5">{{ $lomba->nama }}</h3>
                 </div>
 
-                <div class="space-y-2 mb-4 flex-1">
+                <div class="space-y-2 flex-1">
                     {{-- Deadline --}}
                     <div class="flex items-center text-xs {{ $isArsip ? 'text-gray-400' : 'text-gray-500' }}">
                         <svg class="w-3.5 h-3.5 me-1.5 {{ $isArsip ? 'text-gray-400' : 'text-[#48A89A]' }} flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
@@ -72,22 +77,8 @@
                         @endif
                     </div>
                 </div>
-
-                {{-- CTA Button --}}
-                @if($isArsip)
-                    <a href="{{ route('mahasiswa.lomba.show', $lomba->id) }}" 
-                       class="block w-full py-2.5 bg-gray-100 text-center rounded-xl text-xs font-bold text-gray-500 hover:bg-gray-200 transition duration-300 flex items-center justify-center gap-1.5">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-                        Lihat Arsip
-                    </a>
-                @else
-                    <a href="{{ route('mahasiswa.lomba.show', $lomba->id) }}" 
-                       class="block w-full py-2.5 bg-gray-50 text-center rounded-xl text-xs font-bold text-gray-600 hover:bg-[#00524D] hover:text-white transition duration-300">
-                        Lihat Detail
-                    </a>
-                @endif
             </div>
-        </div>
+        </a>
     @empty
         <div class="col-span-full py-20 text-center">
             <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">

@@ -61,7 +61,6 @@
         background-color: #0D3B36 !important;
         position: relative;
     }
-    #page-bg > * { position: relative; z-index: 1; }
 
     /* Deadline card poster */
     .deadline-poster {

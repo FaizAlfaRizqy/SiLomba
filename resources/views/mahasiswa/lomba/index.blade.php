@@ -9,7 +9,6 @@
         background-color: #0D3B36 !important;
         position: relative;
     }
-    #page-bg > * { position: relative; z-index: 1; }
 </style>
 @endpush
 
@@ -58,8 +57,8 @@
 
                 <button @click="tab = 'arsip'; fetchLomba()"
                     :class="tab === 'arsip' 
-                        ? 'bg-gray-700 text-white shadow-lg shadow-gray-700/20' 
-                        : 'bg-white text-gray-500 border border-gray-200 hover:border-gray-700 hover:text-gray-700'"
+                        ? 'bg-[#00524D] text-white shadow-lg shadow-[#00524D]/20' 
+                        : 'bg-white text-gray-500 border border-gray-200 hover:border-[#00524D] hover:text-[#00524D]'"
                     class="px-5 py-2.5 rounded-2xl text-sm font-bold transition-all duration-200 flex items-center gap-2">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/>
@@ -70,11 +69,6 @@
                         {{ $totalArsip }}
                     </span>
                 </button>
-
-                {{-- Deskripsi tab arsip --}}
-                <p x-show="tab === 'arsip'" x-cloak class="text-xs text-gray-400 italic ml-2">
-                    📚 Lomba yang sudah berakhir — hanya untuk referensi & evaluasi
-                </p>
             </div>
 
             {{-- FILTER SECTION --}}
@@ -102,11 +96,11 @@
                         <select x-model="kategori" @change="fetchLomba()" 
                             class="w-full py-2.5 px-3 text-sm rounded-xl border border-gray-200 focus:border-[#00524D] focus:ring-1 focus:ring-[#00524D]/30 outline-none transition">
                             <option value="">Semua Kategori</option>
-                            <option value="Sains">🔬 Sains</option>
-                            <option value="Teknologi">💻 Teknologi</option>
-                            <option value="Bisnis">📈 Bisnis</option>
-                            <option value="Seni">🎨 Seni</option>
-                            <option value="Olahraga">⚽ Olahraga</option>
+                            <option value="Sains">Sains</option>
+                            <option value="Teknologi">Teknologi</option>
+                            <option value="Bisnis">Bisnis</option>
+                            <option value="Seni">Seni</option>
+                            <option value="Olahraga">Olahraga</option>
                         </select>
                     </div>
 
@@ -116,9 +110,9 @@
                         <select x-model="tingkat" @change="fetchLomba()" 
                             class="w-full py-2.5 px-3 text-sm rounded-xl border border-gray-200 focus:border-[#00524D] focus:ring-1 focus:ring-[#00524D]/30 outline-none transition">
                             <option value="">Semua Tingkat</option>
-                            <option value="nasional">🇮🇩 Nasional</option>
-                            <option value="internasional">🌏 Internasional</option>
-                            <option value="regional">📍 Regional</option>
+                            <option value="nasional">Nasional</option>
+                            <option value="internasional">Internasional</option>
+                            <option value="regional">Regional</option>
                         </select>
                     </div>
                 </div>

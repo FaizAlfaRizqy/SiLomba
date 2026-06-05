@@ -9,7 +9,6 @@
         background-color: #0D3B36 !important;
         position: relative;
     }
-    #page-bg > * { position: relative; z-index: 1; }
 </style>
 @endpush
 
@@ -17,7 +16,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Tim Saya') }}
         </h2>
-        <a href="{{ route('mahasiswa.team.create') }}" class="px-4 py-2 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-700 transition">
+        <a href="{{ route('mahasiswa.team.create') }}" class="px-4 py-2 bg-[#00524D] text-white rounded-xl font-bold hover:bg-[#00524D]/90 transition">
             + Buka Open Slot
         </a>
     </x-slot>
@@ -32,14 +31,14 @@
                     @forelse($ledTeams as $team)
                         <div class="bg-white rounded-3xl border border-gray-100 p-6 shadow-sm hover:shadow-md transition">
                             <div class="mb-4">
-                                <span class="text-xs font-bold text-indigo-600 uppercase">{{ $team->lomba->nama }}</span>
+                                <span class="text-xs font-bold text-[#00524D] uppercase">{{ $team->lomba->nama }}</span>
                                 <h4 class="text-xl font-bold text-gray-900 mt-1">{{ $team->nama_tim }}</h4>
                             </div>
                             <div class="flex items-center space-x-2 text-sm text-gray-500 mb-6">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                                 <span>{{ $team->anggota()->count() }} / {{ $team->maks_anggota }} Anggota</span>
                             </div>
-                            <a href="{{ route('mahasiswa.team.manage', $team->id) }}" class="block w-full py-3 bg-gray-900 text-white text-center rounded-2xl font-bold hover:bg-indigo-600 transition">
+                            <a href="{{ route('mahasiswa.team.manage', $team->id) }}" class="block w-full py-3 bg-[#00524D] text-white text-center rounded-2xl font-bold hover:bg-[#00524D]/90 transition">
                                 Kelola Tim
                             </a>
                         </div>
@@ -58,12 +57,12 @@
                     @forelse($joinedTeams as $team)
                         <div class="bg-white rounded-3xl border border-gray-100 p-6 shadow-sm">
                             <div class="mb-4">
-                                <span class="text-xs font-bold text-violet-600 uppercase">{{ $team->lomba->nama }}</span>
+                                <span class="text-xs font-bold text-[#48A89A] uppercase">{{ $team->lomba->nama }}</span>
                                 <h4 class="text-xl font-bold text-gray-900 mt-1">{{ $team->nama_tim }}</h4>
                             </div>
                             <div class="flex items-center justify-between">
                                 <span class="text-xs text-gray-500">Ketua: {{ $team->ketua->name }}</span>
-                                <button class="text-indigo-600 font-bold text-sm">Lihat Tim</button>
+                                <button class="text-[#00524D] font-bold text-sm">Lihat Tim</button>
                             </div>
                         </div>
                     @empty
