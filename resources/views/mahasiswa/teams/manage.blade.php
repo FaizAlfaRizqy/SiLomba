@@ -38,7 +38,7 @@
                             @foreach($tim->anggota as $anggota)
                                 <div class="p-6 flex items-center justify-between">
                                     <div class="flex items-center space-x-4">
-                                        <div class="w-12 h-12 rounded-2xl bg-[#00524D]/10 flex items-center justify-center text-[#00524D]">
+                                        <div class="w-12 h-12 rounded-2xl bg-[#0B2B26]/10 flex items-center justify-center text-[#0B2B26]">
                                             @if($anggota->user->mahasiswa->foto_profil)
                                                 <img src="{{ asset('storage/' . $anggota->user->mahasiswa->foto_profil) }}" class="w-full h-full object-cover rounded-2xl">
                                             @else
@@ -75,7 +75,7 @@
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <span class="block text-xs font-bold text-[#00524D]">{{ $slot->jumlah_slot }} Slot</span>
+                                        <span class="block text-xs font-bold text-[#0B2B26]">{{ $slot->jumlah_slot }} Slot</span>
                                         <button class="text-[10px] text-rose-600 font-bold hover:underline">Tutup Slot</button>
                                     </div>
                                 </div>
@@ -87,9 +87,9 @@
                     <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden" 
                          x-data="teamChat({{ $tim->id }})" 
                          x-init="init()">
-                        <div class="p-6 border-b border-gray-50 flex items-center justify-between bg-[#00524D] text-white">
+                        <div class="p-6 border-b border-gray-50 flex items-center justify-between bg-[#0B2B26] text-white">
                             <h3 class="font-bold">Diskusi Tim</h3>
-                            <span class="text-[10px] px-2 py-0.5 bg-[#48A89A] rounded-full font-bold uppercase tracking-widest">Real-time</span>
+                            <span class="text-[10px] px-2 py-0.5 bg-[#235347] rounded-full font-bold uppercase tracking-widest">Real-time</span>
                         </div>
                         <div class="h-96 overflow-y-auto p-6 space-y-4 flex flex-col" id="chat-container">
                             <template x-for="msg in messages" :key="msg.id">
@@ -97,7 +97,7 @@
                                     <div class="flex items-center space-x-2" :class="msg.id_pengirim == {{ Auth::id() }} ? 'flex-row-reverse space-x-reverse' : ''">
                                         <div class="text-[10px] font-bold text-gray-400" x-text="msg.sender.name"></div>
                                     </div>
-                                    <div :class="msg.id_pengirim == {{ Auth::id() }} ? 'bg-[#00524D] text-white rounded-2xl rounded-tr-none' : 'bg-gray-100 text-gray-800 rounded-2xl rounded-tl-none'" 
+                                    <div :class="msg.id_pengirim == {{ Auth::id() }} ? 'bg-[#0B2B26] text-white rounded-2xl rounded-tr-none' : 'bg-gray-100 text-gray-800 rounded-2xl rounded-tl-none'" 
                                          class="px-4 py-2 mt-1 text-sm shadow-sm inline-block max-w-xs break-words" 
                                          x-text="msg.message">
                                     </div>
@@ -107,8 +107,8 @@
                         </div>
                         <div class="p-4 bg-gray-50 border-t border-gray-100">
                             <form @submit.prevent="sendMessage()" class="flex space-x-2">
-                                <input type="text" x-model="newMessage" placeholder="Ketik pesan..." class="flex-1 rounded-xl border-gray-300 text-sm focus:ring-[#00524D] focus:border-[#00524D]">
-                                <button type="submit" class="p-2 bg-[#00524D] text-white rounded-xl hover:bg-[#00524D]/90 transition">
+                                <input type="text" x-model="newMessage" placeholder="Ketik pesan..." class="flex-1 rounded-xl border-gray-300 text-sm focus:ring-[#0B2B26] focus:border-[#0B2B26]">
+                                <button type="submit" class="p-2 bg-[#0B2B26] text-white rounded-xl hover:bg-[#0B2B26]/90 transition">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
                                 </button>
                             </form>
@@ -152,7 +152,7 @@
                                                 <button class="w-full py-2 bg-white border border-rose-200 text-rose-600 rounded-xl text-xs font-bold hover:bg-rose-50 transition">Tolak</button>
                                             </form>
                                         </div>
-                                        <a href="{{ route('mahasiswa.portfolio', $lamaran->pelamar->mahasiswa->nim) }}" class="block text-center text-[10px] font-bold text-[#00524D] hover:underline">Lihat Profil Lengkap &rarr;</a>
+                                        <a href="{{ route('mahasiswa.portfolio', $lamaran->pelamar->mahasiswa->nim) }}" class="block text-center text-[10px] font-bold text-[#0B2B26] hover:underline">Lihat Profil Lengkap &rarr;</a>
                                     </div>
                                 @endforeach
                             @endforeach

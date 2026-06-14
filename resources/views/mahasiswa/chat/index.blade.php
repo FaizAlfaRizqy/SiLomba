@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex items-center justify-between">
             <div>
-                <h2 class="font-bold text-2xl text-[#1E293B] leading-tight">
+                <h2 class="font-bold text-2xl text-[#051F20] leading-tight">
                     {{ __('Chat Tim') }}
                 </h2>
                 <p class="text-sm text-[#64748B]">Komunikasi dengan rekan timmu</p>
@@ -32,7 +32,7 @@
                                 <!-- Content -->
                                 <div class="flex-1 min-w-0">
                                     <div class="flex justify-between items-start mb-1">
-                                        <h4 class="font-bold text-[#1E293B] text-lg truncate">{{ $tim->nama_tim }}</h4>
+                                        <h4 class="font-bold text-[#051F20] text-lg truncate">{{ $tim->nama_tim }}</h4>
                                         @if($lastMessage)
                                             <span class="text-[10px] font-bold text-[#94A3B8] uppercase tracking-widest">{{ $lastMessage->created_at->format('H:i') }}</span>
                                         @endif
@@ -42,7 +42,7 @@
                                         <div class="flex-1 truncate pr-4">
                                             @if($lastMessage)
                                                 <p class="text-sm text-[#64748B] truncate">
-                                                    <span class="font-bold text-[#1E293B]">{{ $lastMessage->pengirim->name }}:</span> 
+                                                    <span class="font-bold text-[#051F20]">{{ $lastMessage->pengirim->name }}:</span> 
                                                     @if($lastMessage->file_attachment)
                                                         <span class="italic">📎 Mengirim file</span>
                                                     @else
@@ -73,7 +73,7 @@
                 @empty
                     <div class="py-24 text-center bg-white rounded-[3rem] border border-[#E2E8F0] shadow-sm">
                         <div class="w-24 h-24 bg-[#EFF6FF] rounded-full flex items-center justify-center text-5xl mx-auto mb-8 animate-bounce">💬</div>
-                        <h3 class="text-2xl font-bold text-[#1E293B]">Belum ada chat tim</h3>
+                        <h3 class="text-2xl font-bold text-[#051F20]">Belum ada chat tim</h3>
                         <p class="text-sm text-[#64748B] mt-2 mb-10 max-w-sm mx-auto">Chat akan tersedia setelah kamu bergabung dan diterima di sebuah tim.</p>
                         <a href="{{ route('mahasiswa.tim-finder.index') }}" class="px-10 py-4 bg-[#4F7EF7] text-white font-bold rounded-2xl shadow-xl shadow-[#4F7EF7]/20 hover:bg-[#3B6EF0] transition">
                             Cari Tim Sekarang →
