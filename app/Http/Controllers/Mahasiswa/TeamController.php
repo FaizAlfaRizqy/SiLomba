@@ -14,9 +14,14 @@ use Illuminate\Support\Facades\Auth;
 
 class TeamController extends Controller
 {
-    public function create()
+    public function create(Request $request)
     {
-        return view('mahasiswa.teams.create');
+        $selectedLombaId = $request->query('lomba_id');
+        $lombas = Lomba::where('status', 'buka')
+            ->where('deadline', '>=', now()->startOfDay())
+            ->orderBy('deadline', 'asc')
+            ->get();
+        return view('mahasiswa.teams.create', compact('lombas', 'selectedLombaId'));
     }
 
     public function store(Request $request)
