@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\TimController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\NotifikasiController as AdminNotifikasiController;
 use App\Http\Controllers\Mahasiswa\ChatController;
 use App\Http\Controllers\Mahasiswa\LombaController;
 use App\Http\Controllers\Mahasiswa\MyTeamController;
@@ -96,6 +97,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('lomba', App\Http\Controllers\Admin\LombaController::class);
         Route::resource('users', UserController::class);
         Route::resource('tim', TimController::class)->only(['index', 'show', 'destroy']);
+        Route::get('/notifikasi', [AdminNotifikasiController::class, 'index'])->name('notifikasi.index');
         Route::post('users/{user}/toggle', [UserController::class, 'toggleStatus'])->name('users.toggle');
     });
 

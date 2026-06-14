@@ -28,8 +28,10 @@ class LombaController extends Controller
             'nama' => 'required|string|max:255',
             'penyelenggara' => 'required|string|max:255',
             'kategori' => 'required|string',
+            'kategori_kustom' => 'nullable|string|required_if:kategori,Lainnya',
             'tingkat' => 'required|in:nasional,internasional,regional',
-            'deadline' => 'required|date',
+            'tanggal_buka' => 'required|date',
+            'deadline' => 'required|date|after_or_equal:tanggal_buka',
             'hadiah' => 'nullable|string',
             'syarat_peserta' => 'nullable|string',
             'deskripsi' => 'nullable|string',
@@ -38,6 +40,9 @@ class LombaController extends Controller
         ]);
 
         $data = $request->all();
+        if ($data['kategori'] === 'Lainnya' && !empty($data['kategori_kustom'])) {
+            $data['kategori'] = $data['kategori_kustom'];
+        }
         $data['id_admin'] = auth()->id();
 
         if ($request->hasFile('poster')) {
@@ -57,6 +62,11 @@ class LombaController extends Controller
         return redirect()->route('admin.lomba.index')->with('success', 'Lomba berhasil ditambahkan!');
     }
 
+    public function show(Lomba $lomba)
+    {
+        return redirect()->route('admin.lomba.edit', $lomba);
+    }
+
     public function edit(Lomba $lomba)
     {
         return view('admin.lomba.edit', compact('lomba'));
@@ -68,8 +78,10 @@ class LombaController extends Controller
             'nama' => 'required|string|max:255',
             'penyelenggara' => 'required|string|max:255',
             'kategori' => 'required|string',
+            'kategori_kustom' => 'nullable|string|required_if:kategori,Lainnya',
             'tingkat' => 'required|in:nasional,internasional,regional',
-            'deadline' => 'required|date',
+            'tanggal_buka' => 'required|date',
+            'deadline' => 'required|date|after_or_equal:tanggal_buka',
             'hadiah' => 'nullable|string',
             'syarat_peserta' => 'nullable|string',
             'deskripsi' => 'nullable|string',
@@ -78,6 +90,9 @@ class LombaController extends Controller
         ]);
 
         $data = $request->all();
+        if ($data['kategori'] === 'Lainnya' && !empty($data['kategori_kustom'])) {
+            $data['kategori'] = $data['kategori_kustom'];
+        }
 
         if ($request->hasFile('poster')) {
             if ($lomba->poster) {

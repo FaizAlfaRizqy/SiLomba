@@ -20,6 +20,8 @@ class DashboardController extends Controller
             'total_mahasiswa' => User::role('mahasiswa')->count(),
             'total_tim' => Tim::count(),
             'total_lomba' => Lomba::where('status', 'buka')->count(),
+            'total_user' => User::count(),
+            'total_admin' => User::role('admin')->count(),
         ];
 
         // Distribution by Program Studi
@@ -33,7 +35,26 @@ class DashboardController extends Controller
             'data' => [10, 25, 45, 30, 60, 85],
         ];
 
-        return view('admin.dashboard', compact('stats', 'prodiDist', 'trends'));
+        // Lomba Populer (by registered teams count)
+        $popularLombas = Lomba::withCount('tims')
+            ->orderBy('tims_count', 'desc')
+            ->take(3)
+            ->get();
+
+        // Upcoming deadlines
+        $upcomingDeadlines = Lomba::where('status', 'buka')
+            ->where('deadline', '>=', now())
+            ->orderBy('deadline', 'asc')
+            ->take(4)
+            ->get();
+
+        // Recent created teams
+        $recentTeams = Tim::with(['ketua', 'lomba'])
+            ->orderBy('created_at', 'desc')
+            ->take(4)
+            ->get();
+
+        return view('admin.dashboard', compact('stats', 'prodiDist', 'trends', 'popularLombas', 'upcomingDeadlines', 'recentTeams'));
     }
 
     public function exportPDF()

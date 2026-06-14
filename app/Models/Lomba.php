@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 #[Fillable([
-    'nama', 'penyelenggara', 'kategori', 'tingkat', 'deadline',
+    'nama', 'penyelenggara', 'kategori', 'tingkat', 'tanggal_buka', 'deadline',
     'hadiah', 'syarat_peserta', 'deskripsi', 'link_resmi',
     'poster', 'status', 'id_admin',
 ])]
@@ -20,6 +20,7 @@ class Lomba extends Model
     protected function casts(): array
     {
         return [
+            'tanggal_buka' => 'date',
             'deadline' => 'date',
         ];
     }
