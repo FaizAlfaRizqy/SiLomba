@@ -27,152 +27,141 @@
                 </div>
             @endif
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {{-- ======================================= --}}
+            {{-- LAYOUT UTAMA: Kiri = Poster, Kanan = Info --}}
+            {{-- ======================================= --}}
+            <div class="flex flex-col lg:flex-row gap-8 items-start">
 
-                {{-- Main Content --}}
-                <div class="lg:col-span-2 space-y-6">
-
-                    {{-- Poster Card --}}
+                {{-- ===== KIRI: Poster Portrait ===== --}}
+                <div class="w-full lg:w-[300px] xl:w-[340px] flex-shrink-0">
                     <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
-                        {{-- Portrait Poster — centered, max 320px wide, aspect-ratio 3:4 --}}
-                        <div class="{{ $isArsip ? 'bg-gray-100' : 'bg-[#e8f5f3]' }} flex items-center justify-center py-6 px-4">
-                            <div style="width: 100%; max-width: 320px;">
-                                <div class="relative w-full rounded-2xl overflow-hidden shadow-md" style="aspect-ratio: 3/4;">
-                                    @if($lomba->poster)
-                                        <img src="{{ asset('storage/' . $lomba->poster) }}"
-                                             class="absolute inset-0 w-full h-full object-cover {{ $isArsip ? 'grayscale' : '' }}"
-                                             alt="Poster {{ $lomba->nama }}">
-                                    @else
-                                        <div class="absolute inset-0 {{ $isArsip ? 'bg-gradient-to-br from-gray-400 to-gray-600' : 'bg-gradient-to-br from-[#48A89A] to-[#00524D]' }} flex flex-col items-center justify-center text-white">
-                                            <svg class="w-16 h-16 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                                            <p class="text-xs mt-2 font-medium opacity-50">Poster belum tersedia</p>
-                                        </div>
-                                    @endif
+                        <div class="relative w-full" style="aspect-ratio: 3/4;">
+                            @if($lomba->poster)
+                                <img src="{{ asset('storage/' . $lomba->poster) }}"
+                                     class="absolute inset-0 w-full h-full object-cover {{ $isArsip ? 'grayscale' : '' }}"
+                                     alt="Poster {{ $lomba->nama }}">
+                            @else
+                                <div class="absolute inset-0 {{ $isArsip ? 'bg-gradient-to-br from-gray-400 to-gray-600' : 'bg-gradient-to-br from-[#48A89A] to-[#00524D]' }} flex flex-col items-center justify-center text-white">
+                                    <svg class="w-16 h-16 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                    <p class="text-xs mt-2 font-medium opacity-50">Poster belum tersedia</p>
                                 </div>
-                            </div>
-                        </div>
-
-                        {{-- Info Lomba --}}
-                        <div class="p-8">
-                            <div class="flex items-center flex-wrap gap-2 mb-4">
-                                <span class="px-3 py-1 bg-indigo-50 text-indigo-600 text-xs font-bold rounded-full uppercase">{{ $lomba->kategori }}</span>
-                                <span class="px-3 py-1 bg-amber-50 text-amber-600 text-xs font-bold rounded-full uppercase">{{ $lomba->tingkat }}</span>
-                                @if($isArsip)
-                                    <span class="px-3 py-1 bg-gray-100 text-gray-500 text-xs font-bold rounded-full uppercase">Berakhir</span>
-                                @else
-                                    <span class="px-3 py-1 {{ $lomba->status == 'buka' ? 'bg-emerald-50 text-emerald-600' : 'bg-gray-100 text-gray-500' }} text-xs font-bold rounded-full uppercase">{{ $lomba->status }}</span>
-                                @endif
-                            </div>
-                            <h1 class="text-3xl font-extrabold text-gray-900 mb-1 leading-tight">{{ $lomba->nama }}</h1>
-                            <p class="text-base text-gray-500 mb-6">{{ $lomba->penyelenggara }}</p>
-
-                            <div class="space-y-6">
-                                {{-- Deskripsi --}}
-                                @if($lomba->deskripsi)
-                                <div>
-                                    <h3 class="text-base font-bold text-gray-900 mb-2 flex items-center gap-2">
-                                        <span class="w-1 h-5 bg-[#00524D] rounded-full inline-block"></span>
-                                        Deskripsi
-                                    </h3>
-                                    <p class="text-gray-600 leading-relaxed text-sm whitespace-pre-line">{{ $lomba->deskripsi }}</p>
-                                </div>
-                                @endif
-
-                                {{-- Syarat Peserta --}}
-                                @if($lomba->syarat_peserta)
-                                <div>
-                                    <h3 class="text-base font-bold text-gray-900 mb-2 flex items-center gap-2">
-                                        <span class="w-1 h-5 bg-[#48A89A] rounded-full inline-block"></span>
-                                        Syarat Peserta
-                                    </h3>
-                                    <p class="text-gray-600 leading-relaxed text-sm whitespace-pre-line">{{ $lomba->syarat_peserta }}</p>
-                                </div>
-                                @endif
-
-                                {{-- Hadiah --}}
-                                @if($lomba->hadiah)
-                                <div>
-                                    <h3 class="text-base font-bold text-gray-900 mb-2 flex items-center gap-2">
-                                        <span class="w-1 h-5 bg-amber-400 rounded-full inline-block"></span>
-                                        Hadiah
-                                    </h3>
-                                    <p class="text-gray-600 leading-relaxed text-sm whitespace-pre-line">{{ $lomba->hadiah }}</p>
-                                </div>
-                                @endif
-                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>
 
-                {{-- Sidebar / Actions --}}
-                <div class="space-y-6">
-                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 sticky top-6">
+                {{-- ===== KANAN: Info + Aksi + Deskripsi ===== --}}
+                <div class="flex-1 min-w-0 space-y-6">
+
+                    {{-- Nama & Badge --}}
+                    <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8">
+                        <div class="flex items-center flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-indigo-50 text-indigo-600 text-xs font-bold rounded-full uppercase">{{ $lomba->kategori }}</span>
+                            <span class="px-3 py-1 bg-amber-50 text-amber-600 text-xs font-bold rounded-full uppercase">{{ $lomba->tingkat }}</span>
+                            @if($isArsip)
+                                <span class="px-3 py-1 bg-gray-100 text-gray-500 text-xs font-bold rounded-full uppercase">Berakhir</span>
+                            @else
+                                <span class="px-3 py-1 {{ $lomba->status == 'buka' ? 'bg-emerald-50 text-emerald-600' : 'bg-gray-100 text-gray-500' }} text-xs font-bold rounded-full uppercase">{{ $lomba->status }}</span>
+                            @endif
+                        </div>
+
+                        <h1 class="text-3xl font-extrabold text-gray-900 mb-1 leading-tight">{{ $lomba->nama }}</h1>
+                        <p class="text-base text-gray-400 mb-6">{{ $lomba->penyelenggara }}</p>
 
                         {{-- Info Grid --}}
-                        <div class="space-y-4 mb-8">
-                            <div class="flex items-center justify-between py-3 border-b border-gray-50">
-                                <span class="text-gray-500 text-sm">Deadline</span>
-                                <span class="font-bold text-gray-900 text-sm">{{ $lomba->deadline->format('d M Y') }}</span>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+                            <div class="bg-gray-50 rounded-2xl p-4">
+                                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Deadline</p>
+                                <p class="text-sm font-bold text-gray-900">{{ $lomba->deadline->format('d M Y') }}</p>
                             </div>
-                            @if($lomba->hadiah)
-                            <div class="flex items-center justify-between py-3 border-b border-gray-50">
-                                <span class="text-gray-500 text-sm">Hadiah</span>
-                                <span class="font-bold text-indigo-600 text-sm text-right max-w-[60%] line-clamp-2">{{ $lomba->hadiah }}</span>
+                            <div class="bg-gray-50 rounded-2xl p-4">
+                                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Tingkat</p>
+                                <p class="text-sm font-bold text-gray-900 capitalize">{{ $lomba->tingkat }}</p>
                             </div>
-                            @endif
-                            <div class="flex items-center justify-between py-3 border-b border-gray-50">
-                                <span class="text-gray-500 text-sm">Tingkat</span>
-                                <span class="font-bold text-gray-900 text-sm capitalize">{{ $lomba->tingkat }}</span>
+                            <div class="bg-gray-50 rounded-2xl p-4">
+                                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Kategori</p>
+                                <p class="text-sm font-bold text-gray-900">{{ $lomba->kategori }}</p>
                             </div>
-                            <div class="flex items-center justify-between py-3 border-b border-gray-50">
-                                <span class="text-gray-500 text-sm">Kategori</span>
-                                <span class="font-bold text-gray-900 text-sm">{{ $lomba->kategori }}</span>
-                            </div>
-                            <div class="flex items-center justify-between py-3">
-                                <span class="text-gray-500 text-sm">Status</span>
+                            <div class="bg-gray-50 rounded-2xl p-4">
+                                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Status</p>
                                 @if($isArsip)
-                                    <span class="px-3 py-1 bg-gray-100 text-gray-500 text-xs font-bold rounded-full uppercase">Tutup</span>
+                                    <p class="text-sm font-bold text-gray-500">Tutup</p>
                                 @else
-                                    <span class="px-3 py-1 {{ $lomba->status == 'buka' ? 'bg-emerald-50 text-emerald-600' : 'bg-gray-100 text-gray-500' }} text-xs font-bold rounded-full uppercase">{{ $lomba->status }}</span>
+                                    <p class="text-sm font-bold {{ $lomba->status == 'buka' ? 'text-emerald-600' : 'text-gray-500' }} capitalize">{{ $lomba->status }}</p>
                                 @endif
                             </div>
                         </div>
 
+                        @if($lomba->hadiah)
+                        <div class="bg-amber-50 rounded-2xl p-4 mb-6">
+                            <p class="text-[10px] font-bold text-amber-500 uppercase tracking-wider mb-1">Hadiah</p>
+                            <p class="text-sm font-bold text-amber-800">{{ $lomba->hadiah }}</p>
+                        </div>
+                        @endif
+
                         {{-- Action Buttons --}}
-                        <div class="space-y-3">
+                        <div class="flex flex-col sm:flex-row gap-3">
                             @if($isArsip)
-                                <div class="w-full py-4 bg-gray-100 rounded-2xl text-center">
+                                <div class="flex-1 py-3 bg-gray-100 rounded-2xl text-center">
                                     <p class="text-sm font-bold text-gray-400">Pendaftaran Ditutup</p>
                                     <p class="text-xs text-gray-400 mt-0.5">Deadline sudah berakhir</p>
                                 </div>
                                 @if($lomba->link_resmi)
-                                    <a href="{{ $lomba->link_resmi }}" target="_blank" class="flex items-center justify-center w-full py-3 bg-gray-50 border border-gray-200 text-gray-500 rounded-2xl text-sm font-bold hover:bg-gray-100 transition">
+                                    <a href="{{ $lomba->link_resmi }}" target="_blank" 
+                                       class="flex items-center justify-center px-6 py-3 bg-gray-50 border border-gray-200 text-gray-500 rounded-2xl text-sm font-bold hover:bg-gray-100 transition">
                                         <svg class="w-4 h-4 me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                                        Kunjungi Website Resmi
+                                        Website Resmi
                                     </a>
                                 @endif
                             @else
                                 @if($lomba->link_resmi)
-                                    <a href="{{ $lomba->link_resmi }}" target="_blank" class="flex items-center justify-center w-full py-4 bg-[#00524D] text-white rounded-2xl font-bold shadow-lg shadow-[#00524D]/20 hover:bg-[#48A89A] transition">
+                                    <a href="{{ $lomba->link_resmi }}" target="_blank" 
+                                       class="flex-1 flex items-center justify-center py-4 bg-[#00524D] text-white rounded-2xl font-bold shadow-lg shadow-[#00524D]/20 hover:bg-[#48A89A] transition">
                                         <svg class="w-5 h-5 me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                                         Daftar Lomba
                                     </a>
                                 @endif
 
-                                <a href="{{ route('mahasiswa.tim-finder.index', ['lomba_id' => $lomba->id]) }}" class="flex items-center justify-center w-full py-4 bg-white border-2 border-[#00524D] text-[#00524D] rounded-2xl font-bold hover:bg-[#00524D]/5 transition">
+                                <a href="{{ route('mahasiswa.tim-finder.index', ['lomba_id' => $lomba->id]) }}" 
+                                   class="flex-1 flex items-center justify-center py-4 bg-white border-2 border-[#00524D] text-[#00524D] rounded-2xl font-bold hover:bg-[#00524D]/5 transition">
                                     <svg class="w-5 h-5 me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                                     Cari Tim
                                 </a>
 
-                                <button class="flex items-center justify-center w-full py-4 bg-gray-50 text-gray-500 rounded-2xl font-bold hover:bg-gray-100 transition">
+                                <a href="{{ route('mahasiswa.team.create', ['lomba_id' => $lomba->id]) }}" 
+                                   class="flex-1 flex items-center justify-center py-4 bg-gray-50 text-gray-600 rounded-2xl font-bold hover:bg-gray-100 transition border border-gray-200">
                                     <svg class="w-5 h-5 me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                     Buat Tim Baru
-                                </button>
+                                </a>
                             @endif
                         </div>
                     </div>
 
-                    {{-- Info Card bawah --}}
+                    {{-- Deskripsi, Syarat Peserta --}}
+                    <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 space-y-6">
+                        @if($lomba->deskripsi)
+                        <div>
+                            <h3 class="text-base font-bold text-gray-900 mb-2">Deskripsi</h3>
+                            <p class="text-gray-600 leading-relaxed text-sm whitespace-pre-line">{{ $lomba->deskripsi }}</p>
+                        </div>
+                        @endif
+
+                        @if($lomba->syarat_peserta)
+                        @if($lomba->deskripsi)
+                        <div class="border-t border-gray-100"></div>
+                        @endif
+                        <div>
+                            <h3 class="text-base font-bold text-gray-900 mb-2">Syarat Peserta</h3>
+                            <p class="text-gray-600 leading-relaxed text-sm whitespace-pre-line">{{ $lomba->syarat_peserta }}</p>
+                        </div>
+                        @endif
+
+                        @if(!$lomba->deskripsi && !$lomba->syarat_peserta)
+                        <p class="text-gray-400 text-sm text-center py-4">Belum ada deskripsi untuk lomba ini.</p>
+                        @endif
+                    </div>
+
+                    {{-- Ingin Juara / Tips Evaluasi --}}
                     @if(!$isArsip)
                     <div class="bg-[#00524D] p-8 rounded-3xl text-white shadow-xl relative overflow-hidden">
                         <div class="relative z-10">
@@ -188,8 +177,10 @@
                         <p class="text-gray-400 text-sm">Gunakan data lomba ini sebagai referensi untuk mempersiapkan diri mengikuti lomba serupa di masa mendatang.</p>
                     </div>
                     @endif
+
                 </div>
             </div>
+
         </div>
     </div>
 </x-app-layout>
