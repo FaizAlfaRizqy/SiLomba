@@ -18,8 +18,10 @@
                                 <x-input-label for="id_lomba" :value="__('Pilih Lomba')" />
                                 <select id="id_lomba" name="id_lomba" class="block mt-1 w-full rounded-xl border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required>
                                     <option value="">-- Pilih Lomba Aktif --</option>
-                                    @foreach(\App\Models\Lomba::where('status', 'buka')->get() as $l)
-                                        <option value="{{ $l->id }}">{{ $l->nama }} (Deadline: {{ $l->deadline->format('d M') }})</option>
+                                    @foreach($lombas as $l)
+                                        <option value="{{ $l->id }}" {{ (old('id_lomba', $selectedLombaId) == $l->id) ? 'selected' : '' }}>
+                                            {{ $l->nama }} (Deadline: {{ $l->deadline->format('d M') }})
+                                        </option>
                                     @endforeach
                                 </select>
                                 <x-input-error :messages="$errors->get('id_lomba')" class="mt-2" />
