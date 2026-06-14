@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex items-center justify-between">
             <div>
-                <h2 class="font-bold text-2xl text-[#1E293B] leading-tight">
+                <h2 class="font-bold text-2xl text-[#051F20] leading-tight">
                     {{ __('Notifikasi') }}
                 </h2>
                 <p class="text-sm text-[#64748B]">
@@ -59,7 +59,7 @@
 
                                     <div class="flex-1">
                                         <div class="flex justify-between items-start">
-                                            <h4 class="text-sm font-bold {{ $notif->is_read ? 'text-[#64748B]' : 'text-[#1E293B]' }}">{{ $notif->judul }}</h4>
+                                            <h4 class="text-sm font-bold {{ $notif->is_read ? 'text-[#64748B]' : 'text-[#051F20]' }}">{{ $notif->judul }}</h4>
                                             @if(!$notif->is_read)
                                                 <div class="w-2.5 h-2.5 bg-[#4F7EF7] rounded-full"></div>
                                             @endif
@@ -79,7 +79,7 @@
                 @empty
                     <div class="py-24 text-center bg-white rounded-[2rem] border border-[#E2E8F0] shadow-sm">
                         <div class="w-20 h-20 bg-[#F1F5F9] rounded-full flex items-center justify-center text-4xl mx-auto mb-6">🔔</div>
-                        <h3 class="text-lg font-bold text-[#1E293B]">Belum ada notifikasi</h3>
+                        <h3 class="text-lg font-bold text-[#051F20]">Belum ada notifikasi</h3>
                         <p class="text-sm text-[#64748B] mt-2">Semua aktivitas penting akan muncul di sini.</p>
                     </div>
                 @endforelse

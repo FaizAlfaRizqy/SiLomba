@@ -17,6 +17,11 @@ class ProfileController extends Controller
         $user = Auth::user();
         $mahasiswa = $user->mahasiswa;
 
+        if (!$mahasiswa) {
+            return redirect()->route('mahasiswa.dashboard')
+                ->with('error', 'Data mahasiswa tidak ditemukan. Silakan hubungi administrator.');
+        }
+
         return view('mahasiswa.profile.edit', compact('user', 'mahasiswa'));
     }
 

@@ -10,7 +10,7 @@
             
             {{-- Poster / Image — portrait ratio (3:4) --}}
             <div class="relative w-full overflow-hidden" style="aspect-ratio: 3/4; max-height: 280px;">
-                <div class="absolute inset-0 {{ $isArsip ? 'bg-gradient-to-br from-gray-400 to-gray-600' : 'bg-gradient-to-br from-[#48A89A] to-[#00524D]' }} flex items-center justify-center text-white">
+                <div class="absolute inset-0 {{ $isArsip ? 'bg-gradient-to-br from-gray-400 to-gray-600' : 'bg-gradient-to-br from-[#235347] to-[#0B2B26]' }} flex items-center justify-center text-white">
                     @if($lomba->poster)
                         <img src="{{ asset('storage/' . $lomba->poster) }}" 
                              class="w-full h-full object-cover {{ $isArsip ? 'grayscale' : 'group-hover:scale-105' }} transition duration-500"
@@ -22,7 +22,7 @@
 
                 {{-- Kategori Badge --}}
                 <div class="absolute top-3 left-3">
-                    <span class="px-2.5 py-1 bg-white/90 backdrop-blur-md text-[10px] font-bold rounded-full {{ $isArsip ? 'text-gray-500' : 'text-[#00524D]' }} shadow-sm capitalize">
+                    <span class="px-2.5 py-1 bg-white/90 backdrop-blur-md text-[10px] font-bold rounded-full {{ $isArsip ? 'text-gray-500' : 'text-[#0B2B26]' }} shadow-sm capitalize">
                         {{ $lomba->kategori }}
                     </span>
                 </div>
@@ -47,23 +47,23 @@
             <div class="p-4 flex-1 flex flex-col">
                 <div class="mb-3">
                     <span class="text-[10px] font-semibold text-gray-400 uppercase tracking-wider block truncate">{{ $lomba->penyelenggara }}</span>
-                    <h3 class="text-sm font-bold {{ $isArsip ? 'text-gray-500' : 'text-gray-900 group-hover:text-[#00524D]' }} transition line-clamp-2 leading-snug mt-0.5">{{ $lomba->nama }}</h3>
+                    <h3 class="text-sm font-bold {{ $isArsip ? 'text-gray-500' : 'text-gray-900 group-hover:text-[#0B2B26]' }} transition line-clamp-2 leading-snug mt-0.5">{{ $lomba->nama }}</h3>
                 </div>
 
                 <div class="space-y-2 flex-1">
                     {{-- Deadline --}}
                     <div class="flex items-center text-xs {{ $isArsip ? 'text-gray-400' : 'text-gray-500' }}">
-                        <svg class="w-3.5 h-3.5 me-1.5 {{ $isArsip ? 'text-gray-400' : 'text-[#48A89A]' }} flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                        <svg class="w-3.5 h-3.5 me-1.5 {{ $isArsip ? 'text-gray-400' : 'text-[#235347]' }} flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                         <span>{{ $lomba->deadline->format('d M Y') }}</span>
                     </div>
                     {{-- Hadiah --}}
                     <div class="flex items-center text-xs {{ $isArsip ? 'text-gray-400' : 'text-gray-500' }}">
-                        <svg class="w-3.5 h-3.5 me-1.5 {{ $isArsip ? 'text-gray-400' : 'text-[#48A89A]' }} flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <svg class="w-3.5 h-3.5 me-1.5 {{ $isArsip ? 'text-gray-400' : 'text-[#235347]' }} flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                         <span class="truncate">{{ $lomba->hadiah }}</span>
                     </div>
                     {{-- Tingkat & Status --}}
                     <div class="flex items-center gap-1.5 flex-wrap">
-                        <span class="px-2 py-0.5 rounded-md text-[9px] font-bold uppercase {{ $lomba->tingkat == 'nasional' ? 'bg-amber-100 text-amber-700' : ($lomba->tingkat == 'internasional' ? 'bg-purple-100 text-purple-700' : 'bg-blue-100 text-blue-700') }}">
+                        <span class="px-2 py-0.5 rounded-md text-[9px] font-bold uppercase {{ $lomba->tingkat == 'nasional' ? 'bg-amber-100 text-amber-700' : ($lomba->tingkat == 'internasional' ? 'bg-purple-100 text-purple-700' : 'bg-[#D4E7D6] text-blue-700') }}">
                             {{ $lomba->tingkat }}
                         </span>
                         @if($isArsip)

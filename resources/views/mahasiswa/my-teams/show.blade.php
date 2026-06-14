@@ -18,7 +18,7 @@
                         <span class="px-3 py-1 bg-[#DBEAFE] text-[#1E3A6E] text-[10px] font-bold rounded-full uppercase tracking-widest mb-4 inline-block">
                             {{ $tim->lomba->kategori }}
                         </span>
-                        <h1 class="text-4xl font-black text-[#1E293B] mb-2">{{ $tim->nama_tim }}</h1>
+                        <h1 class="text-4xl font-black text-[#051F20] mb-2">{{ $tim->nama_tim }}</h1>
                         <p class="text-lg text-[#64748B]">{{ $tim->lomba->nama }}</p>
                     </div>
                     <div class="flex flex-col items-end gap-3">
@@ -33,7 +33,7 @@
                     <div class="lg:col-span-2 space-y-12">
                         <!-- Members Section -->
                         <div>
-                            <h3 class="text-xl font-bold text-[#1E293B] mb-6 flex items-center gap-2">
+                            <h3 class="text-xl font-bold text-[#051F20] mb-6 flex items-center gap-2">
                                 <span>👥</span> Anggota Tim
                             </h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -43,7 +43,7 @@
                                             {{ strtoupper(substr($member->user->name, 0, 1)) }}
                                         </div>
                                         <div class="flex-1 min-w-0">
-                                            <h4 class="font-bold text-[#1E293B] truncate">{{ $member->user->name }}</h4>
+                                            <h4 class="font-bold text-[#051F20] truncate">{{ $member->user->name }}</h4>
                                             <p class="text-xs text-[#64748B] truncate">{{ $member->user->email }}</p>
                                         </div>
                                         <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase
@@ -57,14 +57,14 @@
 
                         <!-- Slots Section -->
                         <div>
-                            <h3 class="text-xl font-bold text-[#1E293B] mb-6 flex items-center gap-2">
+                            <h3 class="text-xl font-bold text-[#051F20] mb-6 flex items-center gap-2">
                                 <span>🎯</span> Lowongan Slot
                             </h3>
                             <div class="space-y-4">
                                 @foreach($tim->slots as $slot)
                                     <div class="p-6 rounded-3xl border border-[#E2E8F0] bg-white shadow-sm flex justify-between items-center">
                                         <div>
-                                            <h4 class="font-bold text-[#1E293B]">{{ $slot->posisi }}</h4>
+                                            <h4 class="font-bold text-[#051F20]">{{ $slot->posisi }}</h4>
                                             <p class="text-sm text-[#64748B]">{{ $slot->jumlah_slot }} Total Slot • {{ $slot->lamarans->where('status', 'diterima')->count() }} Terisi</p>
                                         </div>
                                         <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase
@@ -84,7 +84,7 @@
                             <div class="w-24 h-24 rounded-3xl bg-[#4F7EF7] text-white flex items-center justify-center font-black text-4xl mx-auto mb-6 shadow-xl shadow-[#4F7EF7]/20">
                                 {{ strtoupper(substr($tim->ketua->name, 0, 1)) }}
                             </div>
-                            <h3 class="text-xl font-bold text-[#1E293B] mb-1">{{ $tim->ketua->name }}</h3>
+                            <h3 class="text-xl font-bold text-[#051F20] mb-1">{{ $tim->ketua->name }}</h3>
                             <p class="text-sm text-[#64748B] mb-6">{{ $tim->ketua->mahasiswa->program_studi ?? 'Mahasiswa' }}</p>
                             <a href="{{ route('mahasiswa.portfolio', $tim->ketua->mahasiswa->nim) }}" class="inline-block px-6 py-2 bg-white border border-[#E2E8F0] text-[#4F7EF7] text-xs font-bold rounded-xl hover:bg-[#EFF6FF] transition">
                                 Lihat Portofolio

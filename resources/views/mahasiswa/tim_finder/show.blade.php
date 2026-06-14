@@ -47,7 +47,7 @@
                             </span>
                         </div>
                         
-                        <h1 class="text-3xl font-bold text-[#1E293B] mb-2">{{ $slot->posisi }}</h1>
+                        <h1 class="text-3xl font-bold text-[#051F20] mb-2">{{ $slot->posisi }}</h1>
                         <p class="text-lg font-medium text-[#4F7EF7] mb-6">{{ $slot->tim->nama_tim }}</p>
                         
                         <div class="bg-[#EFF6FF] border border-[#DBEAFE] rounded-2xl p-6 mb-8">
@@ -57,7 +57,7 @@
                                 </div>
                                 <div>
                                     <p class="text-xs text-[#64748B] font-bold uppercase tracking-wider">Lomba yang Diikuti</p>
-                                    <h4 class="text-lg font-bold text-[#1E293B]">{{ $slot->tim->lomba->nama }}</h4>
+                                    <h4 class="text-lg font-bold text-[#051F20]">{{ $slot->tim->lomba->nama }}</h4>
                                     <p class="text-sm text-[#64748B]">{{ $slot->tim->lomba->penyelenggara }} • {{ ucfirst($slot->tim->lomba->tingkat) }}</p>
                                 </div>
                             </div>
@@ -85,11 +85,11 @@
                             <div class="flex items-center justify-between pt-6 border-t border-[#E2E8F0]">
                                 <div class="flex items-center gap-2">
                                     <span class="text-sm text-[#64748B]">Slot Tersedia:</span>
-                                    <span class="text-sm font-bold text-[#1E293B]">{{ $slotTersisa }} dari {{ $slot->jumlah_slot }}</span>
+                                    <span class="text-sm font-bold text-[#051F20]">{{ $slotTersisa }} dari {{ $slot->jumlah_slot }}</span>
                                 </div>
                                 <div class="flex items-center gap-2">
                                     <span class="text-sm text-[#64748B]">Batas Waktu:</span>
-                                    <span class="text-sm font-bold {{ $slot->batas_waktu->diffInDays(now()) <= 3 ? 'text-red-500' : 'text-[#1E293B]' }}">
+                                    <span class="text-sm font-bold {{ $slot->batas_waktu->diffInDays(now()) <= 3 ? 'text-red-500' : 'text-[#051F20]' }}">
                                         {{ $slot->batas_waktu->format('d M Y') }}
                                     </span>
                                 </div>
@@ -99,7 +99,7 @@
 
                     <!-- Section 2: Persyaratan Lamaran -->
                     <div class="bg-white border border-[#E2E8F0] rounded-3xl p-8 shadow-sm">
-                        <h2 class="text-xl font-bold text-[#1E293B] mb-6 flex items-center gap-2">
+                        <h2 class="text-xl font-bold text-[#051F20] mb-6 flex items-center gap-2">
                             <span>📋</span> Persyaratan Melamar Tim
                         </h2>
 
@@ -114,7 +114,7 @@
                                     @endif
                                 </div>
                                 <div>
-                                    <h4 class="text-sm font-bold text-[#1E293B]">Akun Mahasiswa Aktif</h4>
+                                    <h4 class="text-sm font-bold text-[#051F20]">Akun Mahasiswa Aktif</h4>
                                     <p class="text-xs text-[#64748B]">
                                         @if(Auth::check())
                                             Terdaftar sebagai mahasiswa aktif di SiLomba
@@ -136,7 +136,7 @@
                                     @endif
                                 </div>
                                 <div class="flex-1">
-                                    <h4 class="text-sm font-bold text-[#1E293B]">Profil Keahlian Lengkap</h4>
+                                    <h4 class="text-sm font-bold text-[#051F20]">Profil Keahlian Lengkap</h4>
                                     <p class="text-xs text-[#64748B]">
                                         @if($profilLengkap)
                                             Keahlian sudah diisi di profil
@@ -159,7 +159,7 @@
                                     @endif
                                 </div>
                                 <div>
-                                    <h4 class="text-sm font-bold text-[#1E293B]">Belum Tergabung Tim Lain di Lomba Ini</h4>
+                                    <h4 class="text-sm font-bold text-[#051F20]">Belum Tergabung Tim Lain di Lomba Ini</h4>
                                     <p class="text-xs text-[#64748B]">
                                         @if(!$sudahDiTim)
                                             Kamu belum bergabung di tim manapun untuk lomba ini
@@ -180,7 +180,7 @@
                                     @endif
                                 </div>
                                 <div>
-                                    <h4 class="text-sm font-bold text-[#1E293B]">Belum Pernah Melamar Slot Ini</h4>
+                                    <h4 class="text-sm font-bold text-[#051F20]">Belum Pernah Melamar Slot Ini</h4>
                                     <p class="text-xs text-[#64748B]">
                                         @if(!$sudahMelamar)
                                             Kamu belum pernah melamar slot ini
@@ -207,7 +207,7 @@
                                     @endif
                                 </div>
                                 <div>
-                                    <h4 class="text-sm font-bold text-[#1E293B]">Slot Masih Tersedia</h4>
+                                    <h4 class="text-sm font-bold text-[#051F20]">Slot Masih Tersedia</h4>
                                     <p class="text-xs text-[#64748B]">
                                         @if($slotTersisa > 0)
                                             {{ $slotTersisa }} dari {{ $slot->jumlah_slot }} slot masih terbuka
@@ -229,7 +229,7 @@
                                     @endif
                                 </div>
                                 <div>
-                                    <h4 class="text-sm font-bold text-[#1E293B]">Batas Waktu Belum Lewat</h4>
+                                    <h4 class="text-sm font-bold text-[#051F20]">Batas Waktu Belum Lewat</h4>
                                     <p class="text-xs text-[#64748B]">
                                         @if($waktuMasihAda)
                                             Batas waktu: {{ $slot->batas_waktu->format('d M Y') }}
@@ -246,9 +246,9 @@
                                     <span class="text-blue-500">ℹ️</span>
                                 </div>
                                 <div class="flex-1">
-                                    <h4 class="text-sm font-bold text-[#1E293B]">Batas Lamaran Per Hari</h4>
+                                    <h4 class="text-sm font-bold text-[#051F20]">Batas Lamaran Per Hari</h4>
                                     <p class="text-xs text-[#64748B]">Maksimal 20 lamaran per hari. Pilih tim yang benar-benar sesuai keahlianmu.</p>
-                                    <div class="mt-2 w-full bg-blue-100 rounded-full h-1.5">
+                                    <div class="mt-2 w-full bg-[#D4E7D6] rounded-full h-1.5">
                                         <div class="bg-[#4F7EF7] h-1.5 rounded-full" style="width: {{ ($lamaranHariIni / 20) * 100 }}%"></div>
                                     </div>
                                     <p class="text-[10px] text-[#4F7EF7] font-bold mt-1">Lamaran hari ini: {{ $lamaranHariIni }}/20</p>
@@ -265,7 +265,7 @@
                     @if($bisaMelamar)
                         <div class="bg-white border-2 border-[#4F7EF7]/20 rounded-3xl p-8 shadow-xl shadow-[#4F7EF7]/5" x-data="{ message: '', loading: false }">
                             <div class="mb-6">
-                                <h2 class="text-xl font-bold text-[#1E293B] flex items-center gap-2">
+                                <h2 class="text-xl font-bold text-[#051F20] flex items-center gap-2">
                                     <span>✍️</span> Tulis Pesan Motivasi
                                 </h2>
                                 <p class="text-sm text-[#64748B] mt-1">Ceritakan mengapa kamu cocok untuk posisi ini. Ketua tim akan membaca ini sebelum memutuskan.</p>
@@ -358,7 +358,7 @@
                     
                     <!-- Card Profil Ketua Tim -->
                     <div class="bg-[#F8FAFC] border border-[#E2E8F0] rounded-3xl p-6 shadow-sm">
-                        <h3 class="text-sm font-bold text-[#1E293B] mb-6 flex items-center gap-2">
+                        <h3 class="text-sm font-bold text-[#051F20] mb-6 flex items-center gap-2">
                             <span>👤</span> Ketua Tim
                         </h3>
                         
@@ -367,7 +367,7 @@
                                 {{ strtoupper(substr($slot->tim->ketua->name, 0, 1)) }}
                             </div>
                             <div>
-                                <h4 class="font-bold text-[#1E293B] text-sm">{{ $slot->tim->ketua->name }}</h4>
+                                <h4 class="font-bold text-[#051F20] text-sm">{{ $slot->tim->ketua->name }}</h4>
                                 <p class="text-[10px] text-[#64748B]">{{ $slot->tim->ketua->mahasiswa->program_studi ?? 'Mahasiswa' }}</p>
                             </div>
                         </div>
@@ -387,7 +387,7 @@
 
                     <!-- Card Info Anggota Tim -->
                     <div class="bg-[#F8FAFC] border border-[#E2E8F0] rounded-3xl p-6 shadow-sm">
-                        <h3 class="text-sm font-bold text-[#1E293B] mb-4 flex items-center gap-2">
+                        <h3 class="text-sm font-bold text-[#051F20] mb-4 flex items-center gap-2">
                             <span>👥</span> Anggota Tim Saat Ini
                         </h3>
 
@@ -398,7 +398,7 @@
                                         {{ strtoupper(substr($anggota->user->name, 0, 1)) }}
                                     </div>
                                     <div class="flex-1 min-w-0">
-                                        <h4 class="text-xs font-bold text-[#1E293B] truncate">{{ $anggota->user->name }}</h4>
+                                        <h4 class="text-xs font-bold text-[#051F20] truncate">{{ $anggota->user->name }}</h4>
                                         <p class="text-[9px] text-[#64748B] flex items-center gap-1">
                                             <span>📧</span>
                                             @php
@@ -451,7 +451,7 @@
 
                     <!-- Card Statistik Slot -->
                     <div class="bg-[#F8FAFC] border border-[#E2E8F0] rounded-3xl p-6 shadow-sm">
-                        <h3 class="text-sm font-bold text-[#1E293B] mb-6 flex items-center gap-2">
+                        <h3 class="text-sm font-bold text-[#051F20] mb-6 flex items-center gap-2">
                             <span>📊</span> Statistik Slot
                         </h3>
                         
@@ -485,7 +485,7 @@
                             <div>
                                 <p class="text-[10px] text-[#64748B] font-bold uppercase tracking-wider mb-1">Deadline Lomba</p>
                                 <div class="flex items-center justify-between">
-                                    <p class="text-sm font-bold text-[#1E293B]">{{ $slot->tim->lomba->deadline->format('d M Y') }}</p>
+                                    <p class="text-sm font-bold text-[#051F20]">{{ $slot->tim->lomba->deadline->format('d M Y') }}</p>
                                     @if($slot->tim->lomba->deadline->diffInDays(now()) <= 7)
                                         <span class="bg-red-50 text-red-500 text-[10px] font-bold px-2 py-0.5 rounded-full">
                                             ⚡ {{ $slot->tim->lomba->deadline->diffInDays(now()) }} hari lagi
@@ -497,7 +497,7 @@
                             <div>
                                 <p class="text-[10px] text-[#64748B] font-bold uppercase tracking-wider mb-1">Batas Lamar Tim</p>
                                 <div class="flex items-center justify-between">
-                                    <p class="text-sm font-bold text-[#1E293B]">{{ $slot->batas_waktu->format('d M Y') }}</p>
+                                    <p class="text-sm font-bold text-[#051F20]">{{ $slot->batas_waktu->format('d M Y') }}</p>
                                     @if($slot->batas_waktu->diffInDays(now()) <= 3)
                                         <span class="bg-red-50 text-red-500 text-[10px] font-bold px-2 py-0.5 rounded-full">
                                             🔥 Segera ditutup!

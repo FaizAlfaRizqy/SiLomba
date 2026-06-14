@@ -13,8 +13,32 @@
         <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
         <!-- Scripts -->
-        {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
         <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            primary: '#235347',
+                            primaryHover: '#163832',
+                            primaryLight: '#D4E7D6',
+                            primaryDark: '#051F20',
+                            bgPage: '#F4F9F6',
+                            surface: '#FFFFFF',
+                            textMain: '#051F20',
+                            textMuted: '#235347',
+                            aksen: '#8EB69B',
+                            aksenLight: '#D4E7D6',
+                            aksenDark: '#0B2B26',
+                            borderMain: '#D4E7D6',
+                        },
+                        fontFamily: {
+                            sans: ['Outfit', 'sans-serif'],
+                        },
+                    }
+                }
+            }
+        </script>
         <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
         
         <style>

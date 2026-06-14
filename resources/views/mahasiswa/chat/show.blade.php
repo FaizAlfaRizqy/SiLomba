@@ -9,7 +9,7 @@
                 <div class="w-24 h-24 rounded-3xl bg-[#4F7EF7] text-white flex items-center justify-center font-black text-3xl mx-auto mb-6 shadow-xl shadow-[#4F7EF7]/20">
                     {{ strtoupper(substr($tim->nama_tim, 0, 2)) }}
                 </div>
-                <h3 class="text-xl font-bold text-[#1E293B] mb-1">{{ $tim->nama_tim }}</h3>
+                <h3 class="text-xl font-bold text-[#051F20] mb-1">{{ $tim->nama_tim }}</h3>
                 <p class="text-xs text-[#64748B] font-medium leading-relaxed">{{ $tim->lomba->nama }}</p>
             </div>
 
@@ -23,7 +23,7 @@
                                     {{ strtoupper(substr($member->user->name, 0, 1)) }}
                                 </div>
                                 <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-bold text-[#1E293B] truncate">{{ $member->user->name }}</p>
+                                    <p class="text-sm font-bold text-[#051F20] truncate">{{ $member->user->name }}</p>
                                     <p class="text-[10px] text-[#64748B] truncate">{{ $member->user->email }}</p>
                                 </div>
                                 @if($member->peran == 'ketua')
@@ -36,7 +36,7 @@
 
                 <div class="bg-white rounded-2xl p-5 border border-[#E2E8F0]">
                     <h4 class="text-[10px] font-black text-[#94A3B8] uppercase tracking-[0.2em] mb-3">Info Lomba</h4>
-                    <p class="text-sm font-bold text-[#1E293B] mb-1">{{ $tim->lomba->nama }}</p>
+                    <p class="text-sm font-bold text-[#051F20] mb-1">{{ $tim->lomba->nama }}</p>
                     <p class="text-[10px] text-red-500 font-bold italic">Deadline: {{ $tim->lomba->deadline->format('d M Y') }}</p>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                         {{ strtoupper(substr($tim->nama_tim, 0, 2)) }}
                     </div>
                     <div>
-                        <h4 class="font-bold text-[#1E293B]">{{ $tim->nama_tim }}</h4>
+                        <h4 class="font-bold text-[#051F20]">{{ $tim->nama_tim }}</h4>
                         <p class="text-[10px] text-[#64748B] font-bold">{{ $tim->anggota->count() }} Anggota • {{ $tim->lomba->nama }}</p>
                     </div>
                 </div>
@@ -79,7 +79,7 @@
                             <!-- Message Bubble -->
                             <div :class="msg.id_pengirim == {{ Auth::id() }} 
                                 ? 'bg-[#4F7EF7] text-white rounded-3xl rounded-tr-sm shadow-xl shadow-[#4F7EF7]/20' 
-                                : 'bg-white text-[#1E293B] rounded-3xl rounded-tl-sm border border-[#E2E8F0] shadow-sm'" 
+                                : 'bg-white text-[#051F20] rounded-3xl rounded-tl-sm border border-[#E2E8F0] shadow-sm'" 
                                 class="px-5 py-3.5 relative group">
                                 
                                 <!-- File Attachment -->
