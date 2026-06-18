@@ -1,195 +1,394 @@
-<x-app-layout>
+@php
+    use Carbon\Carbon;
+    $user = Auth::user();
+    $now  = Carbon::now()->startOfDay();
+    $daysLeft = $now->diffInDays($lomba->deadline, false);
+@endphp
+<!DOCTYPE html>
+<html class="dark" lang="id">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>{{ $lomba->nama }} | SiLomba</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#00743a",
+                        "surface-bright": "#f7f9fb",
+                        "secondary": "#006d37",
+                        "on-background": "#ffffff",
+                        "inverse-primary": "#a8cfc4",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#c0c1ff",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#6bfe9c",
+                        "primary-container": "#062e27",
+                        "on-primary-fixed": "#00201a",
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#c1c8c5",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-tertiary-fixed-variant": "#2f2ebe",
+                        "on-surface": "#191c1e",
+                        "on-secondary-fixed-variant": "#005228",
+                        "primary-fixed": "#c3ebe0",
+                        "tertiary-fixed": "#e1e0ff",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#e6e8ea",
+                        "on-tertiary-fixed": "#07006c",
+                        "inverse-surface": "#2d3133",
+                        "surface-tint": "#41655d",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#040055",
+                        "secondary-container": "#6bfe9c",
+                        "outline": "#717976",
+                        "on-primary-container": "#72978d",
+                        "secondary-fixed-dim": "#4ae183",
+                        "on-tertiary-container": "#7e81ff",
+                        "surface-variant": "#e0e3e5",
+                        "surface-container-low": "#f2f4f6",
+                        "tertiary-container": "#0c0091",
+                        "on-primary-fixed-variant": "#294d45",
+                        "primary": "#062e27",
+                        "background": "#062e27",
+                        "on-error-container": "#93000a",
+                        "surface": "#062e27",
+                        "surface-container": "#eceef0",
+                        "on-secondary-fixed": "#00210c",
+                        "primary-fixed-dim": "#a8cfc4",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#c1c8c5",
+                        "surface-dim": "#d8dadc"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "0.5rem",
+                        "stack-lg": "1.5rem",
+                        "stack-md": "1rem",
+                        "gutter": "1rem",
+                        "container-padding": "1.25rem",
+                        "section-gap": "2.5rem"
+                    },
+                    "fontFamily": {
+                        "label-md": ["JetBrains Mono"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        /* Custom scrollbar */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.05);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+        }
+        [x-cloak] { display: none !important; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-hidden">
+<div class="flex h-screen">
 
-@push('styles')
-<style>
-    html, body {
-        background-color: #0D3B36 !important;
-    }
-    #page-bg {
-        background-color: #0D3B36 !important;
-    }
-</style>
-@endpush
-
-    <div class="py-8 min-h-screen">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
-            {{-- Banner Arsip --}}
-            @if($isArsip)
-                <div class="mb-6 p-4 bg-gray-800 rounded-2xl flex items-center gap-4 text-white">
-                    <div class="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg>
+    <!-- SideNavBar (Exact same as Dashboard/Lomba Index) -->
+    <aside class="hidden md:flex flex-col h-screen w-64 sticky left-0 top-0 bg-primary-container border-r border-outline-variant/10 shadow-none py-stack-lg px-stack-md z-50">
+        <div class="mb-section-gap px-2 flex items-center gap-3">
+            <img src="{{ asset('images/logo.png') }}" alt="Logo SiLomba" class="w-10 h-10 object-contain drop-shadow-md">
+            <div>
+                <h1 class="font-headline-sm text-headline-sm font-bold text-secondary-fixed">SiLomba</h1>
+                <p class="text-on-primary-container text-[11px] font-label-md tracking-wider opacity-70">DETAIL LOMBA</p>
+            </div>
+        </div>
+        <nav class="flex flex-col gap-2">
+            <!-- Dashboard -->
+            <a class="flex items-center gap-stack-md px-4 py-3 rounded-lg transition-all {{ request()->routeIs('dashboard') || request()->routeIs('mahasiswa.dashboard') ? 'bg-secondary text-on-secondary scale-98' : 'text-surface-variant hover:bg-secondary/20' }}" href="{{ route('dashboard') }}">
+                <span class="material-symbols-outlined" style="{{ request()->routeIs('dashboard') || request()->routeIs('mahasiswa.dashboard') ? "font-variation-settings: 'FILL' 1;" : '' }}">dashboard</span>
+                <span class="font-label-md text-label-md">Dashboard</span>
+            </a>
+            <!-- Direktori Lomba -->
+            <a class="flex items-center gap-stack-md px-4 py-3 rounded-lg transition-all {{ request()->routeIs('mahasiswa.lomba.*') ? 'bg-secondary text-on-secondary scale-98' : 'text-surface-variant hover:bg-secondary/20' }}" href="{{ route('mahasiswa.lomba.index') }}">
+                <span class="material-symbols-outlined" style="{{ request()->routeIs('mahasiswa.lomba.*') ? "font-variation-settings: 'FILL' 1;" : '' }}">emoji_events</span>
+                <span class="font-label-md text-label-md">Direktori Lomba</span>
+            </a>
+            <!-- Tim Finder -->
+            <a class="flex items-center gap-stack-md px-4 py-3 rounded-lg transition-all {{ request()->routeIs('mahasiswa.tim-finder.*') ? 'bg-secondary text-on-secondary scale-98' : 'text-surface-variant hover:bg-secondary/20' }}" href="{{ route('mahasiswa.tim-finder.index') }}">
+                <span class="material-symbols-outlined" style="{{ request()->routeIs('mahasiswa.tim-finder.*') ? "font-variation-settings: 'FILL' 1;" : '' }}">group</span>
+                <span class="font-label-md text-label-md">Tim Finder</span>
+            </a>
+            <!-- Tim Saya -->
+            <a class="flex items-center gap-stack-md px-4 py-3 rounded-lg transition-all {{ request()->routeIs('mahasiswa.my-teams.*') ? 'bg-secondary text-on-secondary scale-98' : 'text-surface-variant hover:bg-secondary/20' }}" href="{{ route('mahasiswa.my-teams.index') }}">
+                <span class="material-symbols-outlined" style="{{ request()->routeIs('mahasiswa.my-teams.*') ? "font-variation-settings: 'FILL' 1;" : '' }}">groups</span>
+                <span class="font-label-md text-label-md">Tim Saya</span>
+            </a>
+            <!-- Notifikasi -->
+            <div x-data="{ jumlah: {{ \App\Models\Notification::where('id_penerima', Auth::id())->where('is_read', false)->count() }} }" 
+                 x-init="
+                   setInterval(() => {
+                     fetch('{{ route('mahasiswa.notifikasi.unread-count') }}')
+                       .then(r => r.json())
+                       .then(d => jumlah = d.count)
+                   }, 10000)
+                 ">
+                <a class="flex items-center justify-between gap-stack-md px-4 py-3 rounded-lg transition-all {{ request()->routeIs('mahasiswa.notifikasi.*') ? 'bg-secondary text-on-secondary scale-98' : 'text-surface-variant hover:bg-secondary/20' }}" href="{{ route('mahasiswa.notifikasi.index') }}">
+                    <div class="flex items-center gap-stack-md">
+                        <span class="material-symbols-outlined" style="{{ request()->routeIs('mahasiswa.notifikasi.*') ? "font-variation-settings: 'FILL' 1;" : '' }}">notifications</span>
+                        <span class="font-label-md text-label-md">Notifikasi</span>
                     </div>
-                    <div class="flex-1">
-                        <p class="text-sm font-bold">Lomba Ini Sudah Berakhir</p>
-                        <p class="text-xs text-gray-400 mt-0.5">Deadline berakhir pada {{ $lomba->deadline->format('d M Y') }}. Halaman ini tersedia untuk keperluan evaluasi dan referensi saja. Pendaftaran sudah ditutup.</p>
+                    <template x-if="jumlah > 0">
+                        <span class="px-2 py-0.5 bg-error text-on-error font-bold text-[10px] rounded-full animate-pulse" x-text="jumlah > 9 ? '9+' : jumlah"></span>
+                    </template>
+                </a>
+            </div>
+        </nav>
+        <div class="mt-auto flex flex-col gap-1 pt-6">
+            <!-- Logout -->
+            <form method="POST" action="{{ route('logout') }}" class="w-full">
+                @csrf
+                <button type="submit" class="w-full flex items-center gap-stack-md text-error hover:bg-error/10 px-4 py-3 transition-all rounded-lg">
+                    <span class="material-symbols-outlined">logout</span>
+                    <span class="font-label-md text-label-md">Logout</span>
+                </button>
+            </form>
+            <a href="{{ route('mahasiswa.profile.edit') }}" class="mt-2 pt-4 border-t border-outline-variant/10 flex items-center gap-3 px-2 hover:bg-white/5 pb-2 rounded-lg transition-colors cursor-pointer group">
+                <img alt="Profile" class="w-10 h-10 rounded-full border-2 border-secondary-fixed/30 group-hover:border-secondary-fixed transition-colors" src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&color=7F9CF5&background=EBF4FF"/>
+                <div class="overflow-hidden flex-1">
+                    <p class="font-headline-sm text-[14px] text-white truncate group-hover:text-secondary-fixed transition-colors">{{ Auth::user()->name }}</p>
+                    <p class="font-label-md text-[10px] text-on-surface-variant truncate">{{ Auth::user()->getRoleNames()->first() ?? 'Mahasiswa' }}</p>
+                </div>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 flex flex-col overflow-y-auto custom-scrollbar bg-[#0e3b31]">
+        @if($isArsip)
+        <div class="m-8 p-4 bg-error/20 border border-error/30 rounded-2xl flex items-center gap-4 text-white">
+            <div class="w-10 h-10 bg-error/30 rounded-xl flex items-center justify-center flex-shrink-0">
+                <span class="material-symbols-outlined text-error">warning</span>
+            </div>
+            <div class="flex-1">
+                <p class="text-sm font-bold text-error">Lomba Ini Sudah Berakhir</p>
+                <p class="text-xs text-white/70 mt-0.5">Deadline berakhir pada {{ $lomba->deadline->format('d M Y') }}. Halaman ini tersedia untuk keperluan evaluasi dan referensi saja.</p>
+            </div>
+        </div>
+        @endif
+
+        <!-- Hero Section -->
+        <section class="relative w-full min-h-[400px] overflow-hidden flex items-end">
+            <!-- Background Image -->
+            <div class="absolute inset-0 z-0">
+                @if($lomba->poster)
+                    <img alt="Poster Lomba" class="w-full h-full object-cover {{ $isArsip ? 'grayscale' : '' }}" src="{{ asset('storage/' . $lomba->poster) }}"/>
+                @else
+                    <div class="w-full h-full bg-gradient-to-br from-primary-container to-[#021410] flex items-center justify-center">
+                        <span class="material-symbols-outlined text-9xl text-white/5 opacity-20">emoji_events</span>
+                    </div>
+                @endif
+                <div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
+            </div>
+            <div class="relative z-10 w-full px-12 pb-16 pt-32">
+                <div class="max-w-4xl">
+                    <span class="inline-block bg-secondary-container text-on-secondary-fixed-variant px-4 py-1 rounded-full font-label-md text-label-md mb-6 uppercase tracking-widest">{{ $lomba->tingkat }} Kompetisi</span>
+                    <h1 class="font-headline-lg text-4xl md:text-6xl text-white font-extrabold tracking-tighter mb-4">{{ $lomba->nama }}</h1>
+                    <div class="flex items-center gap-4 text-white/80">
+                        <span class="material-symbols-outlined">apartment</span>
+                        <p class="font-headline-sm text-headline-sm">Diselenggarakan oleh {{ $lomba->penyelenggara }}</p>
+                        <span class="mx-2">•</span>
+                        <p class="font-body-lg text-body-lg">{{ $lomba->kategori }}</p>
                     </div>
                 </div>
-            @endif
+            </div>
+        </section>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Quick Info Grid -->
+        <section class="px-12 -mt-8 relative z-20">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Deadline Card -->
+                <div class="bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/10 flex items-center gap-5">
+                    <div class="w-12 h-12 rounded-lg bg-error-container/20 flex items-center justify-center text-error">
+                        <span class="material-symbols-outlined">event</span>
+                    </div>
+                    <div>
+                        <p class="font-label-md text-label-md text-white/60 uppercase">Deadline</p>
+                        <p class="font-headline-sm text-headline-sm font-bold text-white">{{ $lomba->deadline->format('d M Y') }}</p>
+                    </div>
+                </div>
+                <!-- Category Card -->
+                <div class="bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/10 flex items-center gap-5">
+                    <div class="w-12 h-12 rounded-lg bg-secondary-container/20 flex items-center justify-center text-secondary-fixed">
+                        <span class="material-symbols-outlined">psychology</span>
+                    </div>
+                    <div>
+                        <p class="font-label-md text-label-md text-white/60 uppercase">Kategori</p>
+                        <p class="font-headline-sm text-headline-sm font-bold text-white">{{ $lomba->kategori }}</p>
+                    </div>
+                </div>
+                <!-- Status Card -->
+                <div class="bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/10 flex items-center gap-5">
+                    <div class="w-12 h-12 rounded-lg bg-blue-500/20 flex items-center justify-center text-blue-400">
+                        <span class="material-symbols-outlined">flag</span>
+                    </div>
+                    <div>
+                        <p class="font-label-md text-label-md text-white/60 uppercase">Status</p>
+                        <p class="font-headline-sm text-headline-sm font-bold text-white capitalize">{{ $isArsip ? 'Berakhir' : $lomba->status }}</p>
+                    </div>
+                </div>
+                <!-- Location / Tingkat Card -->
+                <div class="bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/10 flex items-center gap-5">
+                    <div class="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center text-white">
+                        <span class="material-symbols-outlined">public</span>
+                    </div>
+                    <div>
+                        <p class="font-label-md text-label-md text-white/60 uppercase">Tingkat</p>
+                        <p class="font-headline-sm text-headline-sm font-bold text-white capitalize">{{ $lomba->tingkat }}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                {{-- Main Content --}}
-                <div class="lg:col-span-2 space-y-6">
+        <!-- Main Body Content -->
+        <section class="px-12 py-12 grid grid-cols-1 lg:grid-cols-12 gap-10">
+            <!-- Left Column: Details -->
+            <div class="lg:col-span-8 space-y-12">
+                @if($lomba->deskripsi)
+                <div>
+                    <h2 class="font-headline-md text-headline-md text-white mb-6 flex items-center gap-2">
+                        <span class="w-2 h-8 bg-secondary rounded-full"></span>
+                        Deskripsi
+                    </h2>
+                    <div class="prose prose-invert prose-lg text-on-surface-variant max-w-none whitespace-pre-line leading-relaxed">
+                        {{ $lomba->deskripsi }}
+                    </div>
+                </div>
+                @endif
 
-                    {{-- Poster Card --}}
-                    <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
-                        {{-- Portrait Poster — centered, max 320px wide, aspect-ratio 3:4 --}}
-                        <div class="{{ $isArsip ? 'bg-gray-100' : 'bg-[#e8f5f3]' }} flex items-center justify-center py-6 px-4">
-                            <div style="width: 100%; max-width: 320px;">
-                                <div class="relative w-full rounded-2xl overflow-hidden shadow-md" style="aspect-ratio: 3/4;">
-                                    @if($lomba->poster)
-                                        <img src="{{ asset('storage/' . $lomba->poster) }}"
-                                             class="absolute inset-0 w-full h-full object-cover {{ $isArsip ? 'grayscale' : '' }}"
-                                             alt="Poster {{ $lomba->nama }}">
-                                    @else
-                                        <div class="absolute inset-0 {{ $isArsip ? 'bg-gradient-to-br from-gray-400 to-gray-600' : 'bg-gradient-to-br from-[#235347] to-[#0B2B26]' }} flex flex-col items-center justify-center text-white">
-                                            <svg class="w-16 h-16 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                                            <p class="text-xs mt-2 font-medium opacity-50">Poster belum tersedia</p>
-                                        </div>
-                                    @endif
-                                </div>
-                            </div>
+                @if($lomba->syarat_peserta)
+                <div>
+                    <h2 class="font-headline-md text-headline-md text-white mb-6 flex items-center gap-2">
+                        <span class="w-2 h-8 bg-secondary rounded-full"></span>
+                        Persyaratan Peserta
+                    </h2>
+                    <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
+                        <p class="text-on-surface-variant whitespace-pre-line leading-relaxed">{{ $lomba->syarat_peserta }}</p>
+                    </div>
+                </div>
+                @endif
+            </div>
+
+            <!-- Right Column: Grand Prizes & CTA -->
+            <div class="lg:col-span-4 space-y-8">
+                <!-- Grand Prize Card -->
+                @if($lomba->hadiah)
+                <div class="bg-primary-container border border-white/10 p-8 rounded-2xl shadow-xl relative overflow-hidden group">
+                    <!-- Subtle Glow effect -->
+                    <div class="absolute -top-24 -right-24 w-48 h-48 bg-secondary rounded-full blur-[100px] opacity-20"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center justify-between mb-8">
+                            <h3 class="font-headline-md text-headline-md text-white">Detail Hadiah</h3>
+                            <span class="material-symbols-outlined text-secondary-container scale-150" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
                         </div>
-
-                        {{-- Info Lomba --}}
-                        <div class="p-8">
-                            <div class="flex items-center flex-wrap gap-2 mb-4">
-                                <span class="px-3 py-1 bg-indigo-50 text-indigo-600 text-xs font-bold rounded-full uppercase">{{ $lomba->kategori }}</span>
-                                <span class="px-3 py-1 bg-amber-50 text-amber-600 text-xs font-bold rounded-full uppercase">{{ $lomba->tingkat }}</span>
-                                @if($isArsip)
-                                    <span class="px-3 py-1 bg-gray-100 text-gray-500 text-xs font-bold rounded-full uppercase">Berakhir</span>
-                                @else
-                                    <span class="px-3 py-1 {{ $lomba->status == 'buka' ? 'bg-emerald-50 text-emerald-600' : 'bg-gray-100 text-gray-500' }} text-xs font-bold rounded-full uppercase">{{ $lomba->status }}</span>
-                                @endif
-                            </div>
-                            <h1 class="text-3xl font-extrabold text-gray-900 mb-1 leading-tight">{{ $lomba->nama }}</h1>
-                            <p class="text-base text-gray-500 mb-6">{{ $lomba->penyelenggara }}</p>
-
-                            <div class="space-y-6">
-                                {{-- Deskripsi --}}
-                                @if($lomba->deskripsi)
-                                <div>
-                                    <h3 class="text-base font-bold text-gray-900 mb-2 flex items-center gap-2">
-                                        <span class="w-1 h-5 bg-[#0B2B26] rounded-full inline-block"></span>
-                                        Deskripsi
-                                    </h3>
-                                    <p class="text-gray-600 leading-relaxed text-sm whitespace-pre-line">{{ $lomba->deskripsi }}</p>
+                        <div class="space-y-6">
+                            <div class="flex gap-4">
+                                <div class="text-white/80 whitespace-pre-line text-sm leading-relaxed">
+                                    {{ $lomba->hadiah }}
                                 </div>
-                                @endif
-
-                                {{-- Syarat Peserta --}}
-                                @if($lomba->syarat_peserta)
-                                <div>
-                                    <h3 class="text-base font-bold text-gray-900 mb-2 flex items-center gap-2">
-                                        <span class="w-1 h-5 bg-[#235347] rounded-full inline-block"></span>
-                                        Syarat Peserta
-                                    </h3>
-                                    <p class="text-gray-600 leading-relaxed text-sm whitespace-pre-line">{{ $lomba->syarat_peserta }}</p>
-                                </div>
-                                @endif
-
-                                {{-- Hadiah --}}
-                                @if($lomba->hadiah)
-                                <div>
-                                    <h3 class="text-base font-bold text-gray-900 mb-2 flex items-center gap-2">
-                                        <span class="w-1 h-5 bg-amber-400 rounded-full inline-block"></span>
-                                        Hadiah
-                                    </h3>
-                                    <p class="text-gray-600 leading-relaxed text-sm whitespace-pre-line">{{ $lomba->hadiah }}</p>
-                                </div>
-                                @endif
                             </div>
                         </div>
                     </div>
                 </div>
+                @endif
 
-                {{-- Sidebar / Actions --}}
-                <div class="space-y-6">
-                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 sticky top-6">
-
-                        {{-- Info Grid --}}
-                        <div class="space-y-4 mb-8">
-                            <div class="flex items-center justify-between py-3 border-b border-gray-50">
-                                <span class="text-gray-500 text-sm">Deadline</span>
-                                <span class="font-bold text-gray-900 text-sm">{{ $lomba->deadline->format('d M Y') }}</span>
-                            </div>
-                            @if($lomba->hadiah)
-                            <div class="flex items-center justify-between py-3 border-b border-gray-50">
-                                <span class="text-gray-500 text-sm">Hadiah</span>
-                                <span class="font-bold text-indigo-600 text-sm text-right max-w-[60%] line-clamp-2">{{ $lomba->hadiah }}</span>
-                            </div>
-                            @endif
-                            <div class="flex items-center justify-between py-3 border-b border-gray-50">
-                                <span class="text-gray-500 text-sm">Tingkat</span>
-                                <span class="font-bold text-gray-900 text-sm capitalize">{{ $lomba->tingkat }}</span>
-                            </div>
-                            <div class="flex items-center justify-between py-3 border-b border-gray-50">
-                                <span class="text-gray-500 text-sm">Kategori</span>
-                                <span class="font-bold text-gray-900 text-sm">{{ $lomba->kategori }}</span>
-                            </div>
-                            <div class="flex items-center justify-between py-3">
-                                <span class="text-gray-500 text-sm">Status</span>
-                                @if($isArsip)
-                                    <span class="px-3 py-1 bg-gray-100 text-gray-500 text-xs font-bold rounded-full uppercase">Tutup</span>
-                                @else
-                                    <span class="px-3 py-1 {{ $lomba->status == 'buka' ? 'bg-emerald-50 text-emerald-600' : 'bg-gray-100 text-gray-500' }} text-xs font-bold rounded-full uppercase">{{ $lomba->status }}</span>
-                                @endif
-                            </div>
+                <!-- Call to Action Bar -->
+                <div class="bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/10 shadow-sm space-y-4">
+                    @if($isArsip)
+                        <div class="w-full py-4 bg-white/5 border border-white/10 rounded-xl text-center">
+                            <p class="text-sm font-bold text-gray-400">Pendaftaran Ditutup</p>
+                            <p class="text-xs text-gray-500 mt-0.5">Deadline sudah berakhir</p>
                         </div>
-
-                        {{-- Action Buttons --}}
-                        <div class="space-y-3">
-                            @if($isArsip)
-                                <div class="w-full py-4 bg-gray-100 rounded-2xl text-center">
-                                    <p class="text-sm font-bold text-gray-400">Pendaftaran Ditutup</p>
-                                    <p class="text-xs text-gray-400 mt-0.5">Deadline sudah berakhir</p>
-                                </div>
-                                @if($lomba->link_resmi)
-                                    <a href="{{ $lomba->link_resmi }}" target="_blank" class="flex items-center justify-center w-full py-3 bg-gray-50 border border-gray-200 text-gray-500 rounded-2xl text-sm font-bold hover:bg-gray-100 transition">
-                                        <svg class="w-4 h-4 me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                                        Kunjungi Website Resmi
-                                    </a>
-                                @endif
-                            @else
-                                @if($lomba->link_resmi)
-                                    <a href="{{ $lomba->link_resmi }}" target="_blank" class="flex items-center justify-center w-full py-4 bg-[#0B2B26] text-white rounded-2xl font-bold shadow-lg shadow-[#0B2B26]/20 hover:bg-[#235347] transition">
-                                        <svg class="w-5 h-5 me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                                        Daftar Lomba
-                                    </a>
-                                @endif
-
-                                <a href="{{ route('mahasiswa.tim-finder.index', ['lomba_id' => $lomba->id]) }}" class="flex items-center justify-center w-full py-4 bg-white border-2 border-[#0B2B26] text-[#0B2B26] rounded-2xl font-bold hover:bg-[#0B2B26]/5 transition">
-                                    <svg class="w-5 h-5 me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                                    Cari Tim
-                                </a>
-
-                                <button class="flex items-center justify-center w-full py-4 bg-gray-50 text-gray-500 rounded-2xl font-bold hover:bg-gray-100 transition">
-                                    <svg class="w-5 h-5 me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                    Buat Tim Baru
-                                </button>
-                            @endif
-                        </div>
-                    </div>
-
-                    {{-- Info Card bawah --}}
-                    @if(!$isArsip)
-                    <div class="bg-[#0B2B26] p-8 rounded-3xl text-white shadow-xl relative overflow-hidden">
-                        <div class="relative z-10">
-                            <h4 class="text-xl font-bold mb-2">Ingin Juara?</h4>
-                            <p class="text-[#8EB69B]/80 text-sm mb-4">Lengkapi profil Anda untuk mendapatkan rekomendasi tim yang cocok dengan keahlian Anda.</p>
-                            <a href="{{ route('mahasiswa.profile.edit') }}" class="text-sm font-bold underline hover:text-white transition">Update Profil &rarr;</a>
-                        </div>
-                        <div class="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-white/10 rounded-full blur-3xl"></div>
-                    </div>
+                        @if($lomba->link_resmi)
+                            <a href="{{ $lomba->link_resmi }}" target="_blank" class="flex items-center justify-center w-full py-4 bg-white/10 text-white rounded-xl font-bold hover:bg-white/20 transition-all">
+                                <span class="material-symbols-outlined mr-2 text-sm">language</span>
+                                Kunjungi Website Resmi
+                            </a>
+                        @endif
                     @else
-                    <div class="bg-gray-800 p-6 rounded-3xl text-white shadow-xl">
-                        <h4 class="text-base font-bold mb-2">Tips Evaluasi</h4>
-                        <p class="text-gray-400 text-sm">Gunakan data lomba ini sebagai referensi untuk mempersiapkan diri mengikuti lomba serupa di masa mendatang.</p>
-                    </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <a href="{{ route('mahasiswa.tim-finder.index', ['lomba_id' => $lomba->id]) }}" class="flex items-center justify-center gap-2 py-3 border border-secondary text-secondary-fixed font-headline-sm text-sm rounded-xl hover:bg-secondary/10 transition-colors">
+                                <span class="material-symbols-outlined text-[18px]">search</span>
+                                Cari Tim
+                            </a>
+                            <a href="{{ route('mahasiswa.my-teams.index') }}" class="flex items-center justify-center gap-2 py-3 border border-secondary text-secondary-fixed font-headline-sm text-sm rounded-xl hover:bg-secondary/10 transition-colors">
+                                <span class="material-symbols-outlined text-[18px]">group_add</span>
+                                Buat Tim
+                            </a>
+                        </div>
+                        @if($lomba->link_resmi)
+                            <a href="{{ $lomba->link_resmi }}" target="_blank" class="flex items-center justify-center w-full py-3 bg-white/10 text-white/80 rounded-xl font-bold hover:bg-white/20 transition-all text-sm">
+                                <span class="material-symbols-outlined mr-2 text-sm">language</span>
+                                Kunjungi Website Resmi
+                            </a>
+                        @endif
+                        <p class="text-center font-body-md text-xs text-on-surface-variant">
+                            Pendaftaran ditutup dalam
+                            @if($daysLeft > 0)
+                                <span class="font-bold text-secondary-fixed">{{ $daysLeft }} hari</span>
+                            @else
+                                <span class="font-bold text-error">Hari ini</span>
+                            @endif
+                        </p>
                     @endif
                 </div>
             </div>
-        </div>
+        </section>
+
+    </main>
+
+    <!-- Floating Micro-interaction Background -->
+    <div class="fixed inset-0 pointer-events-none z-[-1] opacity-20">
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-container rounded-full blur-[120px] animate-pulse"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-secondary-container rounded-full blur-[100px] animate-bounce" style="animation-duration: 8s;"></div>
     </div>
-</x-app-layout>
+</div>
+</body>
+</html>
