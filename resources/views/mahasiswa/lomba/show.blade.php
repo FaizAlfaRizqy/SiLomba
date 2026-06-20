@@ -215,26 +215,41 @@
         @endif
 
         <!-- Hero Section -->
-        <section class="relative w-full min-h-[400px] overflow-hidden flex items-end">
-            <!-- Background Image -->
+        <section class="relative w-full min-h-[400px] overflow-hidden flex flex-col md:flex-row items-center pt-32 pb-16 px-12 gap-10">
+            <!-- Back Button -->
+            <a href="{{ route('mahasiswa.lomba.index') }}" class="absolute top-8 left-8 md:top-12 md:left-12 z-20 flex items-center gap-2 px-4 py-2 bg-black/40 hover:bg-black/60 text-white rounded-full backdrop-blur-md border border-white/20 transition-all group">
+                <span class="material-symbols-outlined group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                <span class="font-label-md text-sm font-medium">Kembali</span>
+            </a>
+
+            <!-- Background Blur -->
             <div class="absolute inset-0 z-0">
                 @if($lomba->poster)
-                    <img alt="Poster Lomba" class="w-full h-full object-cover {{ $isArsip ? 'grayscale' : '' }}" src="{{ asset('storage/' . $lomba->poster) }}"/>
+                    <img alt="Background Blur" class="w-full h-full object-cover blur-[80px] opacity-30 {{ $isArsip ? 'grayscale' : '' }}" src="{{ asset('storage/' . $lomba->poster) }}"/>
                 @else
-                    <div class="w-full h-full bg-gradient-to-br from-primary-container to-[#021410] flex items-center justify-center">
-                        <span class="material-symbols-outlined text-9xl text-white/5 opacity-20">emoji_events</span>
-                    </div>
+                    <div class="w-full h-full bg-gradient-to-br from-primary-container to-[#021410]"></div>
                 @endif
-                <div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-b from-transparent to-background"></div>
             </div>
-            <div class="relative z-10 w-full px-12 pb-16 pt-32">
-                <div class="max-w-4xl">
-                    <span class="inline-block bg-secondary-container text-on-secondary-fixed-variant px-4 py-1 rounded-full font-label-md text-label-md mb-6 uppercase tracking-widest">{{ $lomba->tingkat }} Kompetisi</span>
-                    <h1 class="font-headline-lg text-4xl md:text-6xl text-white font-extrabold tracking-tighter mb-4">{{ $lomba->nama }}</h1>
-                    <div class="flex items-center gap-4 text-white/80">
+
+            <!-- Poster Container (Portrait) -->
+            @if($lomba->poster)
+            <div class="relative z-10 w-full md:w-1/3 max-w-[320px] flex-shrink-0">
+                <img alt="Poster Lomba" class="w-full h-auto object-contain rounded-2xl shadow-2xl border border-white/10 {{ $isArsip ? 'grayscale' : '' }}" src="{{ asset('storage/' . $lomba->poster) }}"/>
+            </div>
+            @endif
+
+            <!-- Info Lomba -->
+            <div class="relative z-10 w-full flex-1">
+                <span class="inline-block bg-secondary-container text-on-secondary-fixed-variant px-4 py-1 rounded-full font-label-md text-label-md mb-6 uppercase tracking-widest">{{ $lomba->tingkat }} Kompetisi</span>
+                <h1 class="font-headline-lg text-4xl md:text-5xl lg:text-6xl text-white font-extrabold tracking-tighter mb-4">{{ $lomba->nama }}</h1>
+                <div class="flex flex-wrap items-center gap-4 text-white/80">
+                    <div class="flex items-center gap-2">
                         <span class="material-symbols-outlined">apartment</span>
                         <p class="font-headline-sm text-headline-sm">Diselenggarakan oleh {{ $lomba->penyelenggara }}</p>
-                        <span class="mx-2">•</span>
+                    </div>
+                    <span class="hidden md:inline mx-2">•</span>
+                    <div class="flex items-center gap-2">
                         <p class="font-body-lg text-body-lg">{{ $lomba->kategori }}</p>
                     </div>
                 </div>
