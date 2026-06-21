@@ -9,14 +9,14 @@
     $now  = Carbon::now()->startOfDay();
 
     // -- Statistik real-time
-    $totalTim        = AnggotaTim::where('id_mahasiswa', $user->id)->count();
-    $totalLamaran    = Lamaran::where('id_pelamar', $user->id)->count();
-    $lamaranDiterima = Lamaran::where('id_pelamar', $user->id)->where('status', 'diterima')->count();
-    $lamaranPending  = Lamaran::where('id_pelamar', $user->id)->where('status', 'pending')->count();
+    $totalTim        = AnggotaTim::where(['id_mahasiswa' => $user->id])->count();
+    $totalLamaran    = Lamaran::where(['id_pelamar' => $user->id])->count();
+    $lamaranDiterima = Lamaran::where(['id_pelamar' => $user->id, 'status' => 'diterima'])->count();
+    $lamaranPending  = Lamaran::where(['id_pelamar' => $user->id, 'status' => 'pending'])->count();
 
     // -- Deadline terdekat (1 item)
-    $upcomingFirst = Lomba::where('deadline', '>=', $now)
-        ->orderBy('deadline', 'asc')
+    $upcomingFirst = Lomba::where([['deadline', '>=', $now]])
+        ->orderByRaw('deadline asc')
         ->first();
 
     // -- Rekomendasi tim
@@ -25,8 +25,8 @@
     if ($mahasiswa && !empty($mahasiswa->keahlian)) {
         $userSkills   = collect($mahasiswa->keahlian);
         $allOpenSlots = SlotTim::with(['tim.lomba', 'tim.ketua'])
-            ->where('status', 'buka')
-            ->where('batas_waktu', '>=', $now)
+            ->where(['status' => 'buka'])
+            ->where([['batas_waktu', '>=', $now]])
             ->get();
 
         foreach ($allOpenSlots as $slot) {
@@ -39,12 +39,12 @@
                 $recommendations->push($slot);
             }
         }
-        $recommendations = $recommendations->sortByDesc('matching_score')->take(4);
+        $recommendations = $recommendations->sortByDesc(fn($item) => $item->matching_score)->take(4);
     }
 
     // -- Lomba terbaru (aktif)
-    $lombaAktif = Lomba::where('deadline', '>=', $now)
-        ->orderBy('created_at', 'desc')
+    $lombaAktif = Lomba::where([['deadline', '>=', $now]])
+        ->orderByRaw('created_at desc')
         ->take(6)
         ->get();
 @endphp
@@ -213,7 +213,7 @@
                 <span class="font-label-md text-label-md">Tim Saya</span>
             </a>
             <!-- Notifikasi -->
-            <div x-data="{ jumlah: {{ \App\Models\Notification::where('id_penerima', Auth::id())->where('is_read', false)->count() }} }" 
+            <div x-data="{ jumlah: {{ \App\Models\Notification::where(['id_penerima' => Auth::id(), 'is_read' => false])->count() }} }" 
                  x-init="
                    setInterval(() => {
                      fetch('{{ route('mahasiswa.notifikasi.unread-count') }}')
@@ -258,7 +258,7 @@
             <section class="bento-grid">
                 <!-- Deadline Terdekat -->
                 @if($upcomingFirst)
-                <div class="col-span-12 lg:col-span-8 bg-white/5 border border-white/10 rounded-3xl overflow-hidden p-8 flex flex-col justify-between min-h-[320px] relative">
+                <div class="col-span-12 lg:col-span-8 bg-white/5 border border-white/10 rounded-3xl overflow-hidden p-8 flex flex-col justify-between min-h-80 relative">
                     <div class="absolute top-0 right-0 p-8">
                         <span class="px-4 py-2 bg-error/20 text-error rounded-full text-label-md font-bold uppercase tracking-wider">H-{{ $now->diffInDays($upcomingFirst->deadline, false) }} Deadline</span>
                     </div>
@@ -284,7 +284,7 @@
                     <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-secondary opacity-10 blur-[100px] rounded-full"></div>
                 </div>
                 @else
-                <div class="col-span-12 lg:col-span-8 bg-white/5 border border-white/10 rounded-3xl overflow-hidden p-8 flex flex-col justify-center min-h-[320px] relative">
+                <div class="col-span-12 lg:col-span-8 bg-white/5 border border-white/10 rounded-3xl overflow-hidden p-8 flex flex-col justify-center min-h-80 relative">
                     <h3 class="font-headline-lg text-headline-lg text-white mb-2">Selamat Datang, {{ Auth::user()->name }}</h3>
                     <p class="text-on-surface-variant text-body-lg max-w-md">Belum ada deadline terdekat. Mulai eksplorasi kompetisi sekarang!</p>
                     <div class="mt-8">
@@ -344,7 +344,7 @@
                     @forelse($lombaAktif as $lomba)
                     @php $daysRemaining = Carbon::now()->diffInDays($lomba->deadline, false); @endphp
                     <!-- Competition Card -->
-                    <a href="{{ route('mahasiswa.lomba.show', $lomba->id) }}" class="block min-w-[280px] w-[280px] group relative bg-white/10 border border-white/15 rounded-3xl overflow-hidden shadow-xl transition-all hover:-translate-y-2 hover:bg-white/15 flex flex-col">
+                    <a href="{{ route('mahasiswa.lomba.show', $lomba->id) }}" class="flex min-w-70 w-70 flex-col group relative bg-white/10 border border-white/15 rounded-3xl overflow-hidden shadow-xl transition-all hover:-translate-y-2 hover:bg-white/15">
                         <div class="relative h-64 overflow-hidden">
                             @if($lomba->poster)
                                 <img alt="{{ $lomba->nama }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="{{ asset('storage/' . $lomba->poster) }}"/>
@@ -372,7 +372,7 @@
                             <div class="space-y-2 mb-4">
                                 <div class="flex items-center gap-2 text-white/70">
                                     <span class="material-symbols-outlined text-[18px]">calendar_today</span>
-                                    <span class="text-body-md text-[13px]">Deadline: {{ $lomba->deadline->format('d M Y') }}</span>
+                                    <span class="text-body-md text-[13px]">Deadline: {{ Carbon::parse($lomba->deadline)->format('d M Y') }}</span>
                                 </div>
                                 @if($lomba->hadiah)
                                 <div class="flex items-center gap-2 text-white/70">
@@ -459,7 +459,7 @@
 
             <!-- CTA Card -->
             <section class="pb-12">
-                <div class="bg-gradient-to-r from-secondary-fixed to-secondary-fixed-dim rounded-[40px] p-12 relative overflow-hidden flex items-center justify-between">
+                <div class="bg-linear-to-r from-secondary-fixed to-secondary-fixed-dim rounded-[40px] p-12 relative overflow-hidden flex items-center justify-between">
                     <div class="relative z-10">
                         <h2 class="text-on-secondary-fixed font-headline-lg text-headline-lg mb-4">Ingin Menjadi Juara?</h2>
                         <p class="text-on-secondary-fixed/80 text-body-lg max-w-lg mb-8">Eksplorasi ribuan kompetisi yang tersedia di platform kami. Temukan tim impian dan asah kemampuan terbaikmu.</p>
@@ -470,7 +470,7 @@
                     </div>
                     <!-- Decorative Icon -->
                     <div class="relative z-10 pr-12 hidden lg:block">
-                        <div class="w-48 h-48 bg-white/20 backdrop-blur-xl rounded-full flex items-center justify-center border border-white/30 animate-bounce duration-[3000ms]">
+                        <div class="w-48 h-48 bg-white/20 backdrop-blur-xl rounded-full flex items-center justify-center border border-white/30 animate-bounce duration-3000">
                             <span class="material-symbols-outlined text-[100px] text-on-secondary-fixed">workspace_premium</span>
                         </div>
                     </div>

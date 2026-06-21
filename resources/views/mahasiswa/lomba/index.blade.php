@@ -128,9 +128,7 @@
     search: '{{ request('search', '') }}', 
     kategori: '{{ request('kategori', '') }}', 
     tingkat: '{{ request('tingkat', '') }}', 
-    loading: false,
     fetchLomba() {
-        this.loading = true;
         let url = new URL('{{ route('mahasiswa.lomba.index') }}');
         url.searchParams.set('tab', this.tab);
         if (this.search) url.searchParams.set('search', this.search);
@@ -143,7 +141,6 @@
         .then(res => res.text())
         .then(html => {
             document.getElementById('lomba-list').innerHTML = html;
-            this.loading = false;
         });
     }
 }">
@@ -301,9 +298,6 @@
 
             <!-- List Section -->
             <div class="relative min-h-[400px]">
-                <div x-show="loading" class="absolute inset-0 bg-primary/50 backdrop-blur-sm z-10 flex items-center justify-center rounded-3xl" x-cloak>
-                    <div class="animate-spin rounded-full h-12 w-12 border-4 border-secondary-fixed border-t-transparent"></div>
-                </div>
                 <div id="lomba-list">
                     @include('mahasiswa.lomba._list', ['lombas' => $lombas, 'tab' => request('tab', 'aktif')])
                 </div>

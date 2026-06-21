@@ -179,9 +179,9 @@
                                class="w-4 h-4 mt-0.5 rounded border-none bg-[#051F20]/40 text-[#235347] focus:ring-2 focus:ring-[#8EB69B]/30 focus:ring-offset-0 focus:ring-offset-transparent transition">
                         <label for="terms" class="text-xs text-white/70 leading-relaxed font-medium">
                             Dengan mendaftar, saya menyetujui 
-                            <a href="#" class="text-white font-bold hover:underline">Syarat & Ketentuan</a> 
+                            <a href="{{ route('terms') }}" target="_blank" class="text-white font-bold hover:underline">Syarat & Ketentuan</a> 
                             serta 
-                            <a href="#" class="text-white font-bold hover:underline">Kebijakan Privasi</a> 
+                            <a href="{{ route('privacy') }}" target="_blank" class="text-white font-bold hover:underline">Kebijakan Privasi</a> 
                             SiLomba.
                         </label>
                     </div>

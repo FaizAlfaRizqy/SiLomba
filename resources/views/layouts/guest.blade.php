@@ -68,7 +68,17 @@
 
             <!-- Tengah (desktop) -->
             <div class="hidden md:flex items-center space-x-8">
-                <a href="#home"
+                @if(request()->routeIs('terms') || request()->routeIs('privacy'))
+                <a href="{{ route('terms') }}"
+                   class="{{ request()->routeIs('terms') ? 'text-white border-b-2 border-white font-semibold' : 'text-primaryLight hover:text-white' }} text-sm pb-1 transition-all duration-300">
+                  Ketentuan & Syarat
+                </a>
+                <a href="{{ route('privacy') }}"
+                   class="{{ request()->routeIs('privacy') ? 'text-white border-b-2 border-white font-semibold' : 'text-primaryLight hover:text-white' }} text-sm pb-1 transition-all duration-300">
+                  Kebijakan Privasi
+                </a>
+                @else
+                <a href="/#home"
                    @click="aktif = 'home'"
                    :class="aktif === 'home' 
                      ? 'text-white border-b-2 border-white font-semibold' 
@@ -76,7 +86,7 @@
                    class="text-sm pb-1 transition-all duration-300">
                   Beranda
                 </a>
-                <a href="#lomba"
+                <a href="/#lomba"
                    @click="aktif = 'lomba'"
                    :class="aktif === 'lomba' 
                      ? 'text-white border-b-2 border-white font-semibold' 
@@ -84,7 +94,7 @@
                    class="text-sm pb-1 transition-all duration-300">
                   Lomba
                 </a>
-                <a href="#fitur"
+                <a href="/#fitur"
                    @click="aktif = 'fitur'"
                    :class="aktif === 'fitur' 
                      ? 'text-white border-b-2 border-white font-semibold' 
@@ -92,7 +102,7 @@
                    class="text-sm pb-1 transition-all duration-300">
                   Tim Finder
                 </a>
-                <a href="#tentang"
+                <a href="/#tentang"
                    @click="aktif = 'tentang'"
                    :class="aktif === 'tentang' 
                      ? 'text-white border-b-2 border-white font-semibold' 
@@ -100,6 +110,7 @@
                    class="text-sm pb-1 transition-all duration-300">
                   Tentang
                 </a>
+                @endif
             </div>
 
             <!-- Kanan: Auth Buttons -->
@@ -139,10 +150,15 @@
              x-transition:leave-start="opacity-100 translate-y-0"
              x-transition:leave-end="opacity-0 -translate-y-4"
              class="md:hidden bg-primaryDark/95 backdrop-blur-md border-t border-primary/40 p-6 space-y-4 shadow-xl">
-            <a href="#home" @click="open = false; aktif = 'home'" :class="aktif === 'home' ? 'text-white font-semibold' : 'text-primaryLight hover:text-white'" class="block text-sm transition">Beranda</a>
-            <a href="#lomba" @click="open = false; aktif = 'lomba'" :class="aktif === 'lomba' ? 'text-white font-semibold' : 'text-primaryLight hover:text-white'" class="block text-sm transition">Lomba</a>
-            <a href="#fitur" @click="open = false; aktif = 'fitur'" :class="aktif === 'fitur' ? 'text-white font-semibold' : 'text-primaryLight hover:text-white'" class="block text-sm transition">Tim Finder</a>
-            <a href="#tentang" @click="open = false; aktif = 'tentang'" :class="aktif === 'tentang' ? 'text-white font-semibold' : 'text-primaryLight hover:text-white'" class="block text-sm transition">Tentang</a>
+            @if(request()->routeIs('terms') || request()->routeIs('privacy'))
+            <a href="{{ route('terms') }}" @click="open = false" class="{{ request()->routeIs('terms') ? 'text-white font-semibold' : 'text-primaryLight hover:text-white' }} block text-sm transition">Ketentuan & Syarat</a>
+            <a href="{{ route('privacy') }}" @click="open = false" class="{{ request()->routeIs('privacy') ? 'text-white font-semibold' : 'text-primaryLight hover:text-white' }} block text-sm transition">Kebijakan Privasi</a>
+            @else
+            <a href="/#home" @click="open = false; aktif = 'home'" :class="aktif === 'home' ? 'text-white font-semibold' : 'text-primaryLight hover:text-white'" class="block text-sm transition">Beranda</a>
+            <a href="/#lomba" @click="open = false; aktif = 'lomba'" :class="aktif === 'lomba' ? 'text-white font-semibold' : 'text-primaryLight hover:text-white'" class="block text-sm transition">Lomba</a>
+            <a href="/#fitur" @click="open = false; aktif = 'fitur'" :class="aktif === 'fitur' ? 'text-white font-semibold' : 'text-primaryLight hover:text-white'" class="block text-sm transition">Tim Finder</a>
+            <a href="/#tentang" @click="open = false; aktif = 'tentang'" :class="aktif === 'tentang' ? 'text-white font-semibold' : 'text-primaryLight hover:text-white'" class="block text-sm transition">Tentang</a>
+            @endif
             <hr class="border-primary/40">
             @auth
                 <a href="{{ route('dashboard') }}" class="block w-full text-center bg-aksen text-primaryDark rounded-full py-3 text-sm font-semibold hover:bg-white transition">

@@ -67,7 +67,7 @@ class TeamController extends Controller
             $user->assignRole('ketua_tim');
         }
 
-        return redirect()->route('mahasiswa.team.my')->with('success', 'Tim berhasil dibuat!');
+        return redirect()->route('mahasiswa.my-teams.index')->with('success', 'Tim berhasil dibuat!');
     }
 
     public function myTeams()
@@ -128,7 +128,7 @@ class TeamController extends Controller
             'tipe' => 'application',
         ]);
 
-        return redirect()->route('mahasiswa.tim-finder')->with('success', 'Lamaran berhasil dikirim.');
+        return redirect()->route('mahasiswa.tim-finder.index')->with('success', 'Lamaran berhasil dikirim.');
     }
 
     public function acceptApplication($id)
