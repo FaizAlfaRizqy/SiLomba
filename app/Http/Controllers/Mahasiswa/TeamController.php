@@ -34,7 +34,8 @@ class TeamController extends Controller
             'jumlah_slot' => 'required|integer|min:1',
             'keahlian_dibutuhkan' => 'required|array',
             'deskripsi_slot' => 'required|string',
-            'batas_waktu' => 'required|date|before_or_equal:'.Lomba::find($request->id_lomba)->deadline->toDateString(),
+            'batas_waktu' => 'required|date|after_or_equal:today|before_or_equal:'.Lomba::find($request->id_lomba)->deadline->toDateString(),
+            'status_publikasi' => 'required|in:draft,publikasi',
         ]);
 
         $user = Auth::user();
@@ -60,7 +61,7 @@ class TeamController extends Controller
             'jumlah_slot' => $request->jumlah_slot,
             'deskripsi' => $request->deskripsi_slot,
             'batas_waktu' => $request->batas_waktu,
-            'status' => 'buka',
+            'status' => $request->status_publikasi === 'draft' ? 'draft' : 'buka',
         ]);
 
         if (! $user->hasRole('ketua_tim')) {

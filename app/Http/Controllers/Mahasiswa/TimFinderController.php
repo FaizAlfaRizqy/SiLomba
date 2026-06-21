@@ -20,7 +20,7 @@ class TimFinderController extends Controller
 
         $query = SlotTim::with(['tim.lomba', 'tim.ketua'])
             ->where('status', 'buka')
-            ->where('batas_waktu', '>=', now());
+            ->where('batas_waktu', '>=', now()->startOfDay());
 
         // Filters
         if ($request->filled('lomba_id')) {
@@ -44,7 +44,7 @@ class TimFinderController extends Controller
 
             $allOpenSlots = SlotTim::with(['tim.lomba', 'tim.ketua'])
                 ->where('status', 'buka')
-                ->where('batas_waktu', '>=', now())
+                ->where('batas_waktu', '>=', now()->startOfDay())
                 ->get();
 
             foreach ($allOpenSlots as $slot) {
@@ -145,7 +145,7 @@ class TimFinderController extends Controller
         }
 
         // 3. Cek batas waktu
-        if ($slot->batas_waktu < now()) {
+        if ($slot->batas_waktu < now()->startOfDay()) {
             return back()->with('error', 'Batas waktu pendaftaran sudah berakhir');
         }
 

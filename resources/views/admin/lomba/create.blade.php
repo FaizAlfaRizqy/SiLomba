@@ -14,6 +14,7 @@
             deskripsi: '',
             kategori: 'Teknologi',
             tingkat: 'nasional',
+            tanggal_buka: '',
             deadline: '',
             dragover: false,
             
@@ -69,7 +70,7 @@
 
         <form action="{{ route('admin.lomba.store') }}" method="POST" enctype="multipart/form-data" 
               @submit="loading = true" 
-              class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              class="grid grid-cols-1 lg:grid-cols-3 gap-8" novalidate>
             @csrf
 
             <!-- Left Form Fields (Span 2) -->
@@ -89,16 +90,27 @@
                         @error('nama') <p class="mt-1 text-xs text-rose-500 font-medium">{{ $message }}</p> @enderror
                     </div>
 
+                    <!-- Penyelenggara -->
+                    <div>
+                        <label for="penyelenggara" class="block text-xs font-bold uppercase tracking-wider text-brand-dark dark:text-brand-teal mb-2">Penyelenggara</label>
+                        <div class="relative">
+                            <input id="penyelenggara" name="penyelenggara" type="text" x-model="penyelenggara" required placeholder="Himpunan Mahasiswa / Instansi"
+                                   class="w-full pl-11 pr-4 py-3 bg-gray-50 dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/30 focus:bg-white dark:focus:bg-zinc-900 rounded-xl text-sm transition-all duration-300 dark:text-white">
+                            <svg class="w-5 h-5 text-gray-400 absolute left-3.5 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+                        </div>
+                        @error('penyelenggara') <p class="mt-1 text-xs text-rose-500 font-medium">{{ $message }}</p> @enderror
+                    </div>
+
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Penyelenggara -->
+                        <!-- Tanggal Buka -->
                         <div>
-                            <label for="penyelenggara" class="block text-xs font-bold uppercase tracking-wider text-brand-dark dark:text-brand-teal mb-2">Penyelenggara</label>
+                            <label for="tanggal_buka" class="block text-xs font-bold uppercase tracking-wider text-brand-dark dark:text-brand-teal mb-2">Tanggal Buka Pendaftaran</label>
                             <div class="relative">
-                                <input id="penyelenggara" name="penyelenggara" type="text" x-model="penyelenggara" required placeholder="Himpunan Mahasiswa / Instansi"
+                                <input id="tanggal_buka" name="tanggal_buka" type="date" x-model="tanggal_buka" required
                                        class="w-full pl-11 pr-4 py-3 bg-gray-50 dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/30 focus:bg-white dark:focus:bg-zinc-900 rounded-xl text-sm transition-all duration-300 dark:text-white">
-                                <svg class="w-5 h-5 text-gray-400 absolute left-3.5 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+                                <svg class="w-5 h-5 text-gray-400 absolute left-3.5 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
                             </div>
-                            @error('penyelenggara') <p class="mt-1 text-xs text-rose-500 font-medium">{{ $message }}</p> @enderror
+                            @error('tanggal_buka') <p class="mt-1 text-xs text-rose-500 font-medium">{{ $message }}</p> @enderror
                         </div>
 
                         <!-- Deadline -->
@@ -199,9 +211,9 @@
                     </div>
 
                     <!-- Poster Upload -->
-                    <div>
-                        <label class="block text-xs font-bold uppercase tracking-wider text-brand-dark dark:text-brand-teal mb-2">Unggah Poster Lomba</label>
-                        <div class="relative border-2 border-dashed rounded-2xl p-6 transition-all duration-300 flex flex-col items-center justify-center min-h-[200px]"
+                    <div class="flex flex-col items-center">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-brand-dark dark:text-brand-teal mb-2 self-start">Unggah Poster Lomba</label>
+                        <div class="relative border-2 border-dashed rounded-2xl p-6 transition-all duration-300 flex flex-col items-center justify-center aspect-[3/4] w-full max-w-[300px] mx-auto"
                              :class="dragover ? 'border-brand-teal bg-brand-mint/20 dark:bg-brand-dark/20 scale-[1.01]' : 'border-brand-teal/20 bg-gray-50/50 dark:bg-zinc-800/40'"
                              @dragover.prevent="dragover = true"
                              @dragleave.prevent="dragover = false"
@@ -252,7 +264,7 @@
                     
                     <div class="border border-brand-teal/20 rounded-3xl overflow-hidden bg-gray-50/50 dark:bg-zinc-900/60 p-4 space-y-4">
                         <!-- Poster Preview Area -->
-                        <div class="relative w-full h-44 rounded-2xl bg-brand-mint/40 dark:bg-brand-dark/30 flex items-center justify-center overflow-hidden border border-brand-teal/10">
+                        <div class="relative w-full aspect-[3/4] rounded-2xl bg-brand-mint/40 dark:bg-brand-dark/30 flex items-center justify-center overflow-hidden border border-brand-teal/10">
                             <template x-if="posterPreview">
                                 <img :src="posterPreview" class="w-full h-full object-cover">
                             </template>
