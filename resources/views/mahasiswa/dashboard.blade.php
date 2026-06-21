@@ -346,11 +346,11 @@
                         Lihat Semua <span class="material-symbols-outlined text-sm">open_in_new</span>
                     </a>
                 </div>
-                <div class="flex gap-6 overflow-x-auto pb-4 custom-scrollbar">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     @forelse($lombaAktif as $lomba)
                     @php $daysRemaining = Carbon::now()->diffInDays($lomba->deadline, false); @endphp
                     <!-- Competition Card -->
-                    <a href="{{ route('mahasiswa.lomba.show', $lomba->id) }}" class="flex min-w-70 w-70 flex-col group relative bg-white border border-[#8EB69B]/20 rounded-3xl overflow-hidden shadow-sm transition-all hover:-translate-y-2 hover:shadow-xl hover:border-[#8EB69B]/60">
+                    <a href="{{ route('mahasiswa.lomba.show', $lomba->id) }}" class="flex flex-col group relative bg-white border border-[#8EB69B]/20 rounded-3xl overflow-hidden shadow-sm transition-all hover:-translate-y-2 hover:shadow-xl hover:border-[#8EB69B]/60">
                         <div class="relative h-64 overflow-hidden bg-[#E8F3E9]">
                             @if($lomba->poster)
                                 <img alt="{{ $lomba->nama }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="{{ asset('storage/' . $lomba->poster) }}"/>

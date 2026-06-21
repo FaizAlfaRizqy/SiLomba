@@ -30,8 +30,22 @@ class TimFinderController extends Controller
         }
 
         if ($request->filled('kategori')) {
-            $query->whereHas('tim.lomba', function ($q) use ($request) {
-                $q->where('kategori', $request->kategori);
+            $query->whereJsonContains('keahlian_dibutuhkan', $request->kategori);
+        }
+
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $lowerSearch = strtolower($search);
+            $query->where(function ($q) use ($search, $lowerSearch) {
+                $q->where('posisi', 'like', "%{$search}%")
+                  ->orWhereRaw('LOWER(keahlian_dibutuhkan) like ?', ["%{$lowerSearch}%"])
+                  ->orWhereHas('tim', function ($q2) use ($search) {
+                      $q2->where('nama_tim', 'like', "%{$search}%")
+                         ->orWhereHas('lomba', function ($q3) use ($search) {
+                             $q3->where('nama', 'like', "%{$search}%")
+                                ->orWhere('kategori', 'like', "%{$search}%");
+                         });
+                  });
             });
         }
 

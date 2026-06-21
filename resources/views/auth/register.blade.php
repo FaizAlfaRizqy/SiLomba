@@ -111,22 +111,9 @@
                     <!-- Program Studi -->
                     <div>
                         <label for="program_studi" class="text-white text-sm font-medium mb-1.5 block">Program Studi</label>
-                        <div class="relative">
-                            <select id="program_studi" name="program_studi" required
-                                    class="w-full px-4 py-3 rounded-xl bg-[#051F20]/40 border border-[#235347]/50 text-white text-sm focus:outline-none focus:border-white focus:ring-2 focus:ring-white/30 transition duration-200 appearance-none">
-                                <option value="" class="bg-[#0B2B26] text-white">-- Pilih Program Studi --</option>
-                                <option value="Teknik Informatika" class="bg-[#0B2B26] text-white" {{ old('program_studi') == 'Teknik Informatika' ? 'selected' : '' }}>Teknik Informatika</option>
-                                <option value="Sistem Informasi" class="bg-[#0B2B26] text-white" {{ old('program_studi') == 'Sistem Informasi' ? 'selected' : '' }}>Sistem Informasi</option>
-                                <option value="Manajemen" class="bg-[#0B2B26] text-white" {{ old('program_studi') == 'Manajemen' ? 'selected' : '' }}>Manajemen</option>
-                                <option value="Akuntansi" class="bg-[#0B2B26] text-white" {{ old('program_studi') == 'Akuntansi' ? 'selected' : '' }}>Akuntansi</option>
-                                <option value="Ilmu Komunikasi" class="bg-[#0B2B26] text-white" {{ old('program_studi') == 'Ilmu Komunikasi' ? 'selected' : '' }}>Ilmu Komunikasi</option>
-                                <option value="Hukum" class="bg-[#0B2B26] text-white" {{ old('program_studi') == 'Hukum' ? 'selected' : '' }}>Hukum</option>
-                                <option value="Kedokteran" class="bg-[#0B2B26] text-white" {{ old('program_studi') == 'Kedokteran' ? 'selected' : '' }}>Kedokteran</option>
-                            </select>
-                            <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-white/60">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                            </div>
-                        </div>
+                        <input id="program_studi" type="text" name="program_studi" value="{{ old('program_studi') }}" required
+                               class="w-full px-4 py-3 rounded-xl bg-[#051F20]/40 border border-[#235347]/50 text-white text-sm placeholder:text-white/40 focus:outline-none focus:border-white focus:ring-2 focus:ring-white/30 transition duration-200"
+                               placeholder="Contoh: Teknik Informatika">
                     </div>
 
                     <!-- Domisili -->

@@ -35,34 +35,34 @@
                 <div class="absolute z-10 w-[100px] h-[140px] md:w-[180px] md:h-[260px] rounded-2xl md:rounded-3xl overflow-hidden shadow-lg transition duration-700 hover:z-40 hover:scale-110 hover:-rotate-6
                             -translate-x-[130px] translate-y-[60px] -rotate-[15deg]
                             md:-translate-x-[380px] md:translate-y-[100px] md:-rotate-[15deg]">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition duration-500" alt="Student">
+                    <img src="{{ asset('storage/posters/poster_debat.jpg') }}" class="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition duration-500" alt="Hackathon">
                 </div>
                 
                 <!-- Mid Left Card -->
                 <div class="absolute z-20 w-[120px] h-[170px] md:w-[220px] md:h-[310px] rounded-2xl md:rounded-3xl overflow-hidden shadow-xl transition duration-700 hover:z-40 hover:scale-110 hover:-rotate-3
                             -translate-x-[75px] translate-y-[30px] -rotate-[8deg]
                             md:-translate-x-[200px] md:translate-y-[50px] md:-rotate-[8deg]">
-                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition duration-500" alt="Student">
+                    <img src="{{ asset('storage/posters/poster_pusham.jpg') }}" class="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition duration-500" alt="Presentation">
                 </div>
                 
                 <!-- Center Card (Main) -->
                 <div class="absolute z-30 w-[150px] h-[200px] md:w-[280px] md:h-[380px] rounded-2xl md:rounded-[2rem] overflow-hidden shadow-2xl transition duration-700 hover:scale-105 hover:-translate-y-4
                             translate-x-0 translate-y-0 rotate-0 ring-4 ring-white ring-offset-2 ring-offset-cream">
-                    <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover" alt="Student">
+                    <img src="{{ asset('storage/posters/poster_uiux.jpg') }}" class="w-full h-full object-cover" alt="Tech Event">
                 </div>
                 
                 <!-- Mid Right Card -->
                 <div class="absolute z-20 w-[120px] h-[170px] md:w-[220px] md:h-[310px] rounded-2xl md:rounded-3xl overflow-hidden shadow-xl transition duration-700 hover:z-40 hover:scale-110 hover:rotate-3
                             translate-x-[75px] translate-y-[30px] rotate-[8deg]
                             md:translate-x-[200px] md:translate-y-[50px] md:rotate-[8deg]">
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition duration-500" alt="Student">
+                    <img src="{{ asset('storage/posters/poster_milad.png') }}" class="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition duration-500" alt="Discussion">
                 </div>
                 
                 <!-- Far Right Card -->
                 <div class="absolute z-10 w-[100px] h-[140px] md:w-[180px] md:h-[260px] rounded-2xl md:rounded-3xl overflow-hidden shadow-lg transition duration-700 hover:z-40 hover:scale-110 hover:rotate-6
                             translate-x-[130px] translate-y-[60px] rotate-[15deg]
                             md:translate-x-[380px] md:translate-y-[100px] md:rotate-[15deg]">
-                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition duration-500" alt="Student">
+                    <img src="{{ asset('storage/posters/poster_uho.jpg') }}" class="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition duration-500" alt="Achievement">
                 </div>
             </div>
             
@@ -212,102 +212,55 @@
                     </a>
                 </div>
 
+                @php
+                    $lombas = \App\Models\Lomba::where('status', 'buka')->take(3)->get();
+                    $badges = [
+                        ['icon' => '🔥', 'text' => 'Populer', 'color' => 'text-yellow-300'],
+                        ['icon' => '⚡', 'text' => 'Segera Berakhir', 'color' => 'text-yellow-300'],
+                        ['icon' => '🌏', 'text' => 'Internasional', 'color' => 'text-blue-300']
+                    ];
+                @endphp
+
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Lomba 1 -->
+                    @foreach($lombas as $index => $lomba)
                     <div class="group bg-white rounded-[2rem] p-4 shadow-sm border border-[#8EB69B]/20 hover:shadow-2xl hover:border-[#8EB69B]/60 transition-all duration-500 hover:-translate-y-2 flex flex-col">
                         <div class="h-48 rounded-[1.5rem] relative flex items-center justify-center overflow-hidden mb-6 bg-gray-100">
-                            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Hackathon" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            @if($lomba->poster)
+                                <img src="{{ asset('storage/' . $lomba->poster) }}" alt="{{ $lomba->nama }}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            @else
+                                <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="{{ $lomba->nama }}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 grayscale opacity-50">
+                            @endif
                             <div class="absolute inset-0 bg-gradient-to-t from-[#051F20]/80 via-transparent to-transparent"></div>
+                            
+                            @if(isset($badges[$index]))
                             <div class="absolute top-4 left-4 backdrop-blur-md bg-white/20 text-white text-[10px] font-bold rounded-full px-4 py-1.5 uppercase tracking-wider border border-white/30 flex items-center gap-1.5 shadow-sm">
-                                <span class="text-yellow-300">🔥</span> Populer
+                                <span class="{{ $badges[$index]['color'] }}">{{ $badges[$index]['icon'] }}</span> {{ $badges[$index]['text'] }}
                             </div>
+                            @endif
                         </div>
                         <div class="px-2 flex-grow flex flex-col">
-                            <h3 class="font-bold text-dark text-xl mb-1.5 font-serif leading-tight group-hover:text-[#235347] transition-colors">National Hackathon 2026</h3>
+                            <h3 class="font-bold text-dark text-xl mb-1.5 font-serif leading-tight group-hover:text-[#235347] transition-colors line-clamp-2">{{ $lomba->nama }}</h3>
                             <p class="text-xs text-muted mb-5 font-medium flex items-center gap-1.5">
-                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                                Kemendikbudristek
+                                <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                                <span class="truncate">{{ $lomba->penyelenggara }}</span>
                             </p>
                             <div class="flex flex-wrap gap-2 mb-6">
                                 <span class="bg-[#E8F3E9] text-[#163832] text-[11px] font-semibold rounded-lg px-3 py-1 flex items-center gap-1.5">
                                     <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                                    20 Jun 2026
+                                    {{ \Carbon\Carbon::parse($lomba->deadline)->format('d M Y') }}
                                 </span>
-                                <span class="bg-[#E8F3E9] text-[#163832] text-[11px] font-semibold rounded-lg px-3 py-1">Nasional</span>
+                                <span class="bg-[#E8F3E9] text-[#163832] text-[11px] font-semibold rounded-lg px-3 py-1 capitalize">{{ $lomba->tingkat }}</span>
                             </div>
                             <div class="mt-auto flex justify-between items-center pt-5 border-t border-[#8EB69B]/20">
-                                <div>
+                                <div class="truncate pr-2">
                                     <p class="text-[10px] text-muted uppercase font-bold tracking-wider mb-0.5">Total Hadiah</p>
-                                    <p class="text-[#051F20] font-black text-sm">Rp 50.000.000</p>
+                                    <p class="text-[#051F20] font-black text-sm truncate" title="{{ $lomba->hadiah }}">{{ Str::limit($lomba->hadiah, 15) }}</p>
                                 </div>
-                                <a href="{{ route('login') }}" class="text-dark text-xs font-bold bg-[#E8F3E9] hover:bg-[#051F20] hover:text-white px-5 py-2.5 rounded-xl transition-all duration-300 shadow-sm">Detail</a>
+                                <a href="{{ route('login') }}" class="text-dark text-xs font-bold bg-[#E8F3E9] hover:bg-[#051F20] hover:text-white px-5 py-2.5 rounded-xl transition-all duration-300 shadow-sm flex-shrink-0">Detail</a>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Lomba 2 -->
-                    <div class="group bg-white rounded-[2rem] p-4 shadow-sm border border-[#8EB69B]/20 hover:shadow-2xl hover:border-[#8EB69B]/60 transition-all duration-500 hover:-translate-y-2 flex flex-col">
-                        <div class="h-48 rounded-[1.5rem] relative flex items-center justify-center overflow-hidden mb-6 bg-gray-100">
-                            <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=600&q=80" alt="Business Plan" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-[#051F20]/80 via-transparent to-transparent"></div>
-                            <div class="absolute top-4 left-4 backdrop-blur-md bg-white/20 text-white text-[10px] font-bold rounded-full px-4 py-1.5 uppercase tracking-wider border border-white/30 flex items-center gap-1.5 shadow-sm">
-                                <span class="text-yellow-300">⚡</span> Segera Berakhir
-                            </div>
-                        </div>
-                        <div class="px-2 flex-grow flex flex-col">
-                            <h3 class="font-bold text-dark text-xl mb-1.5 font-serif leading-tight group-hover:text-[#235347] transition-colors">Business Plan Competition</h3>
-                            <p class="text-xs text-muted mb-5 font-medium flex items-center gap-1.5">
-                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                                Universitas Indonesia
-                            </p>
-                            <div class="flex flex-wrap gap-2 mb-6">
-                                <span class="bg-[#E8F3E9] text-[#163832] text-[11px] font-semibold rounded-lg px-3 py-1 flex items-center gap-1.5">
-                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                                    15 Jun 2026
-                                </span>
-                                <span class="bg-[#E8F3E9] text-[#163832] text-[11px] font-semibold rounded-lg px-3 py-1">Nasional</span>
-                            </div>
-                            <div class="mt-auto flex justify-between items-center pt-5 border-t border-[#8EB69B]/20">
-                                <div>
-                                    <p class="text-[10px] text-muted uppercase font-bold tracking-wider mb-0.5">Total Hadiah</p>
-                                    <p class="text-[#051F20] font-black text-sm">Rp 25.000.000</p>
-                                </div>
-                                <a href="{{ route('login') }}" class="text-dark text-xs font-bold bg-[#E8F3E9] hover:bg-[#051F20] hover:text-white px-5 py-2.5 rounded-xl transition-all duration-300 shadow-sm">Detail</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Lomba 3 -->
-                    <div class="group bg-white rounded-[2rem] p-4 shadow-sm border border-[#8EB69B]/20 hover:shadow-2xl hover:border-[#8EB69B]/60 transition-all duration-500 hover:-translate-y-2 flex flex-col">
-                        <div class="h-48 rounded-[1.5rem] relative flex items-center justify-center overflow-hidden mb-6 bg-gray-100">
-                            <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=600&q=80" alt="Science" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-[#051F20]/80 via-transparent to-transparent"></div>
-                            <div class="absolute top-4 left-4 backdrop-blur-md bg-white/20 text-white text-[10px] font-bold rounded-full px-4 py-1.5 uppercase tracking-wider border border-white/30 flex items-center gap-1.5 shadow-sm">
-                                <span class="text-blue-300">🌏</span> Internasional
-                            </div>
-                        </div>
-                        <div class="px-2 flex-grow flex flex-col">
-                            <h3 class="font-bold text-dark text-xl mb-1.5 font-serif leading-tight group-hover:text-[#235347] transition-colors">Scientific Paper Competition</h3>
-                            <p class="text-xs text-muted mb-5 font-medium flex items-center gap-1.5">
-                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                                ITB Research Center
-                            </p>
-                            <div class="flex flex-wrap gap-2 mb-6">
-                                <span class="bg-[#E8F3E9] text-[#163832] text-[11px] font-semibold rounded-lg px-3 py-1 flex items-center gap-1.5">
-                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                                    30 Jul 2026
-                                </span>
-                                <span class="bg-[#E8F3E9] text-[#163832] text-[11px] font-semibold rounded-lg px-3 py-1">Internasional</span>
-                            </div>
-                            <div class="mt-auto flex justify-between items-center pt-5 border-t border-[#8EB69B]/20">
-                                <div>
-                                    <p class="text-[10px] text-muted uppercase font-bold tracking-wider mb-0.5">Total Hadiah</p>
-                                    <p class="text-[#051F20] font-black text-sm">Rp 15.000.000</p>
-                                </div>
-                                <a href="{{ route('login') }}" class="text-dark text-xs font-bold bg-[#E8F3E9] hover:bg-[#051F20] hover:text-white px-5 py-2.5 rounded-xl transition-all duration-300 shadow-sm">Detail</a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>

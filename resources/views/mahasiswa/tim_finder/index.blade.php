@@ -264,7 +264,7 @@
                     <!-- Kategori -->
                     <div class="lg:col-span-4">
                         <div class="flex flex-wrap gap-2">
-                            @php $cats = ['','ui-ux','coding','bisnis','riset']; $labels = ['Semua','UI/UX','Coding','Bisnis','Riset']; @endphp
+                            @php $cats = ['','UI/UX','Coding','Bisnis','Riset']; $labels = ['Semua','UI/UX','Coding','Bisnis','Riset']; @endphp
                             @foreach($cats as $i => $cat)
                                 <a href="{{ route('mahasiswa.tim-finder.index', array_filter(['kategori' => $cat, 'search' => request('search')])) }}"
                                    class="px-4 py-2 rounded-full font-headline-sm text-[13px] transition-colors
@@ -276,9 +276,9 @@
                     </div>
                     <!-- Reset -->
                     <div class="lg:col-span-2">
-                        <a href="{{ route('mahasiswa.tim-finder.index') }}" class="w-full flex items-center justify-center gap-2 text-[#235347] hover:text-[#051F20] transition-colors font-headline-sm text-[14px]">
-                            <span class="material-symbols-outlined text-[18px]">filter_alt_off</span>
-                            Reset Filter
+                        <a href="{{ route('mahasiswa.tim-finder.index') }}" class="w-full flex items-center justify-center gap-1.5 text-[#235347]/60 hover:text-[#051F20] transition-colors font-label-md text-[12px] bg-[#E8F3E9]/50 hover:bg-[#D4E7D6] py-2 rounded-full">
+                            <span class="material-symbols-outlined text-[16px]">close</span>
+                            Reset
                         </a>
                     </div>
                 </div>
@@ -419,11 +419,7 @@
                                 </span>
                                 <div class="flex gap-2">
                                     <a href="{{ route('mahasiswa.tim-finder.show', $slot->id) }}"
-                                       class="px-3 py-1.5 border border-[#051F20] text-[#051F20] text-[11px] font-bold rounded-xl hover:bg-[#E8F3E9] transition-colors">
-                                        Detail
-                                    </a>
-                                    <a href="{{ route('mahasiswa.tim-finder.show', $slot->id) }}"
-                                       class="px-3 py-1.5 bg-[#051F20] text-white text-[11px] font-bold rounded-xl hover:bg-opacity-90 transition-colors">
+                                       class="px-5 py-1.5 bg-[#051F20] text-white text-[11px] font-bold rounded-xl hover:bg-opacity-90 transition-colors">
                                         Lamar
                                     </a>
                                 </div>

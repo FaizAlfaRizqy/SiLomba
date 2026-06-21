@@ -689,7 +689,7 @@
                                     <p class="text-sm font-bold text-[#051F20]">{{ $slot->tim->lomba->deadline->format('d M Y') }}</p>
                                     @if($slot->tim->lomba->deadline->diffInDays(now()) <= 7)
                                         <span class="bg-red-50 text-red-500 text-[10px] font-bold px-2 py-0.5 rounded-full">
-                                            ⚡ {{ $slot->tim->lomba->deadline->diffInDays(now()) }} hari lagi
+                                            ⚡ {{ (int) abs($slot->tim->lomba->deadline->diffInDays(now())) }} hari lagi
                                         </span>
                                     @endif
                                 </div>

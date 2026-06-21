@@ -1,4 +1,4 @@
-<div style="display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; width: 100%;">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
     @forelse($lombas as $lomba)
         @php
             $isArsip = isset($tab) && $tab === 'arsip';

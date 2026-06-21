@@ -233,40 +233,30 @@
                 <div class="space-y-4">
                     @forelse($notifikasis as $notif)
                         <div class="relative group">
-                            <form action="{{ route('mahasiswa.notifikasi.baca', $notif->id) }}" method="POST" id="form-notif-{{ $notif->id }}">
-                                @csrf
-                                <button type="submit" class="w-full text-left focus:outline-none">
-                                    <div class="p-5 rounded-2xl transition-all flex items-start gap-5 
-                                        {{ $notif->is_read ? 'bg-white/70 border border-[#8EB69B]/15 opacity-70' : 'bg-white border border-[#8EB69B]/30 shadow-sm shadow-[#8EB69B]/5' }}
-                                        hover:bg-white hover:border-[#235347]/50 group">
-                                        
-                                        <div class="flex-1 min-w-0">
-                                            <div class="flex justify-between items-start mb-1">
-                                                <h4 class="text-[15px] font-bold {{ $notif->is_read ? 'text-[#051F20]/70' : 'text-[#051F20]' }} group-hover:text-[#235347] transition-colors font-serif">
-                                                    {{ $notif->judul }}
-                                                </h4>
-                                                @if(!$notif->is_read)
-                                                    <div class="w-2.5 h-2.5 bg-[#235347] rounded-full shadow-[0_0_8px_rgba(35,83,71,0.3)] flex-shrink-0 mt-1"></div>
-                                                @endif
-                                            </div>
-                                            <p class="text-[14px] {{ $notif->is_read ? 'text-[#235347]/60' : 'text-[#235347]/85' }} leading-relaxed line-clamp-2">
-                                                {{ $notif->isi }}
-                                            </p>
-                                            <div class="flex items-center justify-between mt-4">
-                                                <span class="text-[11px] font-label-md text-[#235347]/50 uppercase tracking-wider flex items-center gap-1.5">
-                                                    <span class="material-symbols-outlined text-[14px]">schedule</span>
-                                                    {{ $notif->created_at->diffForHumans() }}
-                                                </span>
-                                                @if($notif->link)
-                                                    <span class="text-[11px] font-bold text-[#235347] uppercase tracking-wider flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                                                        Lihat Detail <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
-                                                    </span>
-                                                @endif
-                                            </div>
-                                        </div>
+                            <div class="p-5 rounded-2xl transition-all flex items-start gap-5 
+                                {{ $notif->is_read ? 'bg-white/70 border border-[#8EB69B]/15 opacity-70' : 'bg-white border border-[#8EB69B]/30 shadow-sm shadow-[#8EB69B]/5' }}
+                                hover:bg-white hover:border-[#235347]/50">
+                                
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex justify-between items-start mb-1">
+                                        <h4 class="text-[15px] font-bold {{ $notif->is_read ? 'text-[#051F20]/70' : 'text-[#051F20]' }} group-hover:text-[#235347] transition-colors font-serif">
+                                            {{ $notif->judul }}
+                                        </h4>
+                                        @if(!$notif->is_read)
+                                            <div class="w-2.5 h-2.5 bg-[#235347] rounded-full shadow-[0_0_8px_rgba(35,83,71,0.3)] flex-shrink-0 mt-1"></div>
+                                        @endif
                                     </div>
-                                </button>
-                            </form>
+                                    <p class="text-[14px] {{ $notif->is_read ? 'text-[#235347]/60' : 'text-[#235347]/85' }} leading-relaxed line-clamp-2">
+                                        {{ $notif->isi }}
+                                    </p>
+                                    <div class="flex items-center justify-between mt-4">
+                                        <span class="text-[11px] font-label-md text-[#235347]/50 uppercase tracking-wider flex items-center gap-1.5">
+                                            <span class="material-symbols-outlined text-[14px]">schedule</span>
+                                            {{ $notif->created_at->diffForHumans() }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     @empty
                         <div class="py-24 text-center bg-white rounded-[2rem] border border-[#8EB69B]/20 shadow-sm">

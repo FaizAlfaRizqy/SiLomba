@@ -35,7 +35,7 @@ class ProfileController extends Controller
             'keahlian' => ['required', 'array', 'min:1'],
             'minat_lomba' => ['required', 'array', 'min:1'],
             'link_portofolio' => ['nullable', 'url'],
-            'ketersediaan_waktu' => ['required', 'in:Full-time,Part-time,Weekends only'],
+
             'level_privasi' => ['required', 'in:publik,privat,tim saja'],
             'program_studi' => ['required', 'string', 'max:255'],
             'domisili' => ['required', 'string', 'max:255'],
@@ -65,7 +65,6 @@ class ProfileController extends Controller
             'keahlian' => $request->keahlian,
             'minat_lomba' => $request->minat_lomba,
             'link_portofolio' => $request->link_portofolio,
-            'ketersediaan_waktu' => $request->ketersediaan_waktu,
             'level_privasi' => $request->level_privasi,
             'program_studi' => $request->program_studi,
             'domisili' => $request->domisili,
