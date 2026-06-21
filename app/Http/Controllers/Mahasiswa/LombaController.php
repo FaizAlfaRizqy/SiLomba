@@ -34,17 +34,19 @@ class LombaController extends Controller
         }
 
         // Hitung total untuk badge tab (tanpa filter search/kategori/tingkat)
-        $totalAktif = Lomba::where('deadline', '>=', $now)->count();
+        $totalAktif = Lomba::where('deadline', '>=', $now)->where('status', 'buka')->count();
         $totalArsip = Lomba::where('deadline', '<', $now)->count();
 
         // Query utama berdasarkan tab
         if ($tab === 'arsip') {
-            // Lomba yang sudah melewati deadline
+            // Lomba yang sudah melewati deadline (semua status)
             $query = (clone $baseQuery)->where('deadline', '<', $now)
                 ->orderBy('deadline', 'desc');
         } else {
-            // Lomba aktif: deadline >= hari ini
-            $query = (clone $baseQuery)->where('deadline', '>=', $now)
+            // Lomba aktif: deadline >= hari ini DAN status = 'buka' (dikontrol admin)
+            $query = (clone $baseQuery)
+                ->where('deadline', '>=', $now)
+                ->where('status', 'buka')
                 ->orderBy('deadline', 'asc');
         }
 

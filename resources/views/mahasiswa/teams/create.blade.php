@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html class="dark" lang="id">
+<html class="light" lang="id">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Buka Open Slot Tim | SiLomba</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script id="tailwind-config">
         tailwind.config = {
@@ -13,53 +16,53 @@
             theme: {
                 extend: {
                     "colors": {
-                        "on-secondary-container": "#00743a",
-                        "surface-bright": "#f7f9fb",
-                        "secondary": "#006d37",
-                        "on-background": "#191c1e",
-                        "inverse-primary": "#a8cfc4",
-                        "inverse-on-surface": "#eff1f3",
+                        "on-secondary-container": "#163832",
+                        "surface-bright": "#E8F3E9",
+                        "secondary": "#235347",
+                        "on-background": "#051F20",
+                        "inverse-primary": "#8EB69B",
+                        "inverse-on-surface": "#F4F9F6",
                         "on-secondary": "#ffffff",
                         "on-primary": "#ffffff",
-                        "tertiary-fixed-dim": "#c0c1ff",
+                        "tertiary-fixed-dim": "#D4E7D6",
                         "on-tertiary": "#ffffff",
-                        "secondary-fixed": "#6bfe9c",
-                        "primary-container": "#062e27",
-                        "on-primary-fixed": "#00201a",
+                        "secondary-fixed": "#8EB69B",
+                        "primary-container": "#051F20",
+                        "on-primary-fixed": "#E8F3E9",
                         "on-error": "#ffffff",
-                        "on-surface-variant": "#414846",
-                        "surface-container-highest": "#e0e3e5",
-                        "on-tertiary-fixed-variant": "#2f2ebe",
-                        "on-surface": "#191c1e",
-                        "on-secondary-fixed-variant": "#005228",
-                        "primary-fixed": "#c3ebe0",
-                        "tertiary-fixed": "#e1e0ff",
+                        "on-surface-variant": "#8EB69B",
+                        "surface-container-highest": "#D4E7D6",
+                        "on-tertiary-fixed-variant": "#163832",
+                        "on-surface": "#051F20",
+                        "on-secondary-fixed-variant": "#163832",
+                        "primary-fixed": "#D4E7D6",
+                        "tertiary-fixed": "#D4E7D6",
                         "error": "#ba1a1a",
-                        "surface-container-high": "#e6e8ea",
-                        "on-tertiary-fixed": "#07006c",
-                        "inverse-surface": "#2d3133",
-                        "surface-tint": "#41655d",
+                        "surface-container-high": "#F4F9F6",
+                        "on-tertiary-fixed": "#0B2B26",
+                        "inverse-surface": "#051F20",
+                        "surface-tint": "#235347",
                         "surface-container-lowest": "#ffffff",
-                        "tertiary": "#040055",
-                        "secondary-container": "#6bfe9c",
-                        "outline": "#717976",
-                        "on-primary-container": "#72978d",
-                        "secondary-fixed-dim": "#4ae183",
-                        "on-tertiary-container": "#7e81ff",
-                        "surface-variant": "#e0e3e5",
-                        "surface-container-low": "#f2f4f6",
-                        "tertiary-container": "#0c0091",
-                        "on-primary-fixed-variant": "#294d45",
-                        "primary": "#001813",
+                        "tertiary": "#0B2B26",
+                        "secondary-container": "#8EB69B",
+                        "outline": "#8EB69B",
+                        "on-primary-container": "#D4E7D6",
+                        "secondary-fixed-dim": "#8EB69B",
+                        "on-tertiary-container": "#8EB69B",
+                        "surface-variant": "#D4E7D6",
+                        "surface-container-low": "#E8F3E9",
+                        "tertiary-container": "#051F20",
+                        "on-primary-fixed-variant": "#235347",
+                        "primary": "#051F20",
+                        "background": "#E8F3E9",
                         "on-error-container": "#93000a",
-                        "background": "#f7f9fb",
-                        "surface": "#f7f9fb",
-                        "surface-container": "#eceef0",
-                        "on-secondary-fixed": "#00210c",
-                        "primary-fixed-dim": "#a8cfc4",
+                        "surface": "#E8F3E9",
+                        "surface-container": "#D4E7D6",
+                        "on-secondary-fixed": "#051F20",
+                        "primary-fixed-dim": "#8EB69B",
                         "error-container": "#ffdad6",
-                        "outline-variant": "#c1c8c5",
-                        "surface-dim": "#d8dadc"
+                        "outline-variant": "#235347",
+                        "surface-dim": "#D4E7D6"
                     },
                     "borderRadius": {
                         "DEFAULT": "0.25rem",
@@ -76,13 +79,15 @@
                         "section-gap": "2.5rem"
                     },
                     "fontFamily": {
-                        "label-md": ["JetBrains Mono"],
-                        "headline-sm": ["Hanken Grotesk"],
-                        "headline-md": ["Hanken Grotesk"],
-                        "body-md": ["Inter"],
-                        "headline-lg": ["Hanken Grotesk"],
-                        "body-lg": ["Inter"],
-                        "headline-lg-mobile": ["Hanken Grotesk"]
+                        "sans": ["Plus Jakarta Sans", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"],
+                        "label-md": ["Plus Jakarta Sans", "sans-serif"],
+                        "headline-sm": ["Playfair Display", "serif"],
+                        "headline-md": ["Playfair Display", "serif"],
+                        "body-md": ["Plus Jakarta Sans", "sans-serif"],
+                        "headline-lg": ["Playfair Display", "serif"],
+                        "body-lg": ["Plus Jakarta Sans", "sans-serif"],
+                        "headline-lg-mobile": ["Playfair Display", "serif"]
                     },
                     "fontSize": {
                         "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
@@ -99,54 +104,54 @@
     </script>
     <style>
         .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined' !important;
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #001813; }
-        ::-webkit-scrollbar-thumb { background: #005228; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #00743a; }
-        .card-glass {
-            background: rgba(255,255,255,0.04);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.10);
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(35, 83, 71, 0.05);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(35, 83, 71, 0.2);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(35, 83, 71, 0.4);
         }
         .form-card {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(107,254,156,0.10);
-            border-radius: 1.5rem;
-        }
-        .section-card {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 1rem;
-            padding: 1.5rem;
+            background: #ffffff;
+            border: 1px solid rgba(142, 182, 155, 0.2);
+            box-shadow: 0 4px 20px rgba(5, 31, 32, 0.03);
+            border-radius: 2rem;
+            padding: 2rem;
         }
         .field-input {
             width: 100%;
-            background: rgba(255,255,255,0.07);
-            border: 1px solid rgba(255,255,255,0.15);
+            background: #F4F9F6;
+            border: 1px solid rgba(142, 182, 155, 0.2);
             border-radius: 0.75rem;
             padding: 0.75rem 1rem;
-            color: black;
+            color: #051F20;
             font-size: 14px;
             outline: none;
-            transition: border-color 0.2s, box-shadow 0.2s;
-            font-family: 'Inter', sans-serif;
+            transition: all 0.2s;
         }
         .field-input:focus {
-            border-color: rgba(107,254,156,0.5);
-            box-shadow: 0 0 0 3px rgba(107,254,156,0.08);
+            border-color: #235347;
+            box-shadow: 0 0 0 3px rgba(35, 83, 71, 0.08);
         }
-        .field-input::placeholder { color: rgba(0,0,0,0.35); }
-        .field-input option { background: #062e27; color: white; }
+        .field-input::placeholder { color: rgba(5, 31, 32, 0.35); }
+        .field-input option { background: #ffffff; color: #051F20; }
         .field-label {
             display: block;
-            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
             font-size: 11px;
-            font-weight: 500;
             letter-spacing: 0.05em;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.55);
+            color: #235347;
             margin-bottom: 0.5rem;
         }
         .skill-badge {
@@ -157,40 +162,40 @@
             border-radius: 9999px;
             font-size: 11px;
             font-weight: 700;
-            font-family: 'JetBrains Mono', monospace;
             cursor: pointer;
             transition: all 0.18s ease;
             user-select: none;
-            border: 1px solid rgba(255,255,255,0.12);
-            background: rgba(255,255,255,0.06);
-            color: rgba(255,255,255,0.60);
+            border: 1px solid rgba(142, 182, 155, 0.2);
+            background: #F4F9F6;
+            color: #235347;
         }
         .skill-badge.selected {
-            background: rgba(107,254,156,0.15);
-            border-color: rgba(107,254,156,0.45);
-            color: #6bfe9c;
+            background: #051F20;
+            border-color: transparent;
+            color: #ffffff;
         }
         .skill-badge:hover:not(.selected) {
-            background: rgba(255,255,255,0.10);
-            color: rgba(255,255,255,0.85);
+            background: #E8F3E9;
+            color: #235347;
         }
         .slot-card-preview {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(107,254,156,0.12);
-            border-radius: 1rem;
+            background: #ffffff;
+            border: 1px solid rgba(142, 182, 155, 0.3);
+            box-shadow: 0 4px 20px rgba(5, 31, 32, 0.03);
+            border-radius: 1.5rem;
             transition: all 0.25s ease;
         }
         .preview-strip {
-            background: linear-gradient(135deg, rgba(107,254,156,0.08) 0%, rgba(0,109,55,0.12) 100%);
-            border: 1px solid rgba(107,254,156,0.15);
+            background: #E8F3E9;
+            border: 1px solid rgba(142, 182, 155, 0.2);
             border-radius: 0.75rem;
             padding: 0.75rem 1rem;
         }
         [x-cloak] { display: none !important; }
-        .error-msg { color: #f87171; font-size: 12px; margin-top: 0.35rem; font-family: 'Inter', sans-serif; }
+        .error-msg { color: #dc2626; font-size: 12px; margin-top: 0.35rem; }
     </style>
 </head>
-<body class="bg-primary text-on-primary-fixed selection:bg-secondary-fixed selection:text-on-secondary-fixed font-body-md overflow-x-hidden">
+<body class="bg-[#E8F3E9] text-[#051F20] font-body-md overflow-x-hidden">
 <div class="flex min-h-screen"
      x-data="{
         namaLomba: '',
@@ -215,42 +220,44 @@
         }
      }">
 
-    <!-- ═══════════════════════════════════════════
-         SIDEBAR — identical to Direktori Lomba
-    ═══════════════════════════════════════════ -->
-    <aside class="hidden md:flex flex-col h-screen w-64 sticky left-0 top-0 bg-primary-container border-r border-outline-variant/10 shadow-none py-stack-lg px-stack-md z-50">
-        <!-- Logo -->
+    <!-- SideNavBar -->
+    <aside class="hidden md:flex flex-col h-screen w-64 sticky left-0 top-0 bg-primary-container border-r border-[#8EB69B]/10 shadow-none py-stack-lg px-stack-md z-50">
         <div class="mb-section-gap px-2 flex items-center gap-3">
             <img src="{{ asset('images/logo.png') }}" alt="Logo SiLomba" class="w-10 h-10 object-contain drop-shadow-md">
             <div>
                 <h1 class="font-headline-sm text-headline-sm font-bold text-secondary-fixed">SiLomba</h1>
-                <p class="text-on-primary-container text-[11px] font-label-md tracking-wider opacity-70">DIREKTORI LOMBA</p>
+                <p class="text-on-primary-container text-[11px] font-label-md tracking-wider opacity-70">TIM SAYA</p>
             </div>
         </div>
-
-        <!-- Navigation -->
         <nav class="flex flex-col gap-2">
-            <a class="flex items-center gap-stack-md px-4 py-3 rounded-lg transition-all {{ request()->routeIs('dashboard') ? 'bg-secondary text-on-secondary scale-98' : 'text-surface-variant hover:bg-secondary/20' }}" href="{{ route('dashboard') }}">
+            <!-- Dashboard -->
+            <a class="flex items-center gap-stack-md px-4 py-3 rounded-lg transition-all {{ request()->routeIs('dashboard') ? 'bg-secondary text-on-secondary scale-98' : 'text-[#8EB69B]/70 hover:bg-secondary/20' }}" href="{{ route('dashboard') }}">
                 <span class="material-symbols-outlined" style="{{ request()->routeIs('dashboard') ? "font-variation-settings: 'FILL' 1;" : '' }}">dashboard</span>
                 <span class="font-label-md text-label-md">Dashboard</span>
             </a>
-            <a class="flex items-center gap-stack-md px-4 py-3 rounded-lg transition-all {{ request()->routeIs('mahasiswa.lomba.*') ? 'bg-secondary text-on-secondary scale-98' : 'text-surface-variant hover:bg-secondary/20' }}" href="{{ route('mahasiswa.lomba.index') }}">
+            <!-- Direktori Lomba -->
+            <a class="flex items-center gap-stack-md px-4 py-3 rounded-lg transition-all {{ request()->routeIs('mahasiswa.lomba.*') ? 'bg-secondary text-on-secondary scale-98' : 'text-[#8EB69B]/70 hover:bg-secondary/20' }}" href="{{ route('mahasiswa.lomba.index') }}">
                 <span class="material-symbols-outlined" style="{{ request()->routeIs('mahasiswa.lomba.*') ? "font-variation-settings: 'FILL' 1;" : '' }}">emoji_events</span>
                 <span class="font-label-md text-label-md">Direktori Lomba</span>
             </a>
-            <a class="flex items-center gap-stack-md px-4 py-3 rounded-lg transition-all {{ request()->routeIs('mahasiswa.tim-finder.*') ? 'bg-secondary text-on-secondary scale-98' : 'text-surface-variant hover:bg-secondary/20' }}" href="{{ route('mahasiswa.tim-finder.index') }}">
+            <!-- Tim Finder -->
+            <a class="flex items-center gap-stack-md px-4 py-3 rounded-lg transition-all {{ request()->routeIs('mahasiswa.tim-finder.*') ? 'bg-secondary text-on-secondary scale-98' : 'text-[#8EB69B]/70 hover:bg-secondary/20' }}" href="{{ route('mahasiswa.tim-finder.index') }}">
                 <span class="material-symbols-outlined" style="{{ request()->routeIs('mahasiswa.tim-finder.*') ? "font-variation-settings: 'FILL' 1;" : '' }}">group</span>
                 <span class="font-label-md text-label-md">Tim Finder</span>
             </a>
-            <!-- Tim Saya — active -->
-            <a class="flex items-center gap-stack-md px-4 py-3 rounded-lg transition-all {{ request()->routeIs('mahasiswa.my-teams.*') || request()->routeIs('mahasiswa.team.*') ? 'bg-secondary text-on-secondary scale-98' : 'text-surface-variant hover:bg-secondary/20' }}" href="{{ route('mahasiswa.my-teams.index') }}">
+            <!-- Tim Saya -->
+            <a class="flex items-center gap-stack-md px-4 py-3 rounded-lg transition-all {{ request()->routeIs('mahasiswa.my-teams.*') || request()->routeIs('mahasiswa.team.*') ? 'bg-secondary text-on-secondary scale-98' : 'text-[#8EB69B]/70 hover:bg-secondary/20' }}" href="{{ route('mahasiswa.my-teams.index') }}">
                 <span class="material-symbols-outlined" style="{{ request()->routeIs('mahasiswa.my-teams.*') || request()->routeIs('mahasiswa.team.*') ? "font-variation-settings: 'FILL' 1;" : '' }}">groups</span>
                 <span class="font-label-md text-label-md">Tim Saya</span>
             </a>
             <!-- Notifikasi -->
-            <div x-data="{ jumlah: {{ \App\Models\Notification::where('id_penerima', Auth::id())->where('is_read', false)->count() }} }"
-                 x-init="setInterval(() => { fetch('{{ route('mahasiswa.notifikasi.unread-count') }}').then(r => r.json()).then(d => jumlah = d.count) }, 10000)">
-                <a class="flex items-center justify-between gap-stack-md px-4 py-3 rounded-lg transition-all {{ request()->routeIs('mahasiswa.notifikasi.*') ? 'bg-secondary text-on-secondary scale-98' : 'text-surface-variant hover:bg-secondary/20' }}" href="{{ route('mahasiswa.notifikasi.index') }}">
+            <div x-data="{ jumlah: 0 }" 
+                 x-init="
+                   fetch('{{ route('mahasiswa.notifikasi.unread-count') }}')
+                     .then(r => r.json())
+                     .then(d => jumlah = d.count)
+                 ">
+                <a class="flex items-center justify-between gap-stack-md px-4 py-3 rounded-lg transition-all {{ request()->routeIs('mahasiswa.notifikasi.*') ? 'bg-secondary text-on-secondary scale-98' : 'text-[#8EB69B]/70 hover:bg-secondary/20' }}" href="{{ route('mahasiswa.notifikasi.index') }}">
                     <div class="flex items-center gap-stack-md">
                         <span class="material-symbols-outlined" style="{{ request()->routeIs('mahasiswa.notifikasi.*') ? "font-variation-settings: 'FILL' 1;" : '' }}">notifications</span>
                         <span class="font-label-md text-label-md">Notifikasi</span>
@@ -261,52 +268,43 @@
                 </a>
             </div>
         </nav>
-
-        <!-- Bottom: logout + profile -->
         <div class="mt-auto flex flex-col gap-1 pt-6">
+            <!-- Logout -->
             <form method="POST" action="{{ route('logout') }}" class="w-full">
                 @csrf
-                <button type="submit" class="w-full flex items-center gap-stack-md text-error hover:bg-error/10 px-4 py-3 transition-all rounded-lg">
+                <button type="submit" class="w-full flex items-center gap-stack-md text-red-400 hover:bg-red-500/10 px-4 py-3 transition-all rounded-lg">
                     <span class="material-symbols-outlined">logout</span>
                     <span class="font-label-md text-label-md">Logout</span>
                 </button>
             </form>
-            <a href="{{ route('mahasiswa.profile.edit') }}" class="mt-2 pt-4 border-t border-outline-variant/10 flex items-center gap-3 px-2 hover:bg-white/5 pb-2 rounded-lg transition-colors cursor-pointer group">
-                <img alt="Profile" class="w-10 h-10 rounded-full border-2 border-secondary-fixed/30 group-hover:border-secondary-fixed transition-colors" src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&color=7F9CF5&background=EBF4FF"/>
-                <div class="overflow-hidden flex-1">
-                    <p class="font-headline-sm text-[14px] text-white truncate group-hover:text-secondary-fixed transition-colors">{{ Auth::user()->name }}</p>
-                    <p class="font-label-md text-[10px] text-on-surface-variant truncate">{{ Auth::user()->getRoleNames()->first() ?? 'Mahasiswa' }}</p>
-                </div>
-            </a>
         </div>
     </aside>
 
-    <!-- ═══════════════════════════════════════════
-         MAIN CONTENT
-    ═══════════════════════════════════════════ -->
-    <div class="flex-1 flex flex-col min-w-0 bg-[#0e3b31]">
-        <main class="flex-1 p-8 overflow-y-auto">
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col min-w-0 bg-[#E8F3E9]">
+        <!-- Scrollable Content -->
+        <main class="flex-1 py-10 px-6 md:px-12 max-w-[1600px] mx-auto w-full">
 
-            <!-- Header -->
+            <!-- Back navigation / Header -->
             <div class="mb-8">
-                <div class="flex items-center gap-3 mb-1">
-                    <a href="{{ route('mahasiswa.my-teams.index') }}" class="text-white/40 hover:text-secondary-fixed transition-colors flex items-center gap-1 text-[13px] font-label-md">
+                <div class="flex items-center gap-3 mb-2">
+                    <a href="{{ route('mahasiswa.my-teams.index') }}" class="text-[#235347]/70 hover:text-[#051F20] transition-colors flex items-center gap-1 text-[13px] font-bold">
                         <span class="material-symbols-outlined text-[16px]">arrow_back</span>
                         Tim Saya
                     </a>
-                    <span class="text-white/20">/</span>
-                    <span class="text-secondary-fixed text-[13px] font-label-md">Buka Open Slot</span>
+                    <span class="text-[#235347]/30">/</span>
+                    <span class="text-[#235347] text-[13px] font-bold">Buka Open Slot</span>
                 </div>
-                <h2 class="font-headline-lg text-headline-lg text-white mb-2">Buka Open Slot Tim</h2>
-                <p class="text-white/70 text-body-lg max-w-2xl">
-                    Cari anggota yang tepat untuk melengkapi tim lombamu.
-                </p>
+                <h2 class="font-bold text-4xl text-[#051F20] font-serif leading-tight">
+                    Buka Open Slot Tim
+                </h2>
+                <p class="text-[#235347]/70 mt-2">Cari anggota yang tepat untuk melengkapi tim lombamu.</p>
             </div>
 
             <!-- Flash / Validation errors -->
             @if($errors->any())
-                <div class="mb-6 p-4 bg-error/15 border border-error/30 text-red-300 rounded-2xl flex items-start gap-3">
-                    <span class="material-symbols-outlined text-[20px] flex-shrink-0 mt-0.5" style="font-variation-settings:'FILL' 1;">error</span>
+                <div class="mb-6 p-4 bg-red-50 border border-red-200 text-red-700 rounded-2xl flex items-start gap-3 shadow-sm">
+                    <span class="material-symbols-outlined text-[20px] flex-shrink-0 mt-0.5 text-red-600">error</span>
                     <div>
                         <p class="font-bold text-sm mb-1">Terdapat kesalahan pada formulir:</p>
                         <ul class="list-disc list-inside space-y-0.5">
@@ -324,25 +322,25 @@
 
                 <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
 
-                    <!-- ── LEFT COLUMN: Form ── -->
-                    <div class="xl:col-span-2 space-y-5">
+                    <!-- LEFT COLUMN: Form -->
+                    <div class="xl:col-span-2 space-y-5 text-left">
 
                         <!-- Section 1: Informasi Tim -->
-                        <div class="form-card p-6">
+                        <div class="form-card">
                             <div class="flex items-center gap-3 mb-6">
-                                <div class="w-9 h-9 rounded-xl bg-secondary-fixed/15 border border-secondary-fixed/20 flex items-center justify-center">
-                                    <span class="material-symbols-outlined text-secondary-fixed text-[18px]" style="font-variation-settings:'FILL' 1;">groups</span>
+                                <div class="w-9 h-9 rounded-xl bg-[#E8F3E9] border border-[#8EB69B]/30 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-[#235347] text-[18px]">groups</span>
                                 </div>
                                 <div>
-                                    <h3 class="font-headline-sm text-white text-[16px]">Informasi Tim</h3>
-                                    <p class="text-white/45 text-[12px] font-label-md">Pilih lomba dan atur data dasar tim</p>
+                                    <h3 class="font-bold text-[#051F20] text-[16px] font-serif">Informasi Tim</h3>
+                                    <p class="text-[#235347]/60 text-[12px]">Pilih lomba dan atur data dasar tim</p>
                                 </div>
                             </div>
 
                             <div class="space-y-5">
                                 <!-- Pilih Lomba -->
                                 <div>
-                                    <label class="field-label" for="id_lomba">Pilih Lomba <span class="text-secondary-fixed">*</span></label>
+                                    <label class="field-label" for="id_lomba">Pilih Lomba <span class="text-red-500">*</span></label>
                                     <select id="id_lomba" name="id_lomba" class="field-input" required
                                             @change="namaLomba = $event.target.options[$event.target.selectedIndex].text.split('(')[0].trim()">
                                         <option value="">— Pilih Lomba Aktif —</option>
@@ -358,7 +356,7 @@
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                                     <!-- Nama Tim -->
                                     <div>
-                                        <label class="field-label" for="nama_tim">Nama Tim <span class="text-secondary-fixed">*</span></label>
+                                        <label class="field-label" for="nama_tim">Nama Tim <span class="text-red-500">*</span></label>
                                         <input id="nama_tim" name="nama_tim" type="text"
                                                class="field-input" required
                                                placeholder="Misal: Tim Garuda IT"
@@ -369,12 +367,12 @@
 
                                     <!-- Maksimal Anggota -->
                                     <div>
-                                        <label class="field-label" for="maks_anggota">Maksimal Anggota Tim <span class="text-secondary-fixed">*</span></label>
+                                        <label class="field-label" for="maks_anggota">Maksimal Anggota Tim <span class="text-red-500">*</span></label>
                                         <input id="maks_anggota" name="maks_anggota" type="number"
                                                class="field-input" required min="2" max="10"
                                                value="{{ old('maks_anggota', 3) }}"
                                                x-model.number="maksAnggota"/>
-                                        <p class="text-white/30 text-[11px] mt-1 font-label-md">Termasuk kamu sebagai ketua tim</p>
+                                        <p class="text-[#235347]/50 text-[11px] mt-1">Termasuk kamu sebagai ketua tim</p>
                                         @error('maks_anggota') <p class="error-msg">{{ $message }}</p> @enderror
                                     </div>
                                 </div>
@@ -382,14 +380,14 @@
                         </div>
 
                         <!-- Section 2: Detail Open Slot -->
-                        <div class="form-card p-6">
+                        <div class="form-card">
                             <div class="flex items-center gap-3 mb-6">
-                                <div class="w-9 h-9 rounded-xl bg-amber-500/15 border border-amber-400/20 flex items-center justify-center">
-                                    <span class="material-symbols-outlined text-amber-400 text-[18px]" style="font-variation-settings:'FILL' 1;">inbox</span>
+                                <div class="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-400/25 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-amber-600 text-[18px]">inbox</span>
                                 </div>
                                 <div>
-                                    <h3 class="font-headline-sm text-white text-[16px]">Detail Open Slot</h3>
-                                    <p class="text-white/45 text-[12px] font-label-md">Tentukan posisi dan persyaratan anggota</p>
+                                    <h3 class="font-bold text-[#051F20] text-[16px] font-serif">Detail Open Slot</h3>
+                                    <p class="text-[#235347]/60 text-[12px]">Tentukan posisi dan persyaratan anggota</p>
                                 </div>
                             </div>
 
@@ -397,7 +395,7 @@
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                                     <!-- Posisi -->
                                     <div>
-                                        <label class="field-label" for="posisi">Posisi yang Dibutuhkan <span class="text-secondary-fixed">*</span></label>
+                                        <label class="field-label" for="posisi">Posisi yang Dibutuhkan <span class="text-red-500">*</span></label>
                                         <input id="posisi" name="posisi" type="text"
                                                class="field-input" required
                                                placeholder="Misal: UI/UX Designer"
@@ -408,7 +406,7 @@
 
                                     <!-- Jumlah Slot -->
                                     <div>
-                                        <label class="field-label" for="jumlah_slot">Jumlah Slot <span class="text-secondary-fixed">*</span></label>
+                                        <label class="field-label" for="jumlah_slot">Jumlah Slot <span class="text-red-500">*</span></label>
                                         <input id="jumlah_slot" name="jumlah_slot" type="number"
                                                class="field-input" required min="1"
                                                value="{{ old('jumlah_slot', 1) }}"
@@ -417,31 +415,30 @@
                                     </div>
                                 </div>
 
-                                <!-- Keahlian Minimum (multi-select badge) -->
+                                <!-- Keahlian Minimum -->
                                 <div>
-                                    <label class="field-label">Keahlian Minimum <span class="text-secondary-fixed">*</span></label>
+                                    <label class="field-label">Keahlian Minimum <span class="text-red-500">*</span></label>
                                     <div class="flex flex-wrap gap-2 mb-3">
                                         <template x-for="skill in allSkills" :key="skill">
                                             <span class="skill-badge" :class="isSelected(skill) ? 'selected' : ''"
                                                   @click="toggleSkill(skill)">
                                                 <template x-if="isSelected(skill)">
-                                                    <span class="material-symbols-outlined text-[13px]" style="font-variation-settings:'FILL' 1;">check</span>
+                                                    <span class="material-symbols-outlined text-[13px]">check</span>
                                                 </template>
                                                 <span x-text="skill"></span>
                                             </span>
                                         </template>
                                     </div>
-                                    <!-- Hidden inputs for selected skills -->
                                     <template x-for="skill in selectedSkills" :key="skill">
                                         <input type="hidden" name="keahlian_dibutuhkan[]" :value="skill">
                                     </template>
-                                    <p class="text-white/30 text-[11px] font-label-md" x-text="selectedSkills.length > 0 ? selectedSkills.length + ' keahlian dipilih' : 'Klik badge untuk memilih keahlian'"></p>
+                                    <p class="text-[#235347]/50 text-[11px]" x-text="selectedSkills.length > 0 ? selectedSkills.length + ' keahlian dipilih' : 'Klik badge untuk memilih keahlian'"></p>
                                     @error('keahlian_dibutuhkan') <p class="error-msg">{{ $message }}</p> @enderror
                                 </div>
 
                                 <!-- Deskripsi Peran -->
                                 <div>
-                                    <label class="field-label" for="deskripsi_slot">Deskripsi Peran & Tanggung Jawab <span class="text-secondary-fixed">*</span></label>
+                                    <label class="field-label" for="deskripsi_slot">Deskripsi Peran & Tanggung Jawab <span class="text-red-500">*</span></label>
                                     <textarea id="deskripsi_slot" name="deskripsi_slot" rows="4"
                                               class="field-input resize-none"
                                               placeholder="Jelaskan apa yang akan dilakukan anggota di posisi ini, tanggung jawab utama, dan ekspektasi kontribusi..."
@@ -452,117 +449,117 @@
 
                                 <!-- Batas Waktu -->
                                 <div>
-                                    <label class="field-label" for="batas_waktu">Batas Waktu Open Slot <span class="text-secondary-fixed">*</span></label>
+                                    <label class="field-label" for="batas_waktu">Batas Waktu Open Slot <span class="text-red-500">*</span></label>
                                     <input id="batas_waktu" name="batas_waktu" type="date"
                                            class="field-input" required
                                            value="{{ old('batas_waktu') }}"
                                            x-model="batasWaktu"/>
-                                    <p class="text-white/30 text-[11px] mt-1 font-label-md">Tidak boleh melebihi deadline lomba yang dipilih.</p>
+                                    <p class="text-[#235347]/50 text-[11px] mt-1">Tidak boleh melebihi deadline lomba yang dipilih.</p>
                                     @error('batas_waktu') <p class="error-msg">{{ $message }}</p> @enderror
                                 </div>
                             </div>
                         </div>
 
                         <!-- Actions -->
-                        <div class="form-card p-6">
+                        <div class="form-card">
                             <div class="flex flex-col sm:flex-row gap-3">
                                 <!-- Simpan Draft -->
                                 <button type="button"
                                         @click="document.getElementById('status_publikasi').value='draft'; document.getElementById('open-slot-form').submit();"
-                                        class="flex-1 flex items-center justify-center gap-2 px-6 py-3.5 bg-white/8 border border-white/15 text-white/80 font-bold text-[13px] rounded-xl hover:bg-white/12 hover:text-white transition-all">
+                                        class="flex-1 flex items-center justify-center gap-2 px-6 py-3.5 bg-white border border-[#8EB69B]/30 text-[#235347] font-bold text-[13px] rounded-xl hover:bg-[#E8F3E9] transition-all">
                                     <span class="material-symbols-outlined text-[18px]">draft</span>
                                     Simpan Draft
                                 </button>
                                 <!-- Publikasikan -->
                                 <button type="submit"
-                                        class="flex-1 flex items-center justify-center gap-2 px-6 py-3.5 bg-secondary-fixed text-on-secondary-fixed font-bold text-[13px] rounded-xl hover:bg-secondary-fixed-dim transition-all hover:-translate-y-0.5 shadow-lg shadow-secondary/20">
-                                    <span class="material-symbols-outlined text-[18px]" style="font-variation-settings:'FILL' 1;">rocket_launch</span>
+                                        class="flex-1 flex items-center justify-center gap-2 px-6 py-3.5 bg-[#051F20] text-white font-bold text-[13px] rounded-xl hover:bg-opacity-95 transition-all hover:-translate-y-0.5 shadow-sm">
+                                    <span class="material-symbols-outlined text-[18px]">rocket_launch</span>
                                     Publikasikan Open Slot
                                 </button>
                             </div>
-                            <p class="text-center text-white/30 text-[11px] font-label-md mt-3">
+                            <p class="text-center text-[#235347]/50 text-[11px] mt-3">
                                 Draft tidak ditampilkan ke publik. Publikasikan kapan pun kamu siap.
                             </p>
                         </div>
 
                     </div>
 
-                    <!-- ── RIGHT COLUMN: Preview ── -->
-                    <div class="xl:col-span-1">
+                    <!-- RIGHT COLUMN: Preview -->
+                    <div class="xl:col-span-1 text-left">
                         <div class="sticky top-8 space-y-4">
 
                             <!-- Preview Header -->
                             <div class="flex items-center gap-2 px-1">
-                                <span class="material-symbols-outlined text-secondary-fixed text-[18px]" style="font-variation-settings:'FILL' 1;">preview</span>
-                                <h3 class="font-label-md text-label-md text-secondary-fixed uppercase tracking-wider">Preview Open Slot</h3>
+                                <span class="material-symbols-outlined text-[#235347] text-[18px]">preview</span>
+                                <h3 class="font-bold text-xs text-[#235347] uppercase tracking-wider">Preview Open Slot</h3>
                             </div>
 
                             <!-- Info strip -->
                             <div class="preview-strip flex items-center gap-2">
-                                <span class="material-symbols-outlined text-secondary-fixed text-[16px]" style="font-variation-settings:'FILL' 1;">info</span>
-                                <p class="text-[12px] text-white/60">Tampilan ini sama dengan card di Tim Finder</p>
+                                <span class="material-symbols-outlined text-[#235347] text-[16px]">info</span>
+                                <p class="text-[12px] text-[#235347]/80">Tampilan ini sama dengan card di Tim Finder</p>
                             </div>
 
                             <!-- Preview Card -->
                             <div class="slot-card-preview p-5 flex flex-col">
                                 <!-- Header -->
                                 <div class="flex items-start gap-3 mb-4">
-                                    <div class="w-11 h-11 rounded-xl bg-secondary/30 border border-secondary-fixed/15 flex items-center justify-center flex-shrink-0">
-                                        <span class="text-lg font-bold text-secondary-fixed"
+                                    <div class="w-11 h-11 rounded-xl bg-[#E8F3E9] border border-[#8EB69B]/30 flex items-center justify-center flex-shrink-0">
+                                        <span class="text-lg font-bold text-[#235347]"
                                               x-text="namaTim ? namaTim.charAt(0).toUpperCase() : 'T'"></span>
                                     </div>
                                     <div class="min-w-0">
-                                        <h4 class="font-bold text-white text-[15px] truncate"
+                                        <h4 class="font-bold text-[#051F20] text-[15px] truncate font-serif"
                                             x-text="namaTim || 'Nama Tim'"></h4>
-                                        <p class="text-[11px] text-white/50 truncate"
-                                           x-text="namaLomba || 'Lomba yang dipilih'"></p>
+                                        <p class="text-[11px] text-[#235347]/70 truncate"
+                                            x-text="namaLomba || 'Lomba yang dipilih'"></p>
                                     </div>
                                 </div>
 
                                 <!-- Posisi + Slot badge -->
                                 <div class="flex items-center gap-2 mb-3">
-                                    <span class="px-2.5 py-1 bg-secondary/30 border border-secondary-fixed/20 text-secondary-fixed text-[11px] font-bold rounded-lg flex items-center gap-1.5">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed animate-pulse inline-block"></span>
+                                    <span class="px-2.5 py-1 bg-[#E8F3E9] border border-[#8EB69B]/20 text-[#235347] text-[11px] font-bold rounded-lg flex items-center gap-1.5 shadow-sm">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-[#235347] animate-pulse inline-block"></span>
                                         <span x-text="jumlahSlot + ' Slot Tersisa'">1 Slot Tersisa</span>
                                     </span>
                                 </div>
-                                <h5 class="font-bold text-white text-[15px] mb-1"
+                                <h5 class="font-bold text-[#051F20] text-[15px] mb-1 font-serif"
                                     x-text="posisi || 'Posisi yang dibutuhkan'"></h5>
-                                <p class="text-[13px] text-white/60 line-clamp-2 mb-4 flex-grow"
+                                <p class="text-[13px] text-[#235347]/80 line-clamp-2 mb-4 flex-grow"
                                    x-text="deskripsi || 'Deskripsi peran dan tanggung jawab akan muncul di sini...'"></p>
 
                                 <!-- Skills -->
                                 <div class="flex flex-wrap gap-1.5 mb-4" x-show="selectedSkills.length > 0">
                                     <template x-for="skill in selectedSkills" :key="skill">
-                                        <span class="px-2 py-0.5 bg-white/5 border border-white/10 text-white/70 text-[10px] font-bold rounded-lg"
+                                        <span class="px-2 py-0.5 bg-[#E8F3E9] border border-[#8EB69B]/20 text-[#235347] text-[10px] font-bold rounded-lg"
                                               x-text="skill"></span>
                                     </template>
                                 </div>
                                 <div class="flex flex-wrap gap-1.5 mb-4" x-show="selectedSkills.length === 0">
-                                    <span class="px-2 py-0.5 bg-white/5 border border-white/10 text-white/30 text-[10px] font-bold rounded-lg italic">Keahlian akan muncul di sini</span>
+                                    <span class="px-2 py-0.5 bg-gray-50 border border-gray-200 text-gray-400 text-[10px] font-bold rounded-lg italic">Keahlian akan muncul di sini</span>
                                 </div>
 
                                 <!-- Footer -->
-                                <div class="mt-auto pt-4 border-t border-white/10 flex items-center justify-between">
-                                    <span class="text-[11px] text-white/50 flex items-center gap-1">
+                                <div class="mt-auto pt-4 border-t border-[#8EB69B]/20 flex items-center justify-between">
+                                    <span class="text-[11px] text-[#235347]/70 flex items-center gap-1">
                                         <span class="material-symbols-outlined text-[14px]">schedule</span>
                                         <span x-text="formattedDate() || 'Pilih tanggal'"></span>
                                     </span>
                                     <div class="flex gap-2">
-                                        <span class="px-3 py-1.5 border border-secondary-fixed/40 text-secondary-fixed text-[11px] font-bold rounded-xl opacity-50">Detail</span>
-                                        <span class="px-3 py-1.5 bg-secondary-fixed text-on-secondary-fixed text-[11px] font-bold rounded-xl opacity-50">Lamar</span>
+                                        <span class="px-3 py-1.5 border border-[#8EB69B]/20 text-[#235347] text-[11px] font-bold rounded-xl opacity-60">Detail</span>
+                                        <span class="px-3 py-1.5 bg-[#051F20] text-white text-[11px] font-bold rounded-xl opacity-60">Lamar</span>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Info card: capacity -->
-                            <div class="card-glass rounded-2xl p-4 flex items-center gap-3">
-                                <div class="w-9 h-9 rounded-xl bg-secondary/20 flex items-center justify-center flex-shrink-0">
-                                    <span class="material-symbols-outlined text-secondary-fixed text-[18px]" style="font-variation-settings:'FILL' 1;">group</span>
+                            <div class="bg-white border border-[#8EB69B]/20 shadow-sm rounded-2xl p-4 flex items-center gap-3">
+                                <div class="w-9 h-9 rounded-xl bg-[#E8F3E9] border border-[#8EB69B]/20 flex items-center justify-center flex-shrink-0">
+                                    <span class="material-symbols-outlined text-[#235347] text-[18px]">group</span>
                                 </div>
                                 <div>
-                                    <p class="text-[11px] text-white/40 font-label-md uppercase tracking-wider">Kapasitas Tim</p>
-                                    <p class="text-white font-bold text-[14px]">
+                                    <p class="text-[11px] text-[#235347]/50 font-bold uppercase tracking-wider">Kapasitas Tim</p>
+                                    <p class="text-[#051F20] font-bold text-[14px]">
                                         1 / <span x-text="maksAnggota">3</span> anggota (termasuk kamu)
                                     </p>
                                 </div>

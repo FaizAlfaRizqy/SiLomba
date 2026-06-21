@@ -44,6 +44,7 @@ class LombaController extends Controller
             $data['kategori'] = $data['kategori_kustom'];
         }
         $data['id_admin'] = auth()->id();
+        $data['status'] = 'buka'; // Default status saat pertama kali dibuat
 
         if ($request->hasFile('poster')) {
             $image = $request->file('poster');
@@ -120,5 +121,14 @@ class LombaController extends Controller
         $lomba->delete();
 
         return redirect()->route('admin.lomba.index')->with('success', 'Lomba berhasil dihapus (soft delete).');
+    }
+
+    public function toggleStatus(Lomba $lomba)
+    {
+        $lomba->update([
+            'status' => $lomba->status === 'buka' ? 'tutup' : 'buka',
+        ]);
+
+        return back()->with('success', 'Status lomba "'.$lomba->nama.'" berhasil diubah ke '.($lomba->status === 'buka' ? 'Buka' : 'Tutup').'.');
     }
 }

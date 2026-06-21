@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html class="dark" lang="id">
+<html class="light" lang="id">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Tim Finder | Direktori Lomba</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script id="tailwind-config">
         tailwind.config = {
@@ -13,53 +15,53 @@
             theme: {
                 extend: {
                     "colors": {
-                        "on-secondary-container": "#00743a",
-                        "surface-bright": "#f7f9fb",
-                        "secondary": "#006d37",
-                        "on-background": "#191c1e",
-                        "inverse-primary": "#a8cfc4",
-                        "inverse-on-surface": "#eff1f3",
+                        "on-secondary-container": "#163832",
+                        "surface-bright": "#E8F3E9",
+                        "secondary": "#235347",
+                        "on-background": "#051F20",
+                        "inverse-primary": "#8EB69B",
+                        "inverse-on-surface": "#F4F9F6",
                         "on-secondary": "#ffffff",
                         "on-primary": "#ffffff",
-                        "tertiary-fixed-dim": "#c0c1ff",
+                        "tertiary-fixed-dim": "#D4E7D6",
                         "on-tertiary": "#ffffff",
-                        "secondary-fixed": "#6bfe9c",
-                        "primary-container": "#062e27",
-                        "on-primary-fixed": "#00201a",
+                        "secondary-fixed": "#8EB69B",
+                        "primary-container": "#051F20",
+                        "on-primary-fixed": "#E8F3E9",
                         "on-error": "#ffffff",
-                        "on-surface-variant": "#414846",
-                        "surface-container-highest": "#e0e3e5",
-                        "on-tertiary-fixed-variant": "#2f2ebe",
-                        "on-surface": "#191c1e",
-                        "on-secondary-fixed-variant": "#005228",
-                        "primary-fixed": "#c3ebe0",
-                        "tertiary-fixed": "#e1e0ff",
+                        "on-surface-variant": "#8EB69B",
+                        "surface-container-highest": "#D4E7D6",
+                        "on-tertiary-fixed-variant": "#163832",
+                        "on-surface": "#051F20",
+                        "on-secondary-fixed-variant": "#163832",
+                        "primary-fixed": "#D4E7D6",
+                        "tertiary-fixed": "#D4E7D6",
                         "error": "#ba1a1a",
-                        "surface-container-high": "#e6e8ea",
-                        "on-tertiary-fixed": "#07006c",
-                        "inverse-surface": "#2d3133",
-                        "surface-tint": "#41655d",
+                        "surface-container-high": "#F4F9F6",
+                        "on-tertiary-fixed": "#0B2B26",
+                        "inverse-surface": "#051F20",
+                        "surface-tint": "#235347",
                         "surface-container-lowest": "#ffffff",
-                        "tertiary": "#040055",
-                        "secondary-container": "#6bfe9c",
-                        "outline": "#717976",
-                        "on-primary-container": "#72978d",
-                        "secondary-fixed-dim": "#4ae183",
-                        "on-tertiary-container": "#7e81ff",
-                        "surface-variant": "#e0e3e5",
-                        "surface-container-low": "#f2f4f6",
-                        "tertiary-container": "#0c0091",
-                        "on-primary-fixed-variant": "#294d45",
-                        "primary": "#001813",
+                        "tertiary": "#0B2B26",
+                        "secondary-container": "#8EB69B",
+                        "outline": "#8EB69B",
+                        "on-primary-container": "#D4E7D6",
+                        "secondary-fixed-dim": "#8EB69B",
+                        "on-tertiary-container": "#8EB69B",
+                        "surface-variant": "#D4E7D6",
+                        "surface-container-low": "#E8F3E9",
+                        "tertiary-container": "#051F20",
+                        "on-primary-fixed-variant": "#235347",
+                        "primary": "#051F20",
+                        "background": "#E8F3E9",
                         "on-error-container": "#93000a",
-                        "background": "#f7f9fb",
-                        "surface": "#f7f9fb",
-                        "surface-container": "#eceef0",
-                        "on-secondary-fixed": "#00210c",
-                        "primary-fixed-dim": "#a8cfc4",
+                        "surface": "#E8F3E9",
+                        "surface-container": "#D4E7D6",
+                        "on-secondary-fixed": "#051F20",
+                        "primary-fixed-dim": "#8EB69B",
                         "error-container": "#ffdad6",
-                        "outline-variant": "#c1c8c5",
-                        "surface-dim": "#d8dadc"
+                        "outline-variant": "#235347",
+                        "surface-dim": "#D4E7D6"
                     },
                     "borderRadius": {
                         "DEFAULT": "0.25rem",
@@ -76,13 +78,15 @@
                         "section-gap": "2.5rem"
                     },
                     "fontFamily": {
-                        "label-md": ["JetBrains Mono"],
-                        "headline-sm": ["Hanken Grotesk"],
-                        "headline-md": ["Hanken Grotesk"],
-                        "body-md": ["Inter"],
-                        "headline-lg": ["Hanken Grotesk"],
-                        "body-lg": ["Inter"],
-                        "headline-lg-mobile": ["Hanken Grotesk"]
+                        "sans": ["Plus Jakarta Sans", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"],
+                        "label-md": ["Plus Jakarta Sans", "sans-serif"],
+                        "headline-sm": ["Playfair Display", "serif"],
+                        "headline-md": ["Playfair Display", "serif"],
+                        "body-md": ["Plus Jakarta Sans", "sans-serif"],
+                        "headline-lg": ["Playfair Display", "serif"],
+                        "body-lg": ["Plus Jakarta Sans", "sans-serif"],
+                        "headline-lg-mobile": ["Playfair Display", "serif"]
                     },
                     "fontSize": {
                         "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
@@ -99,20 +103,22 @@
     </script>
     <style>
         .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined' !important;
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
         ::-webkit-scrollbar {
             width: 8px;
+            height: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #001813;
+            background: rgba(35, 83, 71, 0.05);
         }
         ::-webkit-scrollbar-thumb {
-            background: #005228;
+            background: rgba(35, 83, 71, 0.2);
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #00743a;
+            background: rgba(35, 83, 71, 0.4);
         }
         .card-glass {
             background: rgba(255, 255, 255, 0.03);
@@ -122,7 +128,7 @@
         [x-cloak] { display: none !important; }
     </style>
 </head>
-<body class="bg-primary text-on-primary-fixed selection:bg-secondary-fixed selection:text-on-secondary-fixed font-body-md overflow-x-hidden">
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
 <div class="flex min-h-screen" x-data="{ 
     tab: '{{ request('tab', 'aktif') }}',
     search: '{{ request('search', '') }}', 
@@ -214,15 +220,15 @@
     </aside>
 
     <!-- Main Content Wrapper -->
-    <div class="flex-1 flex flex-col min-w-0 bg-[#0e3b31]">
+    <div class="flex-1 flex flex-col min-w-0 bg-background">
 
 
         <!-- Scrollable Content -->
         <main class="flex-1 p-8 overflow-y-auto">
             <!-- Header Section -->
             <div class="mb-6">
-                <h2 class="font-headline-lg text-headline-lg text-white mb-2">Direktori Lomba</h2>
-                <p class="text-white/70 text-body-lg max-w-2xl">
+                <h2 class="font-headline-lg text-headline-lg text-[#051F20] mb-2 font-serif">Direktori Lomba</h2>
+                <p class="text-[#235347] text-body-lg max-w-2xl">
                     Temukan berbagai kompetisi bergengsi untuk mengasah kemampuan, membangun portofolio, dan mengembangkan potensi terbaikmu bersama komunitas pemenang.
                 </p>
             </div>
@@ -231,41 +237,41 @@
             <div class="space-y-stack-md mb-section-gap">
                 <!-- Toggle -->
                 <div class="flex items-center gap-stack-md">
-                    <button @click="tab = 'aktif'; fetchLomba()" :class="tab === 'aktif' ? 'bg-secondary-fixed text-on-secondary-fixed' : 'text-white/70 hover:text-white bg-white/10'" class="px-6 py-2.5 rounded-full font-headline-sm text-[14px] flex items-center gap-2 transition-colors">
+                    <button @click="tab = 'aktif'; fetchLomba()" :class="tab === 'aktif' ? 'bg-[#051F20] text-white shadow-md' : 'text-[#235347] hover:text-[#051F20] bg-white border border-[#8EB69B]/30'" class="px-6 py-2.5 rounded-full font-headline-sm text-[14px] flex items-center gap-2 transition-colors">
                         Lomba Aktif
-                        <span :class="tab === 'aktif' ? 'bg-on-secondary-fixed/20' : 'bg-white/10'" class="px-2 py-0.5 rounded-full text-[12px] font-label-md">{{ $totalAktif }}</span>
+                        <span :class="tab === 'aktif' ? 'bg-white/20 text-white' : 'bg-[#E8F3E9] text-[#163832]'" class="px-2 py-0.5 rounded-full text-[12px] font-label-md">{{ $totalAktif }}</span>
                     </button>
-                    <button @click="tab = 'arsip'; fetchLomba()" :class="tab === 'arsip' ? 'bg-secondary-fixed text-on-secondary-fixed' : 'text-white/70 hover:text-white bg-white/10'" class="px-6 py-2.5 rounded-full font-headline-sm text-[14px] flex items-center gap-2 transition-colors">
+                    <button @click="tab = 'arsip'; fetchLomba()" :class="tab === 'arsip' ? 'bg-[#051F20] text-white shadow-md' : 'text-[#235347] hover:text-[#051F20] bg-white border border-[#8EB69B]/30'" class="px-6 py-2.5 rounded-full font-headline-sm text-[14px] flex items-center gap-2 transition-colors">
                         Arsip Lomba
-                        <span :class="tab === 'arsip' ? 'bg-on-secondary-fixed/20' : 'bg-white/10'" class="px-2 py-0.5 rounded-full text-[12px] font-label-md">{{ $totalArsip }}</span>
+                        <span :class="tab === 'arsip' ? 'bg-white/20 text-white' : 'bg-[#E8F3E9] text-[#163832]'" class="px-2 py-0.5 rounded-full text-[12px] font-label-md">{{ $totalArsip }}</span>
                     </button>
                 </div>
                 <!-- Search Row -->
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center bg-white/10 border border-white/15 p-4 rounded-2xl">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center bg-white border border-[#8EB69B]/25 p-4 rounded-2xl shadow-sm">
                     <div class="lg:col-span-5 relative">
-                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-white/60 text-[20px]">search</span>
-                        <input x-model="search" @input.debounce.500ms="fetchLomba()" class="w-full bg-white/10 border border-white/20 rounded-xl pl-10 py-3 text-white placeholder:text-white/50 focus:ring-1 focus:ring-secondary-fixed" placeholder="Nama kompetisi..." type="text"/>
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#235347]/60 text-[20px]">search</span>
+                        <input x-model="search" @input.debounce.500ms="fetchLomba()" class="w-full bg-[#E8F3E9]/55 border border-[#8EB69B]/40 rounded-xl pl-10 py-3 text-[#051F20] placeholder:text-[#235347]/50 focus:ring-1 focus:ring-[#051F20] focus:border-[#051F20]" placeholder="Nama kompetisi..." type="text"/>
                     </div>
                     <div class="lg:col-span-3">
-                        <select x-model="kategori" @change="fetchLomba()" class="w-full bg-white/10 border border-white/20 rounded-xl py-3 text-white focus:ring-1 focus:ring-secondary-fixed cursor-pointer">
-                            <option value="" class="bg-[#0a2e25] text-white">Semua Kategori</option>
-                            <option value="Sains" class="bg-[#0a2e25] text-white">Sains</option>
-                            <option value="Teknologi" class="bg-[#0a2e25] text-white">Teknologi</option>
-                            <option value="Bisnis" class="bg-[#0a2e25] text-white">Bisnis</option>
-                            <option value="Seni" class="bg-[#0a2e25] text-white">Seni</option>
-                            <option value="Olahraga" class="bg-[#0a2e25] text-white">Olahraga</option>
+                        <select x-model="kategori" @change="fetchLomba()" class="w-full bg-[#E8F3E9]/55 border border-[#8EB69B]/40 rounded-xl py-3 text-[#051F20] focus:ring-1 focus:ring-[#051F20] focus:border-[#051F20] cursor-pointer">
+                            <option value="" class="bg-white text-[#051F20]">Semua Kategori</option>
+                            <option value="Sains" class="bg-white text-[#051F20]">Sains</option>
+                            <option value="Teknologi" class="bg-white text-[#051F20]">Teknologi</option>
+                            <option value="Bisnis" class="bg-white text-[#051F20]">Bisnis</option>
+                            <option value="Seni" class="bg-white text-[#051F20]">Seni</option>
+                            <option value="Olahraga" class="bg-white text-[#051F20]">Olahraga</option>
                         </select>
                     </div>
                     <div class="lg:col-span-2">
-                        <select x-model="tingkat" @change="fetchLomba()" class="w-full bg-white/10 border border-white/20 rounded-xl py-3 text-white focus:ring-1 focus:ring-secondary-fixed cursor-pointer">
-                            <option value="" class="bg-[#0a2e25] text-white">Semua Tingkat</option>
-                            <option value="nasional" class="bg-[#0a2e25] text-white">Nasional</option>
-                            <option value="internasional" class="bg-[#0a2e25] text-white">Internasional</option>
-                            <option value="regional" class="bg-[#0a2e25] text-white">Regional</option>
+                        <select x-model="tingkat" @change="fetchLomba()" class="w-full bg-[#E8F3E9]/55 border border-[#8EB69B]/40 rounded-xl py-3 text-[#051F20] focus:ring-1 focus:ring-[#051F20] focus:border-[#051F20] cursor-pointer">
+                            <option value="" class="bg-white text-[#051F20]">Semua Tingkat</option>
+                            <option value="nasional" class="bg-white text-[#051F20]">Nasional</option>
+                            <option value="internasional" class="bg-white text-[#051F20]">Internasional</option>
+                            <option value="regional" class="bg-white text-[#051F20]">Regional</option>
                         </select>
                     </div>
                     <div class="lg:col-span-2">
-                        <button @click="search = ''; kategori = ''; tingkat = ''; fetchLomba()" class="w-full flex items-center justify-center gap-2 text-white/70 hover:text-secondary-fixed transition-colors font-headline-sm text-[14px]">
+                        <button @click="search = ''; kategori = ''; tingkat = ''; fetchLomba()" class="w-full flex items-center justify-center gap-2 text-[#235347] hover:text-[#051F20] transition-colors font-headline-sm text-[14px] font-bold">
                             <span class="material-symbols-outlined text-[18px]">filter_alt_off</span>
                             Reset Filter
                         </button>
@@ -274,21 +280,21 @@
 
                 {{-- Active filter indicator --}}
                 <div class="flex items-center gap-2 mt-3" x-show="search || kategori || tingkat" x-cloak>
-                    <span class="text-[12px] text-white/60">Filter aktif:</span>
+                    <span class="text-[12px] text-[#235347]/70 font-semibold">Filter aktif:</span>
                     <template x-if="search">
-                        <span class="px-2 py-0.5 bg-secondary-fixed/20 text-secondary-fixed text-[12px] font-bold rounded-lg flex items-center gap-1">
+                        <span class="px-2 py-0.5 bg-[#E8F3E9] text-[#163832] border border-[#8EB69B]/30 text-[12px] font-bold rounded-lg flex items-center gap-1">
                             <span x-text="'Cari: ' + search"></span>
                             <button @click="search = ''; fetchLomba()" class="hover:text-error">×</button>
                         </span>
                     </template>
                     <template x-if="kategori">
-                        <span class="px-2 py-0.5 bg-secondary-fixed/20 text-secondary-fixed text-[12px] font-bold rounded-lg flex items-center gap-1">
+                        <span class="px-2 py-0.5 bg-[#E8F3E9] text-[#163832] border border-[#8EB69B]/30 text-[12px] font-bold rounded-lg flex items-center gap-1">
                             <span x-text="kategori"></span>
                             <button @click="kategori = ''; fetchLomba()" class="hover:text-error">×</button>
                         </span>
                     </template>
                     <template x-if="tingkat">
-                        <span class="px-2 py-0.5 bg-secondary-fixed/20 text-secondary-fixed text-[12px] font-bold rounded-lg flex items-center gap-1">
+                        <span class="px-2 py-0.5 bg-[#E8F3E9] text-[#163832] border border-[#8EB69B]/30 text-[12px] font-bold rounded-lg flex items-center gap-1">
                             <span x-text="tingkat"></span>
                             <button @click="tingkat = ''; fetchLomba()" class="hover:text-error">×</button>
                         </span>

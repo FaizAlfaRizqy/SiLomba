@@ -256,9 +256,24 @@
                                     @endif
                                 </td>
 
-                                <!-- Aksi -->
                                 <td class="px-8 py-5 text-right relative z-20">
                                     <div class="flex items-center justify-end space-x-2.5">
+                                        <!-- Toggle Status -->
+                                        <form action="{{ route('admin.lomba.toggle-status', $lomba) }}" method="POST" class="inline-block">
+                                            @csrf
+                                            <button type="submit" 
+                                                    title="{{ $lomba->status === 'buka' ? 'Tutup Lomba' : 'Buka Lomba' }}"
+                                                    class="p-2 rounded-xl transition duration-300 shadow-sm
+                                                        {{ $lomba->status === 'buka' 
+                                                            ? 'bg-emerald-50 text-emerald-600 hover:bg-emerald-600 hover:text-white' 
+                                                            : 'bg-rose-50 text-rose-500 hover:bg-rose-500 hover:text-white' }}">
+                                                @if($lomba->status === 'buka')
+                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                                @else
+                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                                @endif
+                                            </button>
+                                        </form>
                                         <a href="{{ route('admin.lomba.edit', $lomba) }}" class="p-2 bg-gray-50 dark:bg-zinc-800 text-gray-500 hover:bg-brand-teal hover:text-white dark:hover:text-zinc-900 rounded-xl transition duration-300 shadow-sm" title="Edit Lomba">
                                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
                                         </a>

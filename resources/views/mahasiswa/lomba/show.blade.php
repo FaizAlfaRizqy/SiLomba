@@ -5,15 +5,16 @@
     $daysLeft = $now->diffInDays($lomba->deadline, false);
 @endphp
 <!DOCTYPE html>
-<html class="dark" lang="id">
+<html class="light" lang="id">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>{{ $lomba->nama }} | SiLomba</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script id="tailwind-config">
         tailwind.config = {
@@ -21,53 +22,53 @@
             theme: {
                 extend: {
                     "colors": {
-                        "on-secondary-container": "#00743a",
-                        "surface-bright": "#f7f9fb",
-                        "secondary": "#006d37",
-                        "on-background": "#ffffff",
-                        "inverse-primary": "#a8cfc4",
-                        "inverse-on-surface": "#eff1f3",
+                        "on-secondary-container": "#163832",
+                        "surface-bright": "#E8F3E9",
+                        "secondary": "#235347",
+                        "on-background": "#051F20",
+                        "inverse-primary": "#8EB69B",
+                        "inverse-on-surface": "#F4F9F6",
                         "on-secondary": "#ffffff",
                         "on-primary": "#ffffff",
-                        "tertiary-fixed-dim": "#c0c1ff",
+                        "tertiary-fixed-dim": "#D4E7D6",
                         "on-tertiary": "#ffffff",
-                        "secondary-fixed": "#6bfe9c",
-                        "primary-container": "#062e27",
-                        "on-primary-fixed": "#00201a",
+                        "secondary-fixed": "#8EB69B",
+                        "primary-container": "#051F20",
+                        "on-primary-fixed": "#E8F3E9",
                         "on-error": "#ffffff",
-                        "on-surface-variant": "#c1c8c5",
-                        "surface-container-highest": "#e0e3e5",
-                        "on-tertiary-fixed-variant": "#2f2ebe",
-                        "on-surface": "#191c1e",
-                        "on-secondary-fixed-variant": "#005228",
-                        "primary-fixed": "#c3ebe0",
-                        "tertiary-fixed": "#e1e0ff",
+                        "on-surface-variant": "#8EB69B",
+                        "surface-container-highest": "#D4E7D6",
+                        "on-tertiary-fixed-variant": "#163832",
+                        "on-surface": "#051F20",
+                        "on-secondary-fixed-variant": "#163832",
+                        "primary-fixed": "#D4E7D6",
+                        "tertiary-fixed": "#D4E7D6",
                         "error": "#ba1a1a",
-                        "surface-container-high": "#e6e8ea",
-                        "on-tertiary-fixed": "#07006c",
-                        "inverse-surface": "#2d3133",
-                        "surface-tint": "#41655d",
+                        "surface-container-high": "#F4F9F6",
+                        "on-tertiary-fixed": "#0B2B26",
+                        "inverse-surface": "#051F20",
+                        "surface-tint": "#235347",
                         "surface-container-lowest": "#ffffff",
-                        "tertiary": "#040055",
-                        "secondary-container": "#6bfe9c",
-                        "outline": "#717976",
-                        "on-primary-container": "#72978d",
-                        "secondary-fixed-dim": "#4ae183",
-                        "on-tertiary-container": "#7e81ff",
-                        "surface-variant": "#e0e3e5",
-                        "surface-container-low": "#f2f4f6",
-                        "tertiary-container": "#0c0091",
-                        "on-primary-fixed-variant": "#294d45",
-                        "primary": "#062e27",
-                        "background": "#062e27",
+                        "tertiary": "#0B2B26",
+                        "secondary-container": "#8EB69B",
+                        "outline": "#8EB69B",
+                        "on-primary-container": "#D4E7D6",
+                        "secondary-fixed-dim": "#8EB69B",
+                        "on-tertiary-container": "#8EB69B",
+                        "surface-variant": "#D4E7D6",
+                        "surface-container-low": "#E8F3E9",
+                        "tertiary-container": "#051F20",
+                        "on-primary-fixed-variant": "#235347",
+                        "primary": "#051F20",
+                        "background": "#E8F3E9",
                         "on-error-container": "#93000a",
-                        "surface": "#062e27",
-                        "surface-container": "#eceef0",
-                        "on-secondary-fixed": "#00210c",
-                        "primary-fixed-dim": "#a8cfc4",
+                        "surface": "#E8F3E9",
+                        "surface-container": "#D4E7D6",
+                        "on-secondary-fixed": "#051F20",
+                        "primary-fixed-dim": "#8EB69B",
                         "error-container": "#ffdad6",
-                        "outline-variant": "#c1c8c5",
-                        "surface-dim": "#d8dadc"
+                        "outline-variant": "#235347",
+                        "surface-dim": "#D4E7D6"
                     },
                     "borderRadius": {
                         "DEFAULT": "0.25rem",
@@ -84,13 +85,15 @@
                         "section-gap": "2.5rem"
                     },
                     "fontFamily": {
-                        "label-md": ["JetBrains Mono"],
-                        "headline-sm": ["Hanken Grotesk"],
-                        "headline-md": ["Hanken Grotesk"],
-                        "body-md": ["Inter"],
-                        "headline-lg": ["Hanken Grotesk"],
-                        "body-lg": ["Inter"],
-                        "headline-lg-mobile": ["Hanken Grotesk"]
+                        "sans": ["Plus Jakarta Sans", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"],
+                        "label-md": ["Plus Jakarta Sans", "sans-serif"],
+                        "headline-sm": ["Playfair Display", "serif"],
+                        "headline-md": ["Playfair Display", "serif"],
+                        "body-md": ["Plus Jakarta Sans", "sans-serif"],
+                        "headline-lg": ["Playfair Display", "serif"],
+                        "body-lg": ["Plus Jakarta Sans", "sans-serif"],
+                        "headline-lg-mobile": ["Playfair Display", "serif"]
                     },
                     "fontSize": {
                         "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
@@ -107,6 +110,7 @@
     </script>
     <style>
         .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined' !important;
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
         .glass-card {
@@ -115,15 +119,19 @@
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
         /* Custom scrollbar */
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
         }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: rgba(255,255,255,0.05);
+        ::-webkit-scrollbar-track {
+            background: rgba(35, 83, 71, 0.05);
         }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: rgba(255,255,255,0.2);
-            border-radius: 10px;
+        ::-webkit-scrollbar-thumb {
+            background: rgba(35, 83, 71, 0.2);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(35, 83, 71, 0.4);
         }
         [x-cloak] { display: none !important; }
     </style>
@@ -201,15 +209,15 @@
     </aside>
 
     <!-- Main Content Area -->
-    <main class="flex-1 flex flex-col overflow-y-auto custom-scrollbar bg-[#0e3b31]">
+    <main class="flex-1 flex flex-col overflow-y-auto custom-scrollbar bg-background">
         @if($isArsip)
-        <div class="m-8 p-4 bg-error/20 border border-error/30 rounded-2xl flex items-center gap-4 text-white">
-            <div class="w-10 h-10 bg-error/30 rounded-xl flex items-center justify-center flex-shrink-0">
-                <span class="material-symbols-outlined text-error">warning</span>
+        <div class="m-8 p-4 bg-red-50 border border-red-200 rounded-2xl flex items-center gap-4 text-red-900 shadow-sm">
+            <div class="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                <span class="material-symbols-outlined text-red-600">warning</span>
             </div>
             <div class="flex-1">
-                <p class="text-sm font-bold text-error">Lomba Ini Sudah Berakhir</p>
-                <p class="text-xs text-white/70 mt-0.5">Deadline berakhir pada {{ $lomba->deadline->format('d M Y') }}. Halaman ini tersedia untuk keperluan evaluasi dan referensi saja.</p>
+                <p class="text-sm font-bold text-red-700">Lomba Ini Sudah Berakhir</p>
+                <p class="text-xs text-red-600 mt-0.5">Deadline berakhir pada {{ $lomba->deadline->format('d M Y') }}. Halaman ini tersedia untuk keperluan evaluasi dan referensi saja.</p>
             </div>
         </div>
         @endif
@@ -217,7 +225,7 @@
         <!-- Hero Section -->
         <section class="relative w-full min-h-[400px] overflow-hidden flex flex-col md:flex-row items-center pt-32 pb-16 px-12 gap-10">
             <!-- Back Button -->
-            <a href="{{ route('mahasiswa.lomba.index') }}" class="absolute top-8 left-8 md:top-12 md:left-12 z-20 flex items-center gap-2 px-4 py-2 bg-black/40 hover:bg-black/60 text-white rounded-full backdrop-blur-md border border-white/20 transition-all group">
+            <a href="{{ route('mahasiswa.lomba.index') }}" class="absolute top-8 left-8 md:top-12 md:left-12 z-20 flex items-center gap-2 px-4 py-2 bg-white hover:bg-[#D4E7D6] text-[#051F20] rounded-full border border-[#8EB69B]/30 shadow-md transition-all group">
                 <span class="material-symbols-outlined group-hover:-translate-x-1 transition-transform">arrow_back</span>
                 <span class="font-label-md text-sm font-medium">Kembali</span>
             </a>
@@ -241,62 +249,60 @@
 
             <!-- Info Lomba -->
             <div class="relative z-10 w-full flex-1">
-                <span class="inline-block bg-secondary-container text-on-secondary-fixed-variant px-4 py-1 rounded-full font-label-md text-label-md mb-6 uppercase tracking-widest">{{ $lomba->tingkat }} Kompetisi</span>
-                <h1 class="font-headline-lg text-4xl md:text-5xl lg:text-6xl text-white font-extrabold tracking-tighter mb-4">{{ $lomba->nama }}</h1>
-                <div class="flex flex-wrap items-center gap-4 text-white/80">
+                <span class="inline-block bg-[#051F20] text-white px-4 py-1 rounded-full font-label-md text-label-md mb-6 uppercase tracking-widest">{{ $lomba->tingkat }} Kompetisi</span>
+                <h1 class="font-headline-lg text-4xl md:text-5xl lg:text-6xl text-[#051F20] mb-4 font-serif leading-tight">{{ $lomba->nama }}</h1>
+                <div class="flex flex-wrap items-center gap-4 text-[#235347]/80">
                     <div class="flex items-center gap-2">
-                        <span class="material-symbols-outlined">apartment</span>
-                        <p class="font-headline-sm text-headline-sm">Diselenggarakan oleh {{ $lomba->penyelenggara }}</p>
+                        <span class="material-symbols-outlined text-[#051F20]/60">apartment</span>
+                        <p class="font-headline-sm text-headline-sm text-[#051F20]">Diselenggarakan oleh {{ $lomba->penyelenggara }}</p>
                     </div>
-                    <span class="hidden md:inline mx-2">•</span>
+                    <span class="hidden md:inline mx-2 text-[#8EB69B]">•</span>
                     <div class="flex items-center gap-2">
-                        <p class="font-body-lg text-body-lg">{{ $lomba->kategori }}</p>
+                        <p class="font-body-lg text-body-lg font-semibold text-[#235347]">{{ $lomba->kategori }}</p>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Quick Info Grid -->
+        </section>        <!-- Quick Info Grid -->
         <section class="px-12 -mt-8 relative z-20">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Deadline Card -->
-                <div class="bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/10 flex items-center gap-5">
-                    <div class="w-12 h-12 rounded-lg bg-error-container/20 flex items-center justify-center text-error">
+                <div class="bg-white p-6 rounded-xl border border-[#8EB69B]/20 shadow-sm flex items-center gap-5">
+                    <div class="w-12 h-12 rounded-lg bg-red-50 flex items-center justify-center text-red-600">
                         <span class="material-symbols-outlined">event</span>
                     </div>
                     <div>
-                        <p class="font-label-md text-label-md text-white/60 uppercase">Deadline</p>
-                        <p class="font-headline-sm text-headline-sm font-bold text-white">{{ $lomba->deadline->format('d M Y') }}</p>
+                        <p class="font-label-md text-label-md text-[#235347]/70 uppercase font-bold">Deadline</p>
+                        <p class="font-headline-sm text-headline-sm font-bold text-[#051F20]">{{ $lomba->deadline->format('d M Y') }}</p>
                     </div>
                 </div>
                 <!-- Category Card -->
-                <div class="bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/10 flex items-center gap-5">
-                    <div class="w-12 h-12 rounded-lg bg-secondary-container/20 flex items-center justify-center text-secondary-fixed">
+                <div class="bg-white p-6 rounded-xl border border-[#8EB69B]/20 shadow-sm flex items-center gap-5">
+                    <div class="w-12 h-12 rounded-lg bg-[#E8F3E9] flex items-center justify-center text-[#235347]">
                         <span class="material-symbols-outlined">psychology</span>
                     </div>
                     <div>
-                        <p class="font-label-md text-label-md text-white/60 uppercase">Kategori</p>
-                        <p class="font-headline-sm text-headline-sm font-bold text-white">{{ $lomba->kategori }}</p>
+                        <p class="font-label-md text-label-md text-[#235347]/70 uppercase font-bold">Kategori</p>
+                        <p class="font-headline-sm text-headline-sm font-bold text-[#051F20]">{{ $lomba->kategori }}</p>
                     </div>
                 </div>
                 <!-- Status Card -->
-                <div class="bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/10 flex items-center gap-5">
-                    <div class="w-12 h-12 rounded-lg bg-blue-500/20 flex items-center justify-center text-blue-400">
+                <div class="bg-white p-6 rounded-xl border border-[#8EB69B]/20 shadow-sm flex items-center gap-5">
+                    <div class="w-12 h-12 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600">
                         <span class="material-symbols-outlined">flag</span>
                     </div>
                     <div>
-                        <p class="font-label-md text-label-md text-white/60 uppercase">Status</p>
-                        <p class="font-headline-sm text-headline-sm font-bold text-white capitalize">{{ $isArsip ? 'Berakhir' : $lomba->status }}</p>
+                        <p class="font-label-md text-label-md text-[#235347]/70 uppercase font-bold">Status</p>
+                        <p class="font-headline-sm text-headline-sm font-bold text-[#051F20] capitalize">{{ $isArsip ? 'Berakhir' : $lomba->status }}</p>
                     </div>
                 </div>
                 <!-- Location / Tingkat Card -->
-                <div class="bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/10 flex items-center gap-5">
-                    <div class="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center text-white">
+                <div class="bg-white p-6 rounded-xl border border-[#8EB69B]/20 shadow-sm flex items-center gap-5">
+                    <div class="w-12 h-12 rounded-lg bg-[#E8F3E9] flex items-center justify-center text-[#163832]">
                         <span class="material-symbols-outlined">public</span>
                     </div>
                     <div>
-                        <p class="font-label-md text-label-md text-white/60 uppercase">Tingkat</p>
-                        <p class="font-headline-sm text-headline-sm font-bold text-white capitalize">{{ $lomba->tingkat }}</p>
+                        <p class="font-label-md text-label-md text-[#235347]/70 uppercase font-bold">Tingkat</p>
+                        <p class="font-headline-sm text-headline-sm font-bold text-[#051F20] capitalize">{{ $lomba->tingkat }}</p>
                     </div>
                 </div>
             </div>
@@ -308,11 +314,11 @@
             <div class="lg:col-span-8 space-y-12">
                 @if($lomba->deskripsi)
                 <div>
-                    <h2 class="font-headline-md text-headline-md text-white mb-6 flex items-center gap-2">
-                        <span class="w-2 h-8 bg-secondary rounded-full"></span>
+                    <h2 class="font-headline-md text-headline-md text-[#051F20] mb-6 flex items-center gap-2 font-serif font-bold">
+                        <span class="w-2 h-8 bg-[#051F20] rounded-full"></span>
                         Deskripsi
                     </h2>
-                    <div class="prose prose-invert prose-lg text-on-surface-variant max-w-none whitespace-pre-line leading-relaxed">
+                    <div class="prose prose-lg text-[#235347] max-w-none whitespace-pre-line leading-relaxed">
                         {{ $lomba->deskripsi }}
                     </div>
                 </div>
@@ -320,12 +326,12 @@
 
                 @if($lomba->syarat_peserta)
                 <div>
-                    <h2 class="font-headline-md text-headline-md text-white mb-6 flex items-center gap-2">
-                        <span class="w-2 h-8 bg-secondary rounded-full"></span>
+                    <h2 class="font-headline-md text-headline-md text-[#051F20] mb-6 flex items-center gap-2 font-serif font-bold">
+                        <span class="w-2 h-8 bg-[#051F20] rounded-full"></span>
                         Persyaratan Peserta
                     </h2>
-                    <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
-                        <p class="text-on-surface-variant whitespace-pre-line leading-relaxed">{{ $lomba->syarat_peserta }}</p>
+                    <div class="bg-white p-6 rounded-2xl border border-[#8EB69B]/20 shadow-sm text-[#235347]">
+                        <p class="whitespace-pre-line leading-relaxed">{{ $lomba->syarat_peserta }}</p>
                     </div>
                 </div>
                 @endif
@@ -335,13 +341,13 @@
             <div class="lg:col-span-4 space-y-8">
                 <!-- Grand Prize Card -->
                 @if($lomba->hadiah)
-                <div class="bg-primary-container border border-white/10 p-8 rounded-2xl shadow-xl relative overflow-hidden group">
+                <div class="bg-[#051F20] border border-[#8EB69B]/20 p-8 rounded-2xl shadow-xl relative overflow-hidden group text-white">
                     <!-- Subtle Glow effect -->
                     <div class="absolute -top-24 -right-24 w-48 h-48 bg-secondary rounded-full blur-[100px] opacity-20"></div>
                     <div class="relative z-10">
                         <div class="flex items-center justify-between mb-8">
-                            <h3 class="font-headline-md text-headline-md text-white">Detail Hadiah</h3>
-                            <span class="material-symbols-outlined text-secondary-container scale-150" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+                            <h3 class="font-headline-md text-headline-md text-white font-serif">Detail Hadiah</h3>
+                            <span class="material-symbols-outlined text-[#8EB69B] scale-150" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
                         </div>
                         <div class="space-y-6">
                             <div class="flex gap-4">
@@ -355,39 +361,39 @@
                 @endif
 
                 <!-- Call to Action Bar -->
-                <div class="bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/10 shadow-sm space-y-4">
+                <div class="bg-white p-6 rounded-2xl border border-[#8EB69B]/20 shadow-sm space-y-4">
                     @if($isArsip)
-                        <div class="w-full py-4 bg-white/5 border border-white/10 rounded-xl text-center">
+                        <div class="w-full py-4 bg-gray-50 border border-gray-200 rounded-xl text-center">
                             <p class="text-sm font-bold text-gray-400">Pendaftaran Ditutup</p>
                             <p class="text-xs text-gray-500 mt-0.5">Deadline sudah berakhir</p>
                         </div>
                         @if($lomba->link_resmi)
-                            <a href="{{ $lomba->link_resmi }}" target="_blank" class="flex items-center justify-center w-full py-4 bg-white/10 text-white rounded-xl font-bold hover:bg-white/20 transition-all">
+                            <a href="{{ $lomba->link_resmi }}" target="_blank" class="flex items-center justify-center w-full py-4 bg-[#E8F3E9] text-[#235347] hover:bg-[#D4E7D6] border border-[#8EB69B]/30 rounded-xl font-bold transition-all">
                                 <span class="material-symbols-outlined mr-2 text-sm">language</span>
                                 Kunjungi Website Resmi
                             </a>
                         @endif
                     @else
                         <div class="grid grid-cols-2 gap-3">
-                            <a href="{{ route('mahasiswa.tim-finder.index', ['lomba_id' => $lomba->id]) }}" class="flex items-center justify-center gap-2 py-3 border border-secondary text-secondary-fixed font-headline-sm text-sm rounded-xl hover:bg-secondary/10 transition-colors">
+                            <a href="{{ route('mahasiswa.tim-finder.index', ['lomba_id' => $lomba->id]) }}" class="flex items-center justify-center gap-2 py-3 border border-[#051F20] text-[#051F20] hover:bg-[#E8F3E9] font-headline-sm text-sm rounded-xl transition-colors">
                                 <span class="material-symbols-outlined text-[18px]">search</span>
                                 Cari Tim
                             </a>
-                            <a href="{{ route('mahasiswa.my-teams.index') }}" class="flex items-center justify-center gap-2 py-3 border border-secondary text-secondary-fixed font-headline-sm text-sm rounded-xl hover:bg-secondary/10 transition-colors">
+                            <a href="{{ route('mahasiswa.my-teams.index') }}" class="flex items-center justify-center gap-2 py-3 bg-[#051F20] text-white hover:bg-opacity-90 font-headline-sm text-sm rounded-xl transition-all shadow-md">
                                 <span class="material-symbols-outlined text-[18px]">group_add</span>
                                 Buat Tim
                             </a>
                         </div>
                         @if($lomba->link_resmi)
-                            <a href="{{ $lomba->link_resmi }}" target="_blank" class="flex items-center justify-center w-full py-3 bg-white/10 text-white/80 rounded-xl font-bold hover:bg-white/20 transition-all text-sm">
+                            <a href="{{ $lomba->link_resmi }}" target="_blank" class="flex items-center justify-center w-full py-3 bg-[#E8F3E9] text-[#235347] hover:bg-[#D4E7D6] rounded-xl font-bold transition-all text-sm border border-[#8EB69B]/30">
                                 <span class="material-symbols-outlined mr-2 text-sm">language</span>
                                 Kunjungi Website Resmi
                             </a>
                         @endif
-                        <p class="text-center font-body-md text-xs text-on-surface-variant">
+                        <p class="text-center font-body-md text-xs text-[#235347]">
                             Pendaftaran ditutup dalam
                             @if($daysLeft > 0)
-                                <span class="font-bold text-secondary-fixed">{{ $daysLeft }} hari</span>
+                                <span class="font-bold text-[#163832]">{{ $daysLeft }} hari</span>
                             @else
                                 <span class="font-bold text-error">Hari ini</span>
                             @endif

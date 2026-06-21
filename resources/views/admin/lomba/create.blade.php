@@ -13,6 +13,7 @@
             syarat: '',
             deskripsi: '',
             kategori: 'Teknologi',
+            kategori_kustom: '',
             tingkat: 'nasional',
             tanggal_buka: '',
             deadline: '',
@@ -113,6 +114,30 @@
                             @error('tanggal_buka') <p class="mt-1 text-xs text-rose-500 font-medium">{{ $message }}</p> @enderror
                         </div>
 
+                        <!-- Tingkat -->
+                        <div>
+                            <label for="tingkat" class="block text-xs font-bold uppercase tracking-wider text-brand-dark dark:text-brand-teal mb-2">Tingkat Perlombaan</label>
+                            <select id="tingkat" name="tingkat" x-model="tingkat" class="w-full px-4 py-3 bg-gray-50 dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/30 focus:bg-white dark:focus:bg-zinc-900 rounded-xl text-sm transition-all duration-300 dark:text-white">
+                                <option value="regional">Regional</option>
+                                <option value="nasional">Nasional</option>
+                                <option value="internasional">Internasional</option>
+                            </select>
+                            @error('tingkat') <p class="mt-1 text-xs text-rose-500 font-medium">{{ $message }}</p> @enderror
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Tanggal Buka -->
+                        <div>
+                            <label for="tanggal_buka" class="block text-xs font-bold uppercase tracking-wider text-brand-dark dark:text-brand-teal mb-2">Tanggal Buka Pendaftaran</label>
+                            <div class="relative">
+                                <input id="tanggal_buka" name="tanggal_buka" type="date" x-model="tanggal_buka" required
+                                       class="w-full pl-11 pr-4 py-3 bg-gray-50 dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/30 focus:bg-white dark:focus:bg-zinc-900 rounded-xl text-sm transition-all duration-300 dark:text-white">
+                                <svg class="w-5 h-5 text-gray-400 absolute left-3.5 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                            </div>
+                            @error('tanggal_buka') <p class="mt-1 text-xs text-rose-500 font-medium">{{ $message }}</p> @enderror
+                        </div>
+
                         <!-- Deadline -->
                         <div>
                             <label for="deadline" class="block text-xs font-bold uppercase tracking-wider text-brand-dark dark:text-brand-teal mb-2">Batas Pendaftaran</label>
@@ -134,20 +159,20 @@
                                 <option value="Seni">Seni</option>
                                 <option value="Olahraga">Olahraga</option>
                                 <option value="Bisnis">Bisnis</option>
-                                <option value="Lainnya">Lainnya</option>
+                                <option value="Lainnya">Lainnya (Tulis Manual)</option>
                             </select>
                             @error('kategori') <p class="mt-1 text-xs text-rose-500 font-medium">{{ $message }}</p> @enderror
                         </div>
 
-                        <!-- Tingkat -->
-                        <div>
-                            <label for="tingkat" class="block text-xs font-bold uppercase tracking-wider text-brand-dark dark:text-brand-teal mb-2">Tingkat Perlombaan</label>
-                            <select id="tingkat" name="tingkat" x-model="tingkat" class="w-full px-4 py-3 bg-gray-50 dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/30 focus:bg-white dark:focus:bg-zinc-900 rounded-xl text-sm transition-all duration-300 dark:text-white">
-                                <option value="regional">Regional</option>
-                                <option value="nasional">Nasional</option>
-                                <option value="internasional">Internasional</option>
-                            </select>
-                            @error('tingkat') <p class="mt-1 text-xs text-rose-500 font-medium">{{ $message }}</p> @enderror
+                        <!-- Kategori Kustom -->
+                        <div x-show="kategori === 'Lainnya'" x-cloak>
+                            <label for="kategori_kustom" class="block text-xs font-bold uppercase tracking-wider text-brand-dark dark:text-brand-teal mb-2">Tulis Kategori Baru</label>
+                            <div class="relative">
+                                <input id="kategori_kustom" name="kategori_kustom" type="text" x-model="kategori_kustom" :required="kategori === 'Lainnya'" placeholder="Misal: Fotografi"
+                                       class="w-full pl-11 pr-4 py-3 bg-gray-50 dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/30 focus:bg-white dark:focus:bg-zinc-900 rounded-xl text-sm transition-all duration-300 dark:text-white">
+                                <svg class="w-5 h-5 text-gray-400 absolute left-3.5 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                            </div>
+                            @error('kategori_kustom') <p class="mt-1 text-xs text-rose-500 font-medium">{{ $message }}</p> @enderror
                         </div>
                     </div>
 
@@ -278,7 +303,7 @@
                         <!-- Content Preview -->
                         <div class="space-y-2">
                             <div class="flex items-center justify-between">
-                                <span class="px-2 py-0.5 bg-brand-dark text-white text-[9px] font-extrabold uppercase rounded" x-text="kategori">Kategori</span>
+                                <span class="px-2 py-0.5 bg-brand-dark text-white text-[9px] font-extrabold uppercase rounded" x-text="(kategori === 'Lainnya' ? kategori_kustom : kategori) || 'Kategori'">Kategori</span>
                                 <span class="text-[9px] font-bold text-brand-teal uppercase" x-text="'Tingkat ' + tingkat">Tingkat</span>
                             </div>
                             

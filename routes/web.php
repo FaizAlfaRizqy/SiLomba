@@ -103,6 +103,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/export-pdf', [DashboardController::class, 'exportPDF'])->name('export.pdf');
         Route::get('/export-excel', [DashboardController::class, 'exportExcel'])->name('export.excel');
         Route::resource('lomba', App\Http\Controllers\Admin\LombaController::class);
+        Route::post('lomba/{lomba}/toggle-status', [App\Http\Controllers\Admin\LombaController::class, 'toggleStatus'])->name('lomba.toggle-status');
         Route::resource('users', UserController::class);
         Route::resource('tim', TimController::class)->only(['index', 'show', 'destroy']);
         Route::get('/notifikasi', [AdminNotifikasiController::class, 'index'])->name('notifikasi.index');
