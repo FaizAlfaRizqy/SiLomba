@@ -462,24 +462,11 @@
 
                         <!-- Actions -->
                         <div class="form-card">
-                            <div class="flex flex-col sm:flex-row gap-3">
-                                <!-- Simpan Draft -->
-                                <button type="button"
-                                        @click="document.getElementById('status_publikasi').value='draft'; document.getElementById('open-slot-form').submit();"
-                                        class="flex-1 flex items-center justify-center gap-2 px-6 py-3.5 bg-white border border-[#8EB69B]/30 text-[#235347] font-bold text-[13px] rounded-xl hover:bg-[#E8F3E9] transition-all">
-                                    <span class="material-symbols-outlined text-[18px]">draft</span>
-                                    Simpan Draft
-                                </button>
-                                <!-- Publikasikan -->
-                                <button type="submit"
-                                        class="flex-1 flex items-center justify-center gap-2 px-6 py-3.5 bg-[#051F20] text-white font-bold text-[13px] rounded-xl hover:bg-opacity-95 transition-all hover:-translate-y-0.5 shadow-sm">
-                                    <span class="material-symbols-outlined text-[18px]">rocket_launch</span>
-                                    Publikasikan Open Slot
-                                </button>
-                            </div>
-                            <p class="text-center text-[#235347]/50 text-[11px] mt-3">
-                                Draft tidak ditampilkan ke publik. Publikasikan kapan pun kamu siap.
-                            </p>
+                            <button type="submit"
+                                    class="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-[#051F20] text-white font-bold text-[13px] rounded-xl hover:bg-opacity-95 transition-all hover:-translate-y-0.5 shadow-sm">
+                                <span class="material-symbols-outlined text-[18px]">rocket_launch</span>
+                                Publikasikan Open Slot
+                            </button>
                         </div>
 
                     </div>
@@ -546,7 +533,6 @@
                                         <span x-text="formattedDate() || 'Pilih tanggal'"></span>
                                     </span>
                                     <div class="flex gap-2">
-                                        <span class="px-3 py-1.5 border border-[#8EB69B]/20 text-[#235347] text-[11px] font-bold rounded-xl opacity-60">Detail</span>
                                         <span class="px-3 py-1.5 bg-[#051F20] text-white text-[11px] font-bold rounded-xl opacity-60">Lamar</span>
                                     </div>
                                 </div>
