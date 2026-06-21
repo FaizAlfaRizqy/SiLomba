@@ -127,7 +127,7 @@
             border: 1px solid rgba(255,255,255,0.15);
             border-radius: 0.75rem;
             padding: 0.75rem 1rem;
-            color: white;
+            color: black;
             font-size: 14px;
             outline: none;
             transition: border-color 0.2s, box-shadow 0.2s;
@@ -137,7 +137,7 @@
             border-color: rgba(107,254,156,0.5);
             box-shadow: 0 0 0 3px rgba(107,254,156,0.08);
         }
-        .field-input::placeholder { color: rgba(255,255,255,0.35); }
+        .field-input::placeholder { color: rgba(0,0,0,0.35); }
         .field-input option { background: #062e27; color: white; }
         .field-label {
             display: block;
