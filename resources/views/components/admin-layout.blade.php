@@ -338,12 +338,12 @@
                 </div>
             </aside>
 
-            <!-- Sidebar Mobile Overlay -->
-            <div x-show="sidebarOpen" x-transition:enter="transition-opacity ease-linear duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity ease-linear duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm lg:hidden" @click="sidebarOpen = false" x-cloak></div>
+            <!-- Navbar Mobile Overlay -->
+            <div x-show="sidebarOpen" x-transition:enter="transition-opacity ease-linear duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity ease-linear duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm lg:hidden" @click="sidebarOpen = false" x-cloak></div>
 
-            <!-- Sidebar Mobile Content -->
-            <div x-show="sidebarOpen" x-transition:enter="transition ease-in-out duration-300 transform" x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in-out duration-300 transform" x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full" class="fixed inset-y-0 left-0 w-72 bg-brand-dark z-50 flex flex-col text-white lg:hidden" x-cloak>
-                <div class="flex items-center justify-between px-6 py-6 border-b border-white/10">
+            <!-- Navbar Mobile Dropdown Content -->
+            <div x-show="sidebarOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="-translate-y-full" x-transition:enter-end="translate-y-0" x-transition:leave="transition ease-in duration-300 transform" x-transition:leave-start="translate-y-0" x-transition:leave-end="-translate-y-full" class="fixed top-0 left-0 right-0 bg-brand-dark z-50 flex flex-col text-white lg:hidden shadow-2xl rounded-b-3xl max-h-[90vh]" x-cloak>
+                <div class="flex items-center justify-between px-6 py-6 border-b border-white/10 shrink-0">
                     <div class="flex items-center space-x-3">
                         <div class="w-10 h-10 bg-brand-mint text-brand-dark rounded-2xl flex items-center justify-center font-extrabold text-xl">
                             SL
@@ -353,14 +353,14 @@
                             <span class="block text-[10px] uppercase font-semibold text-brand-teal tracking-widest leading-none">Admin Panel</span>
                         </div>
                     </div>
-                    <button @click="sidebarOpen = false" class="text-white hover:text-brand-mint">
+                    <button @click="sidebarOpen = false" class="text-white hover:text-brand-mint bg-white/10 p-2 rounded-xl">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
                 </div>
 
-                <nav class="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto">
+                <nav class="flex-1 px-4 py-4 space-y-1.5 overflow-y-auto">
                     @php
                         $route = request()->route()->getName();
                     @endphp
@@ -402,7 +402,7 @@
                     </a>
                 </nav>
 
-                <div class="p-4 border-t border-white/10 bg-black/10">
+                <div class="p-4 border-t border-white/10 bg-black/10 shrink-0 mb-4 mx-4 rounded-2xl">
                     <div class="flex items-center space-x-3 mb-4">
                         <div class="w-10 h-10 rounded-xl bg-brand-teal/20 text-brand-teal flex items-center justify-center font-bold text-sm">
                             {{ substr(auth()->user()->name, 0, 1) }}

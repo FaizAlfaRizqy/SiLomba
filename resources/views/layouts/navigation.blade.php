@@ -118,7 +118,30 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <!-- Add more responsive links as needed -->
+            
+            @role('mahasiswa|ketua_tim')
+                <x-responsive-nav-link :href="route('mahasiswa.lomba.index')" :active="request()->routeIs('mahasiswa.lomba.*')">
+                    {{ __('Direktori Lomba') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('mahasiswa.tim-finder.index')" :active="request()->routeIs('mahasiswa.tim-finder.*')">
+                    {{ __('Tim Finder') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('mahasiswa.my-teams.index')" :active="request()->routeIs('mahasiswa.my-teams.*')">
+                    {{ __('Tim Saya') }}
+                </x-responsive-nav-link>
+            @endrole
+
+            @role('admin')
+                <x-responsive-nav-link :href="route('admin.lomba.index')" :active="request()->routeIs('admin.lomba.*')">
+                    {{ __('Kelola Lomba') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('admin.tim.index')" :active="request()->routeIs('admin.tim.*')">
+                    {{ __('Kelola Tim') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.*')">
+                    {{ __('Pengguna') }}
+                </x-responsive-nav-link>
+            @endrole
         </div>
     </div>
 </nav>

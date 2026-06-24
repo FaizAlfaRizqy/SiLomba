@@ -94,7 +94,7 @@
                         </div>
                         <div>
                             <label for="nim" class="text-white text-sm font-medium mb-1.5 block">NIM</label>
-                            <input id="nim" type="text" name="nim" value="{{ old('nim') }}" required maxlength="10"
+                            <input id="nim" type="text" name="nim" value="{{ old('nim') }}" required maxlength="10" pattern="[a-zA-Z0-9]+" oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/g, '')"
                                    class="w-full px-4 py-3 rounded-xl bg-[#051F20]/40 border border-[#235347]/50 text-white text-sm placeholder:text-white/40 focus:outline-none focus:border-white focus:ring-2 focus:ring-white/30 transition duration-200"
                                    placeholder="H1D0XXXXXX">
                         </div>
