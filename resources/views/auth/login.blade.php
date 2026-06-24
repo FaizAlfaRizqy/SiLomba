@@ -118,13 +118,11 @@
                             </span>
                         </button>
                     </div>
-                    @if (Route::has('password.request'))
                     <div class="text-right mt-1">
-                        <a href="{{ route('password.request') }}" class="text-white/80 text-xs hover:text-white transition">
+                        <a href="{{ route('password.direct.request') }}" class="text-white/80 text-xs hover:text-white transition">
                             Lupa Password?
                         </a>
                     </div>
-                    @endif
                 </div>
 
                 <input type="checkbox" name="remember" class="hidden" checked>

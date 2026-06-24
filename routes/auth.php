@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
+use App\Http\Controllers\Auth\ForgotPasswordDirectController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
@@ -22,6 +23,20 @@ Route::middleware('guest')->group(function () {
 
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
+    // Sistem Lupa Password Langsung (tanpa email reset link)
+    Route::get('lupa-password', [ForgotPasswordDirectController::class, 'showEmailForm'])
+        ->name('password.direct.request');
+
+    Route::post('lupa-password/verifikasi', [ForgotPasswordDirectController::class, 'verifyEmail'])
+        ->name('password.direct.verify');
+
+    Route::get('lupa-password/baru', [ForgotPasswordDirectController::class, 'showNewPasswordForm'])
+        ->name('password.direct.new');
+
+    Route::post('lupa-password/simpan', [ForgotPasswordDirectController::class, 'storeNewPassword'])
+        ->name('password.direct.store');
+
+    // Route lama (dipertahankan untuk kompatibilitas)
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
         ->name('password.request');
 
