@@ -75,9 +75,9 @@
                     </p>
                 </div>
                 <div class="md:border-x md:border-[#8EB69B]/50 md:px-8">
-                    <h4 class="text-dark font-bold text-base md:text-lg mb-2">Tim Finder Cerdas</h4>
+                    <h4 class="text-dark font-bold text-base md:text-lg mb-2">Tim Finder</h4>
                     <p class="text-muted text-xs md:text-sm leading-relaxed">
-                        Cari rekan satu tim dengan keahlian spesifik menggunakan algoritma pencocokan.
+                        Temukan rekan yang tepat untuk tim lomba-mu dengan mudah.
                     </p>
                 </div>
                 <div>
@@ -108,7 +108,7 @@
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                     <div class="relative z-10 p-10 flex flex-col justify-end w-full h-full">
                         <h3 class="text-white text-3xl font-bold mb-2 font-serif">Tim Finder</h3>
-                        <p class="text-white/80 text-sm max-w-md">Sistem matching otomatis mempertemukan kamu dengan rekan tim berdasarkan keahlian dan minat lomba.</p>
+                        <p class="text-white/80 text-sm max-w-md">Cari tim lomba, temukan anggota baru, dan bangun kolaborasi berdasarkan keahlian. </p>
                         <a href="{{ route('login') }}" class="text-white mt-4 font-bold hover:underline inline-flex items-center gap-2">Coba Sekarang &rarr;</a>
                     </div>
                 </div>

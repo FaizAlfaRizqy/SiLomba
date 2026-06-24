@@ -194,12 +194,6 @@
                     <p class="text-sm text-[#8EB69B] leading-relaxed mb-6 font-medium">
                         Sistem Informasi Lomba & Event Mahasiswa terpadu untuk menemukan kompetisi dan rekan tim terbaik.
                     </p>
-                    <div class="flex gap-3">
-                        <a href="#" class="w-8 h-8 rounded-lg bg-[#0B2B26] border border-[#235347] hover:bg-white transition flex items-center justify-center text-[#8EB69B] text-xs hover:text-[#051F20]">IG</a>
-                        <a href="#" class="w-8 h-8 rounded-lg bg-[#0B2B26] border border-[#235347] hover:bg-white transition flex items-center justify-center text-[#8EB69B] text-xs hover:text-[#051F20]">X</a>
-                        <a href="#" class="w-8 h-8 rounded-lg bg-[#0B2B26] border border-[#235347] hover:bg-white transition flex items-center justify-center text-[#8EB69B] text-xs hover:text-[#051F20]">IN</a>
-                        <a href="#" class="w-8 h-8 rounded-lg bg-[#0B2B26] border border-[#235347] hover:bg-white transition flex items-center justify-center text-[#8EB69B] text-xs hover:text-[#051F20]">GH</a>
-                    </div>
                 </div>
 
                 <!-- Kolom 2 — Platform -->
@@ -218,8 +212,6 @@
                     <ul class="space-y-3 text-sm text-[#8EB69B]">
                         <li><a href="#" class="hover:text-white transition">Tentang SiLomba</a></li>
                         <li><a href="#" class="hover:text-white transition">Cara Kerja</a></li>
-                        <li><a href="#" class="hover:text-white transition">FAQ</a></li>
-                        <li><a href="#" class="hover:text-white transition">Kontak</a></li>
                     </ul>
                 </div>
 
