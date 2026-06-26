@@ -283,28 +283,30 @@
                  x-transition:leave="transition ease-in duration-200 transform"
                  x-transition:leave-start="opacity-100 scale-100"
                  x-transition:leave-end="opacity-0 scale-95"
-                 class="relative max-w-sm w-full bg-white dark:bg-zinc-900 border border-gray-150/10 dark:border-zinc-800 rounded-[2.5rem] shadow-2xl overflow-hidden"
+                 class="relative max-w-sm w-full bg-white dark:bg-zinc-900 border border-gray-150/10 dark:border-zinc-800 rounded-[2.5rem] shadow-2xl"
                  @click.outside="quickView.show = false">
                 
                 <!-- Card Header with Gradient -->
-                <div class="h-32 bg-gradient-to-br from-brand-teal to-brand-dark relative">
+                <div class="h-32 bg-gradient-to-br from-brand-teal to-brand-dark relative rounded-t-[2.5rem]">
                     <button @click="quickView.show = false" class="absolute top-4 right-4 p-2 bg-white/10 text-white rounded-full hover:bg-white/20 transition backdrop-blur-sm">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
                     </button>
                 </div>
 
-                <div class="px-8 pb-8 pt-0 relative text-center">
-                    <!-- Avatar Circle -->
-                    <div class="w-24 h-24 bg-white dark:bg-zinc-900 rounded-full p-1.5 absolute left-1/2 -translate-x-1/2 -top-12">
+                <!-- Avatar Circle (half-overlapping the header) -->
+                <div class="flex justify-center" style="margin-top: -48px; position: relative; z-index: 10;">
+                    <div class="w-24 h-24 bg-white dark:bg-zinc-900 rounded-full p-1.5 shadow-xl">
                         <div class="w-full h-full bg-gradient-to-br from-brand-dark to-brand-teal text-white rounded-full flex items-center justify-center font-black text-3xl border border-brand-teal/20 shadow-md"
                              :class="quickView.role === 'admin' ? 'from-purple-500 to-purple-700' : 'from-brand-dark to-brand-teal'">
                             <span x-text="quickView.initials"></span>
                         </div>
                     </div>
+                </div>
 
-                <div class="mt-14">
+                <div class="px-8 pb-8 pt-4 text-center">
+                <div class="mt-2">
                     <h3 class="text-xl font-extrabold text-brand-dark dark:text-white" x-text="quickView.name"></h3>
-                    <p class="text-xs font-semibold text-brand-teal" x-text="quickView.email"></p>
+                    <p class="text-xs font-semibold text-brand-teal mt-1" x-text="quickView.email"></p>
                 </div>
 
                 <div class="mt-6 py-4 border-y border-gray-100 dark:border-zinc-800 flex justify-around text-left">

@@ -138,14 +138,16 @@
 <div class="flex flex-col md:flex-row h-screen">
 
         <!-- Mobile Top Navbar -->
-    <div class="md:hidden flex items-center justify-between bg-primary-container px-4 py-3 sticky top-0 z-50 w-full shadow-md" x-data="{ mobileMenuOpen: false }">
-        <div class="flex items-center gap-3">
-            <img src="{{ asset('images/logo.png') }}" alt="Logo SiLomba" class="w-8 h-8 object-contain">
-            <h1 class="font-headline-sm text-[18px] font-bold text-secondary-fixed">SiLomba</h1>
+    <div class="md:hidden flex-shrink-0 bg-primary-container shadow-md z-50 w-full" x-data="{ mobileMenuOpen: false }">
+        <div class="flex items-center justify-between px-4 py-3">
+            <div class="flex items-center gap-3">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo SiLomba" class="w-8 h-8 object-contain">
+                <h1 class="font-headline-sm text-[18px] font-bold text-secondary-fixed">SiLomba</h1>
+            </div>
+            <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-white hover:text-secondary-fixed transition-colors">
+                <span class="material-symbols-outlined text-2xl" x-text="mobileMenuOpen ? 'close' : 'menu'">menu</span>
+            </button>
         </div>
-        <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-white hover:text-secondary-fixed transition-colors">
-            <span class="material-symbols-outlined text-2xl" x-text="mobileMenuOpen ? 'close' : 'menu'">menu</span>
-        </button>
 
         <!-- Mobile Dropdown -->
         <div x-show="mobileMenuOpen" 
@@ -155,8 +157,8 @@
              x-transition:leave="transition ease-in duration-150"
              x-transition:leave-start="opacity-100 translate-y-0"
              x-transition:leave-end="opacity-0 -translate-y-4"
-             class="absolute top-full left-0 right-0 bg-primary-container border-t border-outline-variant/10 shadow-xl z-50" x-cloak>
-            <nav class="flex flex-col p-4 gap-2 max-h-[80vh] overflow-y-auto">
+             class="bg-primary-container border-t border-outline-variant/10 shadow-xl" x-cloak>
+            <nav class="flex flex-col p-4 gap-2 max-h-[60vh] overflow-y-auto">
                 <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-surface-variant hover:bg-secondary/20 {{ request()->routeIs('dashboard') ? 'bg-secondary text-on-secondary' : '' }}">
                     <span class="material-symbols-outlined">dashboard</span> Dashboard
                 </a>
