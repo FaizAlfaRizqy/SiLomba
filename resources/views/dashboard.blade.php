@@ -260,8 +260,7 @@
             @endrole
         </nav>
         
-        <div class="mt-auto flex flex-col gap-1">
-            <!-- Logout -->
+        <div class="mt-auto flex flex-col gap-1 pt-6">
             <form method="POST" action="{{ route('logout') }}" class="w-full">
                 @csrf
                 <button type="submit" class="w-full flex items-center gap-stack-md text-error hover:bg-error/10 px-4 py-3 transition-all rounded-lg">
@@ -269,13 +268,13 @@
                     <span class="font-label-md text-label-md">Logout</span>
                 </button>
             </form>
-            <div class="mt-2 pt-4 border-t border-outline-variant/10 flex items-center gap-3 px-2">
-                <img alt="Profile" class="w-10 h-10 rounded-full border-2 border-secondary-fixed/30" src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&color=7F9CF5&background=EBF4FF"/>
-                <div class="overflow-hidden">
-                    <p class="font-headline-sm text-[14px] text-on-primary-fixed truncate">{{ Auth::user()->name }}</p>
+            <a href="{{ route('mahasiswa.profile.edit') }}" class="mt-2 pt-4 border-t border-outline-variant/10 flex items-center gap-3 px-2 hover:bg-secondary/10 pb-2 rounded-lg transition-colors cursor-pointer group">
+                <img alt="Profile" class="w-10 h-10 rounded-full border-2 border-secondary-fixed/30 group-hover:border-secondary-fixed transition-colors object-cover" src="{{ (Auth::user()->mahasiswa && Auth::user()->mahasiswa->foto_profil) ? asset('storage/' . Auth::user()->mahasiswa->foto_profil) : 'https://ui-avatars.com/api/?name=' . urlencode(Auth::user()->name) . '&color=7F9CF5&background=EBF4FF' }}"/>
+                <div class="overflow-hidden flex-1">
+                    <p class="font-headline-sm text-[14px] text-on-primary-fixed truncate group-hover:text-secondary transition-colors">{{ Auth::user()->name }}</p>
                     <p class="font-label-md text-[10px] text-on-primary-container truncate">{{ Auth::user()->getRoleNames()->first() ?? 'Mahasiswa' }}</p>
                 </div>
-            </div>
+            </a>
         </div>
     </aside>
 

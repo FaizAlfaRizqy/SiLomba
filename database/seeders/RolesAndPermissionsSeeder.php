@@ -25,7 +25,7 @@ class RolesAndPermissionsSeeder extends Seeder
 
         // Create default admin
         $admin = User::updateOrCreate(
-            ['email' => 'admin@silomba.com'],
+            ['email' => 'admin@mhs.unsoed.ac.id'],
             [
                 'name' => 'Admin SiLomba',
                 'password' => Hash::make('password'),
@@ -37,7 +37,7 @@ class RolesAndPermissionsSeeder extends Seeder
 
         // Create a test mahasiswa
         $mahasiswa = User::updateOrCreate(
-            ['email' => 'faiz@mahasiswa.com'],
+            ['email' => 'faiz@mhs.unsoed.ac.id'],
             [
                 'name' => 'Faiz Alfa Rizqy',
                 'password' => Hash::make('password'),

@@ -249,15 +249,22 @@
                 </a>
             </div>
         </nav>
+                <!-- Bottom: logout + profile -->
         <div class="mt-auto flex flex-col gap-1 pt-6">
-            <!-- Logout -->
             <form method="POST" action="{{ route('logout') }}" class="w-full">
                 @csrf
-                <button type="submit" class="w-full flex items-center gap-stack-md text-red-400 hover:bg-red-500/10 px-4 py-3 transition-all rounded-lg">
+                <button type="submit" class="w-full flex items-center gap-stack-md text-error hover:bg-error/10 px-4 py-3 transition-all rounded-lg">
                     <span class="material-symbols-outlined">logout</span>
                     <span class="font-label-md text-label-md">Logout</span>
                 </button>
             </form>
+            <a href="{{ route('mahasiswa.profile.edit') }}" class="mt-2 pt-4 border-t border-outline-variant/10 flex items-center gap-3 px-2 hover:bg-white/5 pb-2 rounded-lg transition-colors cursor-pointer group">
+                <img alt="Profile" class="w-10 h-10 rounded-full border-2 border-secondary-fixed/30 group-hover:border-secondary-fixed transition-colors object-cover" src="{{ (Auth::user()->mahasiswa && Auth::user()->mahasiswa->foto_profil) ? asset('storage/' . Auth::user()->mahasiswa->foto_profil) : 'https://ui-avatars.com/api/?name=' . urlencode(Auth::user()->name) . '&color=7F9CF5&background=EBF4FF' }}"/>
+                <div class="overflow-hidden flex-1">
+                    <p class="font-headline-sm text-[14px] text-white truncate group-hover:text-secondary-fixed transition-colors">{{ Auth::user()->name }}</p>
+                    <p class="font-label-md text-[10px] text-on-surface-variant truncate">{{ Auth::user()->getRoleNames()->first() ?? 'Mahasiswa' }}</p>
+                </div>
+            </a>
         </div>
     </aside>
 

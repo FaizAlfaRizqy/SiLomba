@@ -127,23 +127,23 @@ tailwind.config = {
         </a>
     </nav>
 
-    <div class="mt-auto space-y-2 pt-6 border-t border-on-primary-fixed-variant">
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button type="submit" class="w-full flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-error/10 hover:text-error transition-colors rounded-xl">
-                <span class="material-symbols-outlined">logout</span>
-                <span class="font-body-md text-body-md">Logout</span>
-            </button>
-        </form>
-        <a href="{{ route('mahasiswa.profile.edit') }}" class="flex items-center gap-3 px-4 py-2 text-on-primary-container hover:bg-white/10 transition-colors rounded-xl">
-            <img class="w-8 h-8 rounded-full border-2 border-secondary-fixed/30 object-cover"
-                 src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&color=7F9CF5&background=EBF4FF" alt="Avatar">
-            <div class="overflow-hidden flex-1">
-                <p class="font-body-md text-body-md text-secondary-fixed font-bold truncate">{{ Auth::user()->name }}</p>
-                <p class="text-[10px] text-on-primary-container opacity-70 truncate uppercase tracking-wider">{{ Auth::user()->getRoleNames()->first() ?? 'Mahasiswa' }}</p>
-            </div>
-        </a>
-    </div>
+            <!-- Bottom: logout + profile -->
+        <div class="mt-auto flex flex-col gap-1 pt-6">
+            <form method="POST" action="{{ route('logout') }}" class="w-full">
+                @csrf
+                <button type="submit" class="w-full flex items-center gap-stack-md text-error hover:bg-error/10 px-4 py-3 transition-all rounded-lg">
+                    <span class="material-symbols-outlined">logout</span>
+                    <span class="font-label-md text-label-md">Logout</span>
+                </button>
+            </form>
+            <a href="{{ route('mahasiswa.profile.edit') }}" class="mt-2 pt-4 border-t border-outline-variant/10 flex items-center gap-3 px-2 hover:bg-white/5 pb-2 rounded-lg transition-colors cursor-pointer group">
+                <img alt="Profile" class="w-10 h-10 rounded-full border-2 border-secondary-fixed/30 group-hover:border-secondary-fixed transition-colors object-cover" src="{{ (Auth::user()->mahasiswa && Auth::user()->mahasiswa->foto_profil) ? asset('storage/' . Auth::user()->mahasiswa->foto_profil) : 'https://ui-avatars.com/api/?name=' . urlencode(Auth::user()->name) . '&color=7F9CF5&background=EBF4FF' }}"/>
+                <div class="overflow-hidden flex-1">
+                    <p class="font-headline-sm text-[14px] text-white truncate group-hover:text-secondary-fixed transition-colors">{{ Auth::user()->name }}</p>
+                    <p class="font-label-md text-[10px] text-on-surface-variant truncate">{{ Auth::user()->getRoleNames()->first() ?? 'Mahasiswa' }}</p>
+                </div>
+            </a>
+        </div>
 </aside>
 
 <!-- TopNavBar -->

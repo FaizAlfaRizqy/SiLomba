@@ -103,7 +103,7 @@
                     <!-- Email Address -->
                     <div>
                         <label for="email" class="text-white text-sm font-medium mb-1.5 block">Email Institusi</label>
-                        <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="username"
+                        <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="username" pattern=".*@mhs\.unsoed\.ac\.id$" title="Gunakan email @mhs.unsoed.ac.id"
                                class="w-full px-4 py-3 rounded-xl bg-[#051F20]/40 border border-[#235347]/50 text-white text-sm placeholder:text-white/40 focus:outline-none focus:border-white focus:ring-2 focus:ring-white/30 transition duration-200"
                                placeholder="email@mhs.unsoed.ac.id">
                     </div>

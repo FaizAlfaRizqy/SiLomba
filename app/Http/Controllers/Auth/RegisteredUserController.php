@@ -33,7 +33,7 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'ends_with:@mhs.unsoed.ac.id', 'unique:'.User::class],
             'nim' => ['required', 'string', 'max:20', 'regex:/^[a-zA-Z0-9]+$/', 'unique:\App\Models\Mahasiswa,nim'],
             'program_studi' => ['required', 'string', 'max:255'],
             'domisili' => ['required', 'string', 'max:255'],
