@@ -314,8 +314,35 @@
 
             <!-- Poster Container (Portrait) -->
             @if($lomba->poster)
-            <div class="relative z-10 w-full md:w-1/3 max-w-[320px] flex-shrink-0">
-                <img alt="Poster Lomba" class="w-full h-auto object-contain rounded-2xl shadow-2xl border border-white/10 {{ $isArsip ? 'grayscale' : '' }}" src="{{ asset('storage/' . $lomba->poster) }}"/>
+            <div x-data="{ modalOpen: false }" class="relative z-10 w-full md:w-1/3 max-w-[320px] flex-shrink-0">
+                <!-- Image Trigger -->
+                <div @click="modalOpen = true" class="relative group cursor-zoom-in">
+                    <img alt="Poster Lomba" class="w-full h-auto object-contain rounded-2xl shadow-2xl border border-white/10 {{ $isArsip ? 'grayscale' : '' }} transition-transform duration-300 group-hover:scale-[1.02]" src="{{ asset('storage/' . $lomba->poster) }}"/>
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl flex items-center justify-center">
+                        <span class="material-symbols-outlined text-white text-4xl drop-shadow-md">zoom_in</span>
+                    </div>
+                </div>
+
+                <!-- Lightbox Modal -->
+                <template x-teleport="body">
+                    <div x-show="modalOpen" 
+                         x-cloak
+                         @keydown.escape.window="modalOpen = false"
+                         class="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 sm:p-8"
+                         x-transition:enter="transition ease-out duration-300"
+                         x-transition:enter-start="opacity-0"
+                         x-transition:enter-end="opacity-100"
+                         x-transition:leave="transition ease-in duration-200"
+                         x-transition:leave-start="opacity-100"
+                         x-transition:leave-end="opacity-0">
+                         
+                         <button @click="modalOpen = false" class="absolute top-4 right-4 sm:top-8 sm:right-8 text-white bg-white/10 hover:bg-white/20 rounded-full p-2 backdrop-blur-md transition-colors z-[110]">
+                             <span class="material-symbols-outlined text-3xl">close</span>
+                         </button>
+                         
+                         <img @click.outside="modalOpen = false" src="{{ asset('storage/' . $lomba->poster) }}" alt="Poster Zoom" class="max-w-full max-h-full object-contain rounded-xl shadow-2xl" />
+                    </div>
+                </template>
             </div>
             @endif
 

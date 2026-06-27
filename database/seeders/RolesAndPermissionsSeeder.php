@@ -25,7 +25,7 @@ class RolesAndPermissionsSeeder extends Seeder
 
         // Create default admin
         $admin = User::updateOrCreate(
-            ['email' => 'admin@mhs.unsoed.ac.id'],
+            ['email' => 'admin@silomba.com'],
             [
                 'name' => 'Admin SiLomba',
                 'password' => Hash::make('password'),
